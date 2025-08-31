@@ -1,54 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sarthak Gawari</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#29231c] text-[#d4c9ba] font-sans">
+    <!-- Background Container for Circles -->
+    <div id="background-container"></div>
+    
+    <div id="content-container">
+        <!-- Navigation -->
+        <nav class="bg-[#1e1815] shadow-md fixed w-full z-40">
+            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+                <a href="#" class="text-xl font-bold text-[#d4c9ba]">Portfolio</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-[#e1ad10] scroll-behavior: smooth">Home</a>
+                    <a href="#projects" class="hover:text-[#e1ad10] scroll-behavior: smooth">Projects</a>
+                    <a href="#about" class="hover:text-[#e1ad10] scroll-behavior: smooth">About</a>
+                    <a href="#contact" class="hover:text-[#e1ad10] scroll-behavior: smooth">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-500 hover:text-[#e1ad10] focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-[#1e1815] px-6 pt-2 pb-4">
+                <a href="#home" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Home</a>
+                <a href="#projects" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Projects</a>
+                <a href="#about" class="block py-2 hover:text-[#e1ad10] scroll-smooth">About</a>
+                <a href="#contact" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Contact</a>
+            </div>
+        </nav>
 
-  <!-- HEADER -->
-  <header class="main-header">
-    <div class="top-header">
-        <img src="images/gold_corner.png" alt="Photo of Sarthak" class="profile-pic right-align" />
-      <h1>Sarthak Gawari</h1>
-      <p class="subtitle">Developer | Tech Enthusiast</p>
+        <!-- Hero Section -->
+        <section id="home" class="section min-h-screen flex items-center pt-20 pb-16 px-6">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h1 class="text-4xl md:text-7xl font-bold mb-4">Hello, I'm <span class="text-[#fae604]">Sarthak Gawari</span></h1>
+                <h2 class="text-xl md:text-2xl text-[#978d7f] mb-8">Game Dev <span class="text-[#fae604] font-extrabold">•</span> UI/UX <span class="text-[#fae604] font-extrabold">•</span> Front End</h2>
+                <p class="text-lg mb-10 max-w-2xl mx-auto">Crafting digital experiences through code, design, and interactive worlds</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#projects" class="btn-hover bg-[#f2c251] text-[#7b4928] px-6 py-3 rounded-lg">View My Work</a>
+                    <a href="#contact" class="border border-[#d4c9ba] text-[#d4c9ba] hover:bg-[#d4c9ba] hover:text-[#7b4928] hover:border-0 px-6 py-3 rounded-lg transition duration-300">Contact Me</a>
+                </div>
+            </div>
+        </section>
+
+     <!-- Projects Section -->
+<div id="projects" class="section py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Side-scrolling tabs -->
+    <div
+      class="tabs-container flex space-x-2 p-2 mb-8 rounded-lg shadow-md overflow-x-auto bg-gradient-to-r from-[#c8b8a8] via-[#d8cfc4] to-[#e5dccd]"
+    >
+      <button
+        class="tab-button active px-4 py-2 rounded-md bg-[#1e1815] text-[#f4ede7]"
+        data-category="highlighted"
+      >
+        Highlighted Projects
+      </button>
+      <button
+        class="tab-button px-4 py-2 rounded-md bg-[#d8cfc4] text-[#1e1815]"
+        data-category="game"
+      >
+        Game Development
+      </button>
+      <button
+        class="tab-button px-4 py-2 rounded-md bg-[#d8cfc4] text-[#1e1815]"
+        data-category="sql"
+      >
+        MySQL Projects
+      </button>
+      <button
+        class="tab-button px-4 py-2 rounded-md bg-[#d8cfc4] text-[#1e1815]"
+        data-category="web"
+      >
+        Web Development
+      </button>
     </div>
-    <nav class="navbar">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+    <!-- Projects grid -->
+    <div class="project-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Game Development Projects -->
+      <div
+        class="project-item game  project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
+        >
+          <img src="images/BB.png" alt="Block Blocker Icon" class="w-full h-full object-contain" />
 
-    <div class="section" id="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>Python, Java, Linux</li>
-        <li>Unity Game Development</li>
-        <li>Web Development (HTML, CSS, Flask)</li>
-      </ul>
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Block Blocker - Unity Game 2D
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          Solo GameJam project with full gameplay loop, UI design, and
+          difficulty scaling (won Glitched 2025)
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >Unity</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >C#</span
+          >
+        </div>
+        <div class="flex justify-between items-center">
+          <a
+            href="https://sarthak-gawari.itch.io/block-blocker"
+            class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+          >
+            Click Here
+          </a>
+
+          <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+            2024-25
+          </span>
+        </div>
+
+      </div>
+
+      <div
+        class="project-item game  project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
+        >
+          <img src="images/TTT.png" alt="Tic Tac Toe Ultimate Icon" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Tic Tac Toe Ultimate
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          UI-based board game with custom UI components and polished interface
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >Unity</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >C#</span
+          >
+        </div>
+        <div class="flex justify-between items-center">
+            <a
+              href="https://sarthak-gawari.itch.io/tic-tac-tou-the-ultimate"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
+
+      <div
+        class="project-item game highlighted project-card bg-[#d8cfc4] rounded-lg shadow-md p-6">
+        <div
+          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
+        >
+          <img src="images/KC.png" alt="Kaalchakra Icon" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Kaalchakra - Unity Game 2D
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          Collaborative project with GameDevUtopia & PICT featuring physics and
+          scalable controls
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >Unity</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >C#</span
+          >
+        </div>
+         <div class="flex justify-between items-center">
+            <a
+              href="https://gamedevutopia.itch.io/kalchakra"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
+
+      <div
+        class="project-item game highlighted project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
+        >
+          <img src="images/RCC.png" alt="Realistic Car Controller Icon" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Realistic Car Controller - Unity Asset 3D
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          Selfmade trying to explore the world of 3D vehicle dynamics and
+          control systems, with audio, visual effects, and realistic physics.
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >Unity</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >C#</span
+          >
+        </div>
+         <div class="flex justify-between items-center">
+            <a
+              href="https://sarthak-gawari.itch.io/realistic-car-contoller-unity-in-progress"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
+
+
+      <!-- MySQL Projects -->
+      <div
+        class="project-item sql project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#f4ede7] rounded-lg mb-4 flex items-center justify-center"
+        >
+          <i class="fas fa-database text-5xl text-[#7b4928]"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Bank Transaction Analyzer
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          MySQL database system for monitoring financial transactions with fraud
+          detection
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >PostgreSQL</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >Database</span 
+          >
+        </div>
+       <div class="flex justify-between items-center">
+            <a
+              href="https://github.com/sarthak232425/DBMS-SQL/tree/main/Banking%20Management%20System"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
+
+      <div
+        class="project-item sql project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#f4ede7] rounded-lg mb-4 flex items-center justify-center"
+        >
+          <i class="fas fa-chart-line text-5xl text-[#7b4928]"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Loan Risk Assessment
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          Credit scoring system for loan applicants with automated approval
+          rules
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >PostgreSQL</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >Database</span
+          >
+        </div>
+        <div class="flex justify-between items-center">
+            <a
+              href="https://github.com/sarthak232425/DBMS-SQL/tree/main/Loan%20Risk%20Assesment%20System"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
+
+      <div
+        class="project-item sql project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#f4ede7] rounded-lg mb-4 flex items-center justify-center"
+        >
+          <i class="fas fa-chart-pie text-5xl text-[#7b4928]"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Portfolio Tracker
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          Stock investment monitoring database handling 10,000+ simulated trades
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >PostgreSQL</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >Database</span
+          >
+
+        </div>
+        <div class="flex justify-between items-center">
+            <a
+              href="https://github.com/sarthak232425/DBMS-SQL/tree/main/Stock%20Portfolio%20Tracker"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
+      <!-- Web Development Projects -->
+       <div
+        class="project-item web highlighted project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
+      >
+        <div
+          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
+        >
+          <img src="images/CE.png" alt="Colour Extractor Icon" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
+          Colour Extractor - Web App
+        </h3>
+        <p class="text-[#9b8b80] mb-4">
+          A simple web application that extracts colours from an image using a pointer. Users can copy the selected colour in both RGB and HEX formats.
+        </p>
+        <div class="mb-4">
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >HTML</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
+            >CSS</span
+          >
+          <span
+            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
+            >JavaScript</span
+          >
+        </div>
+        <div class="flex justify-between items-center">
+            <a
+              href="https://github.com/sarthak232425/COLOUR-EXTRACTOR"
+              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
+            >
+              Click Here
+            </a>
+
+            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
+              2025
+            </span>
+          </div>
+      </div>
     </div>
-
-    <div class="section" id="achievements">
-      <h2>Achievements</h2>
-      <ul>
-        <li>Built a ping pong game in Unity</li>
-        <li>Worked on a club record management system</li>
-        <li>Completed Linux system programming project</li>
-      </ul>
-    </div>
-
-    <div class="section" id="contact">
-      <h2>Contact</h2>
-      <p>Email: sarthak@example.com</p>
-    </div>
-
   </div>
-</body>
+</div>
+
+        <!-- About Section -->
+        <section id="about" class="section py-16  px-6">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#d4c9ba]">About Me</h2>
+                <div class="bg-gradient-to-br from-[#d4c9ba] to-[#e5dccd] text-[#46240f] rounded-2xl shadow-xl p-8 relative overflow-hidden">
+
+                    <div class="relative z-10">
+                        <p class="text-lg mb-6 font-medium leading-relaxed">Hello! I'm a passionate developer with expertise in web technologies, game development, and database management. I love turning ideas into reality through code.</p>
+                        <p class="text-lg mb-8 font-medium leading-relaxed">I enjoy creating solutions that are both efficient and user-friendly, with a strong focus on clean design and intuitive interfaces.</p>
+                        
+                       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+    <!-- Skills Column -->
+    <div>
+        <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                <i class="fas fa-code text-[#d4c9ba]"></i>
+            </div>
+            <h3 class="font-bold text-xl text-[#46240f]">Skills</h3>
+        </div>
+        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 pl-2">
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Unity Game Engine</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>MySQL</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>PostgreSQL</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Java</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>C#</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>HTML/CSS</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>JavaScript</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Vuforia</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tools Column -->
+    <div>
+        <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                <i class="fas fa-tools text-[#d4c9ba]"></i>
+            </div>
+            <h3 class="font-bold text-xl text-[#46240f]">Tools</h3>
+        </div>
+        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 pl-2">
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Git</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>VS Code</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Figma</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>MySQL Workbench</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Solidworks</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Unity Engine</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>GitHub</span>
+            </li>
+            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
+                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+                </div>
+                <span>Vuforia Engine</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+                        <!-- Education Section -->
+                        <div class="mt-12 pt-8 border-t border-[#c4b6a2]">
+                            <div class="flex items-center mb-6">
+                                <div class="w-10 h-10 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
+                                    <i class="fas fa-graduation-cap text-[#d4c9ba]"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-[#46240f]">Education</h3>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-[#7b4928]">B.E. in Information Technology</h4>
+                                    <p class="text-sm">Pune Institute of Computer Technology</p>
+                                    <p class="text-xs text-[#7b4928]">2024-Present Dhankawdi, Pune</p>
+                                    
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-[#7b4928]">HSC. Science 12th PCM</h4>
+                                    <p class="text-sm">Dr. D.Y. Patil Junior College</p>
+                                    <p class="text-xs text-[#7b4928]">2022-2024 Shahunagar, PCMP</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-[#7b4928]">SSC Maharashtra board</h4>
+                                    <p class="text-sm">Pius Memorial High School</p>
+                                    <p class="text-xs text-[#7b4928]">2011-2021 Waki, Chakan</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats section -->
+                        <div class="mt-12 pt-8 border-t border-[#c4b6a2] grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-[#46240f]">100+</div>
+                                <div class="text-sm text-[#7b4928] mt-1">Tabs Open<br><span class="text-xs">(Chrome is sweating)</span></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-[#46240f]">∞</div>
+                                <div class="text-sm text-[#7b4928] mt-1">Coffee Consumed<br><span class="text-xs">(my kidneys hate me)</span></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-[#46240f]">99%</div>
+                                <div class="text-sm text-[#7b4928] mt-1">Debugging Success Rate<br><span class="text-xs">(after 50 tries)</span></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-[#46240f]">24/7</div>
+                                <div class="text-sm text-[#7b4928] mt-1">"It works on my machine"<br><span class="text-xs">(famous last words)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section py-16  px-6">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+                <div class="bg-[#d4c9ba] rounded-lg shadow-md p-8">
+                    <form action="https://formspree.io/f/xyzdzrjb" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" 
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-amber-50 focus:ring-[#e2b93b] text-[#46240f]" 
+                                required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 mb-2">Your Email</label>
+                            <input type="email" id="email" name="email" 
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-amber-50 focus:ring-[#e2b93b] text-[#46240f]" 
+                                required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" name="message" rows="5" 
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-amber-50 focus:ring-[#e2b93b] text-[#46240f]" 
+                                    required></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="bg-[#46240f] hover:bg-[#7b4928] text-white px-6 py-3 rounded-lg transition duration-300 w-full">
+                            Send Message
+                        </button>
+                        <div class="flex justify-center space-x-6 mt-12">
+                    <a href="https://github.com/sarthak232425" class="text-[#46240f] hover:text-white"><i class="fab fa-github text-2xl"></i></a>
+                    <a href="https://www.linkedin.com/in/sarthak-shivaji-gawari?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="text-[#46240f] hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
+                    <a href="mailto:sarthakgawari@gmail.com" class="text-[#46240f] hover:text-white"><i class="fas fa-envelope text-2xl"></i></a>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div> <!-- End of content-container -->
+
+    <footer class="bg-[#1e1815] text-white py-8 px-6 w-full">
+  <div class="container mx-auto text-center">
+    <p>&copy; 2025 Sarthak Gawari. All rights reserved.</p>
+    <p class="mt-2 text-gray-400 text-sm">Built with passion, caffeine, and a touch of chaos using HTML, JS & Tailwind.</p>
+  </div>
+</footer>
+
+
+
+    <script src="script.js" defer></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script></body>
 </html>
