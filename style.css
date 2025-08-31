@@ -1,0 +1,114 @@
+/* Custom Font */
+@font-face {
+  font-family: 'Bitcount';
+  src: url('fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*Alignments--------------------------------------*/
+/* Right align image */
+.right-align {
+  float: right;
+  margin-left: 20px;
+}
+/* Left align image */
+.left-align {
+  float: left;
+  margin-right: 20px;
+}
+/* Center image */
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*Alignments End--------------------------------------*/
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #191506;
+  color: #d49251;
+}
+
+/* Container for page content */
+.container {
+  max-width: 2000px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+/* Section spacing */
+.section {
+  margin: 20px;
+}
+
+/* Entire header styling */
+.main-header {
+  position: relative;
+  background: rgb(255, 255, 255);
+  z-index: 1000;
+}
+
+/* Top part that scrolls away */
+.top-header {
+  padding: 5px 20px;
+  background: rgb(6, 28, 75);
+}
+
+/* Header name style */
+.top-header h1 {
+  font-family: 'Bitcount', sans-serif;
+  font-size: 36px;
+  margin: 0;
+  color: #d49251;
+  
+}
+
+/* Subtitle below name */
+.top-header .subtitle {
+  font-size: 14px;
+  margin: 0;
+  color: #d0d0d0;
+}
+
+/* Sticky navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #bd8f2d;
+  padding: 10px 20px;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  z-index: 999;
+  display: flex;
+  gap: 20px;
+}
+
+/* Navbar links */
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Headings */
+h1, h2 {
+  font-family: 'Bitcount', sans-serif;
+  color: #d49251;
+}
+
+/* Contact info */
+.section p {
+  color: #333;
+}
+
+.profile-pic {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: px;
+  nav-right: auto;
+}
