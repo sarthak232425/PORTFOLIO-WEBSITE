@@ -15,28 +15,46 @@
     <div id="content-container">
         <!-- Navigation -->
         <nav class="bg-[#1e1815] shadow-md fixed w-full z-40">
-            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-                <a href="#" class="text-xl font-bold text-[#d4c9ba]">Portfolio</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-[#e1ad10] scroll-behavior: smooth">Home</a>
-                    <a href="#projects" class="hover:text-[#e1ad10] scroll-behavior: smooth">Projects</a>
-                    <a href="#about" class="hover:text-[#e1ad10] scroll-behavior: smooth">About</a>
-                    <a href="#contact" class="hover:text-[#e1ad10] scroll-behavior: smooth">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-gray-500 hover:text-[#e1ad10] focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Mobile menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-[#1e1815] px-6 pt-2 pb-4">
-                <a href="#home" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Home</a>
-                <a href="#projects" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Projects</a>
-                <a href="#about" class="block py-2 hover:text-[#e1ad10] scroll-smooth">About</a>
-                <a href="#contact" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Contact</a>
-            </div>
-        </nav>
+  <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="#" class="text-xl font-bold text-[#d4c9ba]">Portfolio</a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center space-x-6">
+      <div class="flex space-x-8">
+        <a href="#home" class="hover:text-[#e1ad10] scroll-behavior: smooth">Home</a>
+        <a href="#projects" class="hover:text-[#e1ad10] scroll-behavior: smooth">Projects</a>
+        <a href="#about" class="hover:text-[#e1ad10] scroll-behavior: smooth">About</a>
+        <a href="#contact" class="hover:text-[#e1ad10] scroll-behavior: smooth">Contact</a>
+      </div>
+      <!-- Resume Button -->
+      <a href="files/Sarthak_Gawari_Resume.pdf" target="_blank" 
+         class="bg-[#7b4928] text-[#d4c9ba] px-2 py-1 rounded-lg hover:bg-[#f2c251] transition duration-300 text-xs">
+        Resume
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden flex items-center space-x-4">
+      <a href="files/Sarthak_Gawari_Resume.pdf" target="_blank" 
+         class="bg-[#7b4928] text-[#d4c9ba] px-2 py-1 rounded-lg hover:bg-[#f2c251] transition duration-300 text-xs">
+        Resume
+      </a>
+      <button id="menu-toggle" class="text-gray-500 hover:text-[#e1ad10] focus:outline-none">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#1e1815] px-6 pt-2 pb-4">
+    <a href="#home" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Home</a>
+    <a href="#projects" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Projects</a>
+    <a href="#about" class="block py-2 hover:text-[#e1ad10] scroll-smooth">About</a>
+    <a href="#contact" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Contact</a>
+  </div>
+</nav>
+
 
         <!-- Hero Section -->
         <section id="home" class="section min-h-screen flex items-center pt-20 pb-16 px-6">
@@ -219,7 +237,7 @@
           Realistic Car Controller - Unity Asset 3D
         </h3>
         <p class="text-[#9b8b80] mb-4">
-          Selfmade trying to explore the world of 3D vehicle dynamics and
+          Selfmade - trying to explore the world of 3D vehicle dynamics and
           control systems, with audio, visual effects, and realistic physics.
         </p>
         <div class="mb-4">
