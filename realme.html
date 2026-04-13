@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Me • Sarthak Gawari</title>
+    <link rel="icon" type="image/png" href="images/ICON.png" />
+    <link rel="stylesheet" href="matrix-style.css">
+</head>
+<body>
+
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            root@sarthak:~
+        </div>
+        <div class="terminal-content">
+            <p><span class="prompt"></span>Initializing download...</p>
+            <p><span class="prompt"></span>File: psp_gui.exe</p>
+            <p><span class="prompt"></span><a href="files/psp_gui.exe" download class="download-link">Execute Download</a></p>
+            <p class="alt-link">
+                Connection unstable? <a href="https://drive.google.com/drive/folders/1RKr8T545ICqRZ20lUsGxGcxPBR2UzCiq?usp=sharing" target="_blank">Use alternate route</a>.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+    </script>
+
+</body>
+</html>

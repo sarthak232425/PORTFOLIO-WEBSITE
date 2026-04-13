@@ -1,7 +1,11 @@
 // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -13,7 +17,9 @@
                         behavior: 'smooth'
                     });
                     // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
                 }
             });
         });
@@ -22,6 +28,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.tab-button');
             const projectItems = document.querySelectorAll('.project-item');
+
+            if (!tabButtons.length || !projectItems.length) {
+                return;
+            }
             
             // Function to filter projects
             function filterProjects(category) {
