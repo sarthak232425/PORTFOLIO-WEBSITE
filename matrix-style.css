@@ -50,6 +50,13 @@ body {
     margin: 0 0 15px 0;
 }
 
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 15px 0;
+}
+
 .prompt {
     display: inline-block;
 }
@@ -66,6 +73,7 @@ body {
     padding: 5px 10px;
     border: 1px solid #0f0;
     border-radius: 3px;
+    display: inline-block;
 }
 
 .download-link:hover {
