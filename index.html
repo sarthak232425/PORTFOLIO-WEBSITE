@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarthak | Game Designer</title>
+    <title>Sarthak Gawari | Game Developer & Systems Engineer</title>
     <link rel="icon" type="image/png" href="images/ICON.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Script to instantly check if boot sequence has already been played this session -->
+    <!-- Check if boot sequence played this session -->
     <script>
         if (sessionStorage.getItem('systemBooted') === 'true') {
             document.documentElement.classList.add('skip-boot');
@@ -28,26 +28,27 @@
                     },
                     colors: {
                         brand: '#d4af37', 
+                        brandLight: '#fae17d',
                         brandRed: '#ff2a2a', 
                         dark: '#09090b',
-                        card: '#121214',
-                        terminal: '#1a1a1d',
+                        card: '#111114',
+                        terminal: '#141417',
                     }
                 }
             }
         }
     </script>
     <style>
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
         
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.15));
-            background-size: 100% 4px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.12));
+            background-size: 100% 3px;
             pointer-events: none;
             z-index: 9998;
         }
@@ -65,24 +66,30 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        .glitch-hover:hover {
-            animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-            color: #fff;
+        /* Amplified Glitch Effect with Chromatic Shift */
+        .glitch-hover {
+            position: relative;
+            display: inline-block;
+            transition: color 0.2s ease;
         }
-        @keyframes glitch-anim {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) text-shadow: -2px 0 red; }
-            40% { transform: translate(-2px, -2px) text-shadow: 2px 0 blue; }
-            60% { transform: translate(2px, 2px) text-shadow: -2px 0 red; }
-            80% { transform: translate(2px, -2px) text-shadow: 2px 0 blue; }
-            100% { transform: translate(0) }
+        .glitch-hover:hover {
+            animation: amplified-glitch 0.35s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #fff !important;
+            text-shadow: 2px 0 #ff2a2a, -2px 0 #00e5ff;
+        }
+        @keyframes amplified-glitch {
+            0% { transform: translate(0); text-shadow: 2px 0 #ff2a2a, -2px 0 #00e5ff; }
+            20% { transform: translate(-3px, 1px); text-shadow: -3px 0 #ff2a2a, 3px 0 #00e5ff; }
+            40% { transform: translate(3px, -1px); text-shadow: 3px -1px #ff2a2a, -3px 1px #00e5ff; }
+            60% { transform: translate(-2px, 2px); text-shadow: -2px 1px #ff2a2a, 2px -1px #00e5ff; }
+            80% { transform: translate(2px, -2px); text-shadow: 2px 0 #ff2a2a, -2px 0 #00e5ff; }
+            100% { transform: translate(0); text-shadow: none; }
         }
 
-        .pulse-glow { animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        .pulse-subtle { animation: pulseGlow 2.5s infinite ease-in-out; }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.25); }
+            50% { box-shadow: 0 0 12px 2px rgba(212, 175, 55, 0.15); }
         }
 
         /* Skip Boot CSS Overrides */
@@ -95,28 +102,29 @@
     <!-- BOOT SEQUENCE OVERLAY -->
     <div id="boot-screen" class="fixed inset-0 z-[10001] bg-black text-brand font-mono flex flex-col items-center justify-center cursor-pointer transition-opacity duration-700">
         <div id="boot-text" class="text-center">
-            <h2 class="text-2xl md:text-4xl font-bold mb-4 animate-pulse">> AWAITING USER INPUT</h2>
-            <p class="text-zinc-500 text-sm md:text-base">CLICK ANYWHERE TO CONNECT TO HOST</p>
+            <div class="text-xs uppercase tracking-widest text-zinc-500 mb-2">> SARTHAK_GAWARI // PORTFOLIO_KERNEL</div>
+            <h2 class="text-xl md:text-3xl font-bold mb-3 animate-pulse text-brand">> CLICK TO INITIALIZE SYSTEM</h2>
+            <p class="text-zinc-500 text-xs tracking-widest uppercase">Establishes audio feed & interactive workspace</p>
         </div>
-        <div id="boot-log" class="hidden text-left w-full max-w-2xl px-6 h-64 overflow-hidden text-xs md:text-sm text-green-500">
+        <div id="boot-log" class="hidden text-left w-full max-w-xl px-6 h-64 overflow-hidden text-xs md:text-sm text-amber-300/90 font-mono">
             <!-- Logs injected via JS -->
         </div>
     </div>
 
     <!-- Resume Viewer Modal -->
-    <div id="resume-modal" class="hidden fixed inset-0 z-[10000] bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
-        <div class="bg-terminal border border-brand w-full max-w-5xl h-full max-h-[90vh] flex flex-col relative shadow-[0_0_40px_rgba(212,175,55,0.15)] transform scale-95 transition-transform duration-300" id="resume-container">
+    <div id="resume-modal" class="hidden fixed inset-0 z-[10000] bg-zinc-950/85 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
+        <div class="bg-terminal border border-zinc-700 w-full max-w-5xl h-full max-h-[90vh] flex flex-col relative shadow-[0_0_30px_rgba(0,0,0,0.8)] transform scale-95 transition-transform duration-300" id="resume-container">
             <div class="flex justify-between items-center bg-dark border-b border-zinc-800 p-3 interactive-ui">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-terminal text-brand"></i>
-                    <span class="font-mono text-brand text-sm tracking-widest typing-cursor">> CAT RESUME.PDF</span>
+                    <i class="fas fa-terminal text-brand text-xs"></i>
+                    <span class="font-mono text-zinc-300 text-xs tracking-widest">> CAT RESUME.PDF</span>
                 </div>
-                <div class="flex items-center gap-6">
-                    <a href="files/Sarthak_Gawari_Resume.pdf" download class="text-zinc-400 hover:text-brand transition-colors cursor-none flex items-center gap-2 text-sm font-mono interactive-ui" title="Download Source">
+                <div class="flex items-center gap-5">
+                    <a href="files/Sarthak_Gawari_Resume.pdf" download class="text-zinc-400 hover:text-brand transition-colors cursor-none flex items-center gap-2 text-xs font-mono interactive-ui" title="Download Source">
                         <i class="fas fa-download"></i> <span class="hidden sm:inline">DOWNLOAD</span>
                     </a>
-                    <button onclick="toggleResumeModal()" class="text-zinc-400 hover:text-red-500 transition-colors cursor-none flex items-center gap-2 text-sm font-mono interactive-ui" title="Close Terminal">
-                        <i class="fas fa-times text-lg"></i> <span class="hidden sm:inline">EXIT</span>
+                    <button onclick="toggleResumeModal()" class="text-zinc-400 hover:text-red-400 transition-colors cursor-none flex items-center gap-2 text-xs font-mono interactive-ui" title="Close Terminal">
+                        <i class="fas fa-times text-sm"></i> <span class="hidden sm:inline">EXIT</span>
                     </button>
                 </div>
             </div>
@@ -126,151 +134,491 @@
         </div>
     </div>
 
-    <!-- CRT Overlay -->
+    <!-- CRT Scanlines -->
     <div class="scanlines"></div>
 
-    <!-- Matrix Code Stream Canvas -->
-    <canvas id="matrix-canvas" class="fixed top-0 right-0 h-screen w-48 md:w-80 -z-20 opacity-40 mix-blend-screen"></canvas>
-    <div class="fixed top-0 right-0 h-screen w-48 md:w-80 -z-10 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none"></div>
+    <!-- Amplified Matrix Code Stream Canvas -->
+    <canvas id="matrix-canvas" class="fixed top-0 right-0 h-screen w-64 md:w-96 -z-20 opacity-55 mix-blend-screen pointer-events-none"></canvas>
+    <div class="fixed top-0 right-0 h-screen w-64 md:w-96 -z-10 bg-gradient-to-r from-zinc-950 via-zinc-950/70 to-transparent pointer-events-none"></div>
 
     <!-- Custom Mouse/Touch Follower -->
-    <div id="cursor-trail" class="pointer-events-none fixed top-0 left-0 w-8 h-8 border border-brand/60 rounded-full z-[9999] bg-brand/5 backdrop-blur-[1px] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+    <div id="cursor-trail" class="pointer-events-none fixed top-0 left-0 w-8 h-8 border border-brand/50 rounded-full z-[9999] bg-brand/5 backdrop-blur-[0.5px] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center shadow-[0_0_12px_rgba(212,175,55,0.2)]">
         <div class="w-1.5 h-1.5 bg-brand rounded-full" id="cursor-dot"></div>
     </div>
 
-    <!-- Navigation -->
-    <header class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-zinc-800/80">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-tight text-white font-mono glitch-hover cursor-none uppercase interactive-ui">Sarthak_Gawari</a>
-
-            <div class="hidden md:flex items-center space-x-8 font-mono text-sm">
-                <a href="#home" class="hover:text-brand transition-colors cursor-none interactive-ui">> Home</a>
-                <a href="#projects" class="hover:text-brand transition-colors cursor-none interactive-ui">> Games</a>
-                <a href="#about" class="hover:text-brand transition-colors cursor-none interactive-ui">> About</a>
-                <a href="#contact" class="hover:text-brand transition-colors cursor-none interactive-ui">> Contact</a>
-                <button onclick="toggleResumeModal()" class="border border-brand text-brand px-5 py-2 hover:bg-brand hover:text-dark transition-all font-bold cursor-none pulse-glow interactive-ui">RESUME</button>
+    <!-- Navigation Bar -->
+    <header class="fixed w-full z-50 bg-dark/85 backdrop-blur-md border-b border-zinc-800/70">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-base sm:text-lg font-bold tracking-tight text-white font-mono glitch-hover cursor-none uppercase interactive-ui">Sarthak_Gawari</a>
+                
+                <!-- Audio Ambient Toggle Button -->
+                <button id="audio-toggle-btn" onclick="AudioEngine.toggle()" class="border border-zinc-800 bg-terminal/80 hover:border-brand/70 text-zinc-400 px-2.5 py-1 font-mono text-[11px] flex items-center gap-1.5 interactive-ui cursor-none transition-all" title="Toggle Ambient Audio Feed">
+                    <i id="audio-toggle-icon" class="fas fa-volume-mute text-xs"></i>
+                    <span id="audio-toggle-text" class="hidden sm:inline">SOUND OFF</span>
+                </button>
             </div>
 
-            <div class="md:hidden flex items-center space-x-4">
-                <button onclick="toggleResumeModal()" class="border border-brand text-brand px-3 py-1.5 text-xs hover:bg-brand hover:text-dark transition-all font-bold interactive-ui">RESUME</button>
-                <button id="menu-toggle" class="text-brand hover:text-white focus:outline-none p-1 interactive-ui">
-                    <i class="fas fa-bars text-xl" id="menu-icon"></i>
+            <div class="hidden md:flex items-center space-x-6 font-mono text-xs text-zinc-400">
+                <a href="#home" class="hover:text-brand transition-colors cursor-none interactive-ui">> Home</a>
+                <a href="#projects" class="hover:text-brand transition-colors cursor-none interactive-ui">> Projects</a>
+                <a href="#experience" class="hover:text-brand transition-colors cursor-none interactive-ui">> Experience</a>
+                <a href="#about" class="hover:text-brand transition-colors cursor-none interactive-ui">> System_Specs</a>
+                <a href="#contact" class="hover:text-brand transition-colors cursor-none interactive-ui">> Contact</a>
+                <button onclick="toggleResumeModal()" class="border border-brand/80 text-brand px-3.5 py-1.5 hover:bg-brand hover:text-dark transition-all font-bold cursor-none pulse-subtle interactive-ui text-xs">RESUME</button>
+            </div>
+
+            <div class="md:hidden flex items-center space-x-2.5">
+                <button onclick="toggleResumeModal()" class="border border-brand/80 text-brand px-2.5 py-1 text-xs hover:bg-brand hover:text-dark transition-all font-bold interactive-ui">RESUME</button>
+                <button id="menu-toggle" class="text-zinc-400 hover:text-white focus:outline-none p-1 interactive-ui" aria-label="Open Menu">
+                    <i class="fas fa-bars text-lg" id="menu-icon"></i>
                 </button>
             </div>
         </nav>
 
         <div id="mobile-menu" class="hidden md:hidden bg-terminal border-b border-zinc-800 shadow-2xl absolute w-full left-0 top-full">
-            <div class="flex flex-col px-6 py-4 space-y-4 font-mono text-sm">
-                <a href="#home" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 border-b border-zinc-800/50 interactive-ui">> Home</a>
-                <a href="#projects" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 border-b border-zinc-800/50 interactive-ui">> Games</a>
-                <a href="#about" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 border-b border-zinc-800/50 interactive-ui">> About</a>
-                <a href="#contact" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 interactive-ui">> Contact</a>
+            <div class="flex flex-col px-6 py-4 space-y-3 font-mono text-xs text-zinc-300">
+                <a href="#home" class="mobile-link hover:text-brand transition-colors py-1.5 border-b border-zinc-800/40 interactive-ui">> Home</a>
+                <a href="#projects" class="mobile-link hover:text-brand transition-colors py-1.5 border-b border-zinc-800/40 interactive-ui">> Projects</a>
+                <a href="#experience" class="mobile-link hover:text-brand transition-colors py-1.5 border-b border-zinc-800/40 interactive-ui">> Experience</a>
+                <a href="#about" class="mobile-link hover:text-brand transition-colors py-1.5 border-b border-zinc-800/40 interactive-ui">> System_Specs</a>
+                <a href="#contact" class="mobile-link hover:text-brand transition-colors py-1.5 interactive-ui">> Contact</a>
             </div>
         </div>
     </header>
 
     <main class="flex-grow">
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center relative pt-20 px-6">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-900/40 via-dark to-dark -z-10"></div>
+        <!-- Hero Section with Playable Physics Sandbox -->
+        <section id="home" class="min-h-screen flex items-center relative pt-20 px-6 overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-900/30 via-dark to-dark -z-10"></div>
             
-            <div class="container mx-auto max-w-5xl z-10">
-                <div class="font-mono text-brand mb-4 uppercase tracking-widest text-sm">> Connection_Established...</div>
-                <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 leading-tight mt-4 uppercase">
-                    Game<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-zinc-500 typing-cursor">Designer</span>
-                </h1>
-                <p class="text-lg md:text-xl max-w-2xl text-zinc-400 mb-10 leading-relaxed font-mono">
-                    <span class="text-brand">> PROFICIENCY: UNITY & C#</span><br>
-                    Unity Certified Game Developer
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 font-mono text-sm">
-                    <a href="#projects" class="bg-brand text-dark font-bold px-8 py-3 hover:bg-white transition-colors text-center cursor-none uppercase pulse-glow interactive-ui">View Projects</a>
-                    <a href="https://github.com/sarthak232425" target="_blank" class="border border-zinc-700 bg-dark/50 text-zinc-300 hover:border-brand hover:text-white px-8 py-3 transition-all text-center flex items-center justify-center gap-2 cursor-none uppercase interactive-ui">
-                        <i class="fab fa-github text-lg"></i> GitHub Profile
-                    </a>
+            <!-- Playable 2D Micro-Physics Canvas -->
+            <canvas id="hero-game-canvas" class="absolute inset-0 w-full h-full z-0 cursor-crosshair"></canvas>
+
+            <!-- Hero Arcade HUD Widget -->
+            <div id="hero-arcade-hud" class="hidden sm:flex absolute top-20 right-6 lg:right-12 z-20 flex-col items-end gap-1.5 font-mono text-[11px] bg-dark/90 backdrop-blur-md border border-brand/50 p-3 shadow-[0_0_20px_rgba(212,175,55,0.15)] pointer-events-auto">
+                <div class="flex items-center gap-2 text-brand">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span>
+                    <span class="font-bold tracking-wider">HERO_PHYSICS_SANDBOX</span>
+                    <span class="text-[9px] bg-brand/20 text-brand px-1 py-0.5 border border-brand/40">LIVE</span>
                 </div>
+                <div class="flex items-center gap-3 text-xs text-zinc-300 py-0.5 font-mono">
+                    <span>SPD: <b id="hud-speed" class="text-brand font-mono">00</b> <span class="text-[10px] text-zinc-500">KM/H</span></span>
+                    <span>DRIFT: <b id="hud-drift" class="text-amber-400 font-mono">0°</b></span>
+                    <span>SCORE: <b id="hud-score" class="text-emerald-400 font-mono">0</b></span>
+                </div>
+                <div class="text-[10px] text-zinc-400 flex items-center gap-2 pt-1.5 border-t border-zinc-800/80 w-full justify-between">
+                    <div class="flex gap-1 text-[9px] text-zinc-300">
+                        <span class="border border-zinc-700 px-1 bg-zinc-900">[WASD] DRIVE</span>
+                        <span class="border border-zinc-700 px-1 bg-zinc-900">[SPACE] DRIFT</span>
+                    </div>
+                    <button onclick="HeroSandbox.spawnTarget()" class="text-brand hover:underline cursor-none interactive-ui text-[10px]">+ TARGET</button>
+                    <button onclick="HeroSandbox.resetCar()" class="text-zinc-400 hover:text-white cursor-none interactive-ui text-[10px]">[R] RESET</button>
+                </div>
+            </div>
+            
+            <div class="container mx-auto max-w-5xl z-10 relative pointer-events-none">
+                
+                <div class="space-y-4 max-w-3xl pointer-events-auto bg-dark/60 backdrop-blur-[2px] p-6 -ml-6 rounded-none border-l-2 border-brand/40">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand/5 border border-brand/30 text-brand font-mono text-xs uppercase tracking-widest">
+                        <span class="w-1.5 h-1.5 bg-brand rounded-full animate-ping"></span>
+                        <span>Unity Certified Developer</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight uppercase font-mono leading-[1.05]">
+                        Game Developer
+                        <span class="block text-2xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand via-amber-200 to-zinc-300 mt-1">
+                            Web Dev & 3D CAD
+                        </span>
+                    </h1>
+
+                    <div class="font-mono text-xs sm:text-sm text-zinc-300 flex flex-wrap items-center gap-2 pt-0.5">
+                        <span class="text-brand">></span>
+                        <span class="text-white font-semibold">Ex-Coding Head</span>
+                        <span class="text-zinc-500">@</span>
+                        <a href="https://www.linkedin.com/company/gamedevutopia" target="_blank" class="text-brand font-semibold hover:underline interactive-ui cursor-none">GameDevUtopia (GDU)</a>
+                        <span class="text-zinc-600">•</span>
+                        <span class="text-zinc-400">PICT Pune</span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-zinc-400 font-mono text-xs sm:text-sm tracking-wide pt-0.5">
+                        <span class="text-zinc-200 font-medium">Unity (C#)</span>
+                        <span class="text-brand">/</span>
+                        <span class="text-zinc-200 font-medium">Full-Stack Web</span>
+                        <span class="text-brand">/</span>
+                        <span class="text-zinc-200 font-medium">SolidWorks 3D CAD</span>
+                    </div>
+
+                    <p class="text-zinc-400 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl pt-1">
+                        Final-year IT Engineer at PICT Pune architecting physics-driven gameplay systems, modular game mechanics, and interactive web tools.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 font-mono text-xs pt-4">
+                        <a href="#projects" class="bg-brand text-dark font-bold px-6 py-2.5 hover:bg-white transition-colors text-center cursor-none uppercase interactive-ui pulse-subtle">
+                            <i class="fas fa-cubes mr-1.5"></i> View Projects
+                        </a>
+                        <a href="https://sarthak-gawari.itch.io/" target="_blank" class="border border-brand/60 bg-brand/10 text-brand hover:bg-brand hover:text-dark px-5 py-2.5 transition-all text-center flex items-center justify-center gap-2 cursor-none uppercase interactive-ui font-semibold shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+                            <i class="fab fa-itch-io text-sm"></i> Itch.io Profile
+                        </a>
+                        <a href="https://github.com/sarthak232425" target="_blank" class="border border-zinc-700/80 bg-terminal/60 text-zinc-300 hover:border-brand/80 hover:text-white px-5 py-2.5 transition-all text-center flex items-center justify-center gap-2 cursor-none uppercase interactive-ui">
+                            <i class="fab fa-github text-sm"></i> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/sarthak-shivaji-gawari" target="_blank" class="border border-zinc-700/80 bg-terminal/60 text-zinc-300 hover:border-brand/80 hover:text-white px-5 py-2.5 transition-all text-center flex items-center justify-center gap-2 cursor-none uppercase interactive-ui">
+                            <i class="fab fa-linkedin text-sm"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-24 px-6 bg-dark/95 relative z-10 border-t border-zinc-800/50">
+        <section id="projects" class="py-20 px-6 bg-dark/95 relative z-10 border-t border-zinc-800/40">
             <div class="container mx-auto max-w-6xl">
-                <div class="flex items-center gap-4 mb-12">
-                    <span class="font-mono text-brand text-xl animate-pulse">[]</span>
-                    <h2 class="text-3xl font-bold text-white font-mono uppercase tracking-widest">Featured Games</h2>
-                    <div class="h-px bg-zinc-800 flex-grow ml-4"></div>
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                    <div class="flex items-center gap-3">
+                        <span class="font-mono text-brand text-sm animate-pulse">[]</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono uppercase tracking-widest">Project Archive</h2>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <button onclick="filterProjects('starred')" class="filter-btn active px-3 py-1 border border-brand bg-brand text-dark font-bold transition-all interactive-ui cursor-none shadow-[0_0_10px_rgba(212,175,55,0.2)]" data-filter="starred">★ STARRED [3]</button>
+                        <button onclick="filterProjects('all')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="all">ALL [6]</button>
+                        <button onclick="filterProjects('gamedev')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="gamedev">GAMES [4]</button>
+                        <button onclick="filterProjects('web')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="web">WEB APPS [1]</button>
+                        <button onclick="filterProjects('database')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="database">DATABASE [1]</button>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
                     
-                    <!-- Unity Project 1 -->
-                    <div class="group bg-terminal border border-zinc-800 hover:border-brand transition-all flex flex-col h-full relative cursor-none interactive-ui">
-                        <div class="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
-                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800">
-                            <img src="images/BB.png" alt="Block Blocker" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-                            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rV7928GBgYGWEDAQMAAAHtQAwEAMvXSAAAAAElFTkSuQmCC')] opacity-20 z-10 pointer-events-none mix-blend-overlay"></div>
-                            <div class="absolute top-4 right-4 bg-dark/90 font-mono text-[10px] text-brand px-2 py-1 border border-brand/50 z-20 shadow-[0_0_10px_rgba(212,175,55,0.5)]">GLITCHED 2025 WINNER</div>
+                    <!-- 1. Block Blocker (Game - STARRED) -->
+                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
+                            <img src="images/BB.png" alt="Block Blocker" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">★ GLITCHED '25 WINNER • GENESIS 4.0 STAGE 2</div>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow relative z-10">
-                            <h3 class="text-xl font-bold text-white mb-2 font-mono uppercase">> Block Blocker</h3>
-                            <p class="text-zinc-400 text-sm mb-6 flex-grow">Solo GameJam project featuring a complete gameplay loop, scalable UI design, and dynamic difficulty algorithms.</p>
-                            <div class="flex flex-wrap gap-2 font-mono text-[10px] text-brand mb-6 uppercase tracking-wider">
-                                <span class="bg-dark px-2 py-1 border border-zinc-800">Unity 2D</span>
-                                <span class="bg-dark px-2 py-1 border border-zinc-800">C#</span>
+                        <div class="p-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Block Blocker</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Solo 2D arcade game built from concept to deployment. Glitched 2025 GameJam Winner and Stage 2 Finalist at Genesis 4.0 (AIT Pune). Features dynamic difficulty scaling and polished game feel.</p>
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity 2D</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">C#</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Dynamic AI</span>
                             </div>
-                            <div class="mt-auto border-t border-zinc-800 pt-4">
-                                <a href="project-block-blocker.html" class="flex justify-between items-center w-full border border-brand/50 bg-brand/5 hover:bg-brand hover:text-dark text-brand font-mono text-xs font-bold py-3 px-4 transition-all uppercase tracking-widest cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-                                    <span>ACCESS_DATA</span>
-                                    <i class="fas fa-arrow-right"></i>
+                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
+                                <a href="project-block-blocker.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
+                                    <span>Case Study</span>
+                                    <i class="fas fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="https://sarthak-gawari.itch.io/block-blocker" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-brand/70 bg-brand/10 hover:bg-brand hover:text-dark text-brand font-semibold py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+                                    <i class="fab fa-itch-io text-sm"></i>
+                                    <span>View on Itch</span>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Unity Project 2 -->
-                    <div class="group bg-terminal border border-zinc-800 hover:border-brand transition-all flex flex-col h-full relative cursor-none interactive-ui">
-                        <div class="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
-                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800">
-                            <img src="images/RCC.png" alt="Realistic Car Controller" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-                            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rV7928GBgYGWEDAQMAAAHtQAwEAMvXSAAAAAElFTkSuQmCC')] opacity-20 z-10 pointer-events-none mix-blend-overlay"></div>
+                    <!-- 2. Realistic Car Controller (Game - STARRED) -->
+                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
+                            <img src="images/RCC.png" alt="Realistic Car Controller" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">★ ASSET STORE CANDIDATE</div>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow relative z-10">
-                            <h3 class="text-xl font-bold text-white mb-2 font-mono uppercase">> Car Controller</h3>
-                            <p class="text-zinc-400 text-sm mb-6 flex-grow">An exploration of 3D vehicle dynamics and kinematics. Features programmed physics control systems and custom visual/audio effects.</p>
-                            <div class="flex flex-wrap gap-2 font-mono text-[10px] text-brand mb-6 uppercase tracking-wider">
-                                <span class="bg-dark px-2 py-1 border border-zinc-800">Unity 3D</span>
-                                <span class="bg-dark px-2 py-1 border border-zinc-800">Physics</span>
+                        <div class="p-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Car Controller</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">High-fidelity 3D vehicle physics engine simulating torque curves, manual/automatic transmission, drift kinematics, and layered audio synthesis.</p>
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity 3D</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Kinematics</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Audio Sync</span>
                             </div>
-                            <div class="mt-auto border-t border-zinc-800 pt-4">
-                                <a href="https://sarthak-gawari.itch.io/realistic-car-contoller-unity-in-progress" target="_blank" class="flex justify-between items-center w-full border border-brand/50 bg-brand/5 hover:bg-brand hover:text-dark text-brand font-mono text-xs font-bold py-3 px-4 transition-all uppercase tracking-widest cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-                                    <span>ACCESS_DATA</span>
-                                    <i class="fas fa-arrow-right"></i>
+                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
+                                <a href="project-car-controller.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
+                                    <span>Case Study</span>
+                                    <i class="fas fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="https://sarthak-gawari.itch.io/realistic-car-contoller-unity-in-progress" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-brand/70 bg-brand/10 hover:bg-brand hover:text-dark text-brand font-semibold py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+                                    <i class="fab fa-itch-io text-sm"></i>
+                                    <span>View on Itch</span>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Unity Project 3 -->
-                    <div class="group bg-terminal border border-zinc-800 hover:border-brand transition-all flex flex-col h-full relative cursor-none interactive-ui">
-                        <div class="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
-                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800">
-                            <img src="images/KC.png" alt="Kaalchakra" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
-                            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rV7928GBgYGWEDAQMAAAHtQAwEAMvXSAAAAAElFTkSuQmCC')] opacity-20 z-10 pointer-events-none mix-blend-overlay"></div>
+                    <!-- 3. KaalChakra (Game - STARRED) -->
+                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
+                            <img src="images/KC.png" alt="Kaalchakra" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">★ GAMEDEVUTOPIA RELEASE</div>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow relative z-10">
-                            <h3 class="text-xl font-bold text-white mb-2 font-mono uppercase">> Kaalchakra</h3>
-                            <p class="text-zinc-400 text-sm mb-6 flex-grow">Collaborative 2D project featuring complex rigid body physics and highly responsive, scalable player controls.</p>
-                            <div class="flex flex-wrap gap-2 font-mono text-[10px] text-brand mb-6 uppercase tracking-wider">
-                                <span class="bg-dark px-2 py-1 border border-zinc-800">Unity 2D</span>
-                                <span class="bg-dark px-2 py-1 border border-zinc-800">C#</span>
+                        <div class="p-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> KaalChakra</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Modular 2D platformer engineered with rigid body physics, scalable/remappable input controls, and custom audio mixing subsystems.</p>
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity 2D</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Modular Input</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">AudioMixer</span>
                             </div>
-                            <div class="mt-auto border-t border-zinc-800 pt-4">
-                                <a href="https://gamedevutopia.itch.io/kalchakra" target="_blank" class="flex justify-between items-center w-full border border-brand/50 bg-brand/5 hover:bg-brand hover:text-dark text-brand font-mono text-xs font-bold py-3 px-4 transition-all uppercase tracking-widest cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-                                    <span>ACCESS_DATA</span>
-                                    <i class="fas fa-arrow-right"></i>
+                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
+                                <a href="project-kaalchakra.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
+                                    <span>Case Study</span>
+                                    <i class="fas fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="https://gamedevutopia.itch.io/kalchakra" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-brand/70 bg-brand/10 hover:bg-brand hover:text-dark text-brand font-semibold py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+                                    <i class="fab fa-itch-io text-sm"></i>
+                                    <span>View on Itch</span>
                                 </a>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Tic Tac Toe Ultimate (Game) -->
+                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui hidden" data-category="gamedev" data-starred="false">
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60 flex items-center justify-center">
+                            <img src="images/TTT.png" alt="Tic Tac Toe Ultimate" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">UI STATE MACHINE</div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Tic Tac Toe Ultimate</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">A pure UI-driven game built entirely inside Unity Canvas. Features custom state machines, reactive win-condition algorithms, and minimalist aesthetic.</p>
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity UI</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">C#</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">State Machine</span>
+                            </div>
+                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
+                                <a href="project-tic-tac-toe.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
+                                    <span>Case Study</span>
+                                    <i class="fas fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="https://sarthak-gawari.itch.io/" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-brand/70 bg-brand/10 hover:bg-brand hover:text-dark text-brand font-semibold py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+                                    <i class="fab fa-itch-io text-sm"></i>
+                                    <span>View on Itch</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Colour Extractor (Web App) -->
+                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui hidden" data-category="web" data-starred="false">
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
+                            <img src="images/CE.png" alt="Colour Extractor" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">CANVAS UTILITY</div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Colour Extractor</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Interactive browser tool utilizing Canvas API for pixel extraction. Features a precision magnifying loupe, instant RGB/HEX inspection, and palette curation.</p>
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">HTML5 Canvas</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">JavaScript</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">UI/UX</span>
+                            </div>
+                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
+                                <a href="project-colour-extractor.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
+                                    <span>Case Study</span>
+                                    <i class="fas fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="https://github.com/sarthak232425" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-400 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Financial SQL Suite (Database) -->
+                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui hidden" data-category="database" data-starred="false">
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60 p-4 font-mono text-xs text-brand/80 flex flex-col justify-center">
+                            <div class="text-[10px] text-zinc-500 mb-1">> SELECT * FROM risk_matrix;</div>
+                            <div class="text-zinc-300 font-mono text-[11px] leading-tight">
+                                <span class="text-brand">QUERY OK:</span> 10,482 records indexed.<br>
+                                <span class="text-emerald-400">> EXEC_TIME:</span> 0.182s (&lt;200ms)<br>
+                                <span class="text-amber-400">> RISK_REDUCTION:</span> 22% Default Drop
+                            </div>
+                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">SQL SUITE</div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Financial Risk Suite</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Three relational database systems: Fraud Anomaly Detector, Loan Risk Scoring Engine (CASE logic), and Time-Series Portfolio Tracker with Views.</p>
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">MySQL</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">PostgreSQL</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Analytics</span>
+                            </div>
+                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
+                                <a href="project-financial-sql.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
+                                    <span>Case Study</span>
+                                    <i class="fas fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="https://github.com/sarthak232425" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-400 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Leadership Section -->
+        <section id="experience" class="py-20 px-6 bg-zinc-950/90 border-t border-zinc-800/40 relative z-10">
+            <div class="container mx-auto max-w-5xl">
+                <div class="flex items-center gap-3 mb-10">
+                    <span class="font-mono text-brand text-sm animate-pulse">[]</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono uppercase tracking-widest">Experience</h2>
+                </div>
+
+                <div class="bg-terminal/90 border border-zinc-800 p-6 md:p-8 relative">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-zinc-800/60 pb-5 mb-5">
+                        <div>
+                            <div class="text-brand font-mono text-[11px] uppercase tracking-widest mb-1">> LEADERSHIP & ENGINEERING</div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-white font-mono">Ex-Coding Head</h3>
+                            <div class="text-zinc-400 font-mono text-xs sm:text-sm"><a href="https://www.linkedin.com/company/gamedevutopia" target="_blank" class="text-brand hover:underline interactive-ui cursor-none">GameDevUtopia (GDU)</a> • Pune Institute of Computer Technology (PICT)</div>
+                        </div>
+                        <div class="px-3 py-1 bg-dark border border-zinc-800 text-brand font-mono text-xs tracking-wider w-fit">
+                            AUG 2025 — AUG 2026
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3 font-mono text-xs sm:text-sm text-zinc-300">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-chevron-right text-brand text-xs mt-1"></i>
+                            <div>Led and managed the Coding Department of the only Game Development Club in PICT.</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-chevron-right text-brand text-xs mt-1"></i>
+                            <div>Mentored student developers in Unity C#, modular architecture, Git workflows, and physics engines.</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-chevron-right text-brand text-xs mt-1"></i>
+                            <div>Spearheaded collaborative releases including <strong>KaalChakra</strong> (GameDevUtopia X Pictorial).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Specs Section (Dashboard Layout) -->
+        <section id="about" class="py-20 px-6 border-t border-zinc-800/40 bg-dark/95 relative z-10">
+            <div class="container mx-auto max-w-5xl">
+                <div class="flex items-center gap-3 mb-12">
+                    <span class="font-mono text-brand text-sm animate-pulse">[]</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono uppercase tracking-widest">System_Specs</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    
+                    <!-- Education Card -->
+                    <div class="md:col-span-2 bg-terminal/90 border border-zinc-800 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="text-brand font-mono text-xs uppercase mb-3">> Academic_Data</div>
+                            <div class="space-y-4">
+                                <div class="border-l-2 border-brand pl-4">
+                                    <div class="text-white font-bold text-base sm:text-lg">Pune Institute of Computer Technology (PICT)</div>
+                                    <div class="text-zinc-400 font-mono text-xs">B.E. in Information Technology • Dhankawdi, Pune</div>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="px-2 py-0.5 bg-zinc-900 border border-zinc-700 text-[10px] text-brand font-mono">STATUS: 4TH YEAR</span>
+                                        <span class="px-2 py-0.5 bg-zinc-900 border border-zinc-700 text-[10px] text-zinc-300 font-mono">SGPA: 7.602</span>
+                                        <span class="text-zinc-500 font-mono text-[11px]">2023 — Present</span>
+                                    </div>
+                                </div>
+
+                                <div class="border-l-2 border-zinc-700 pl-4">
+                                    <div class="text-white font-semibold text-xs sm:text-sm">D.Y. Patil Junior College, Shahunagar</div>
+                                    <div class="text-zinc-400 font-mono text-xs">HSC (Physics, Chemistry, Maths, IT, Geography) • 72.5%</div>
+                                    <span class="text-zinc-500 font-mono text-[10px]">2021 — 2023</span>
+                                </div>
+
+                                <div class="border-l-2 border-zinc-700 pl-4">
+                                    <div class="text-white font-semibold text-xs sm:text-sm">Pius Memorial High School, Waki Chakan</div>
+                                    <div class="text-zinc-400 font-mono text-xs">SSC Maharashtra Board • 90.0%</div>
+                                    <span class="text-zinc-500 font-mono text-[10px]">2011 — 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unity Verified Credential -->
+                    <a href="https://cp.certmetrics.com/Unity/en/public/verify/credential/518d794dec1b4c00b76f9965a8206f24"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="block bg-terminal/90 border border-brand/60 p-6 hover:bg-brand/5 transition-all duration-300 interactive-ui flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="text-brand font-mono text-xs uppercase">> Certified_Badge</div>
+                                <i class="fas fa-external-link-alt text-brand text-xs"></i>
+                            </div>
+                            <div class="text-white font-bold text-base mb-2">Unity Certified Game Developer</div>
+                            <div class="text-zinc-400 text-xs font-mono mb-3">
+                                Intermediate Level Developer • Google Play × Unity India Program
+                            </div>
+                            <div class="text-[10px] text-zinc-500 font-mono">ID: 518d794dec1b4c00b76f9965a8206f24</div>
+                        </div>
+                        <div class="mt-4 text-brand text-xs font-mono uppercase tracking-wider font-bold">
+                            Verify Credential →
+                        </div>
+                    </a>
+
+                    <!-- Other Verified Certifications -->
+                    <div class="md:col-span-3 bg-terminal/90 border border-zinc-800 p-5">
+                        <div class="text-brand font-mono text-xs uppercase mb-3">> Additional_Certifications</div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 font-mono text-xs">
+                            <div class="bg-dark border border-zinc-800/80 p-2.5">
+                                <div class="text-white font-semibold text-xs mb-0.5">Git & GitHub</div>
+                                <div class="text-zinc-500 text-[10px]">Le Wagon</div>
+                            </div>
+                            <div class="bg-dark border border-zinc-800/80 p-2.5">
+                                <div class="text-white font-semibold text-xs mb-0.5">SolidWorks 3D</div>
+                                <div class="text-zinc-500 text-[10px]">PICT Pune</div>
+                            </div>
+                            <div class="bg-dark border border-zinc-800/80 p-2.5">
+                                <div class="text-white font-semibold text-xs mb-0.5">MySQL RDBMS</div>
+                                <div class="text-zinc-500 text-[10px]">GreatLearning</div>
+                            </div>
+                            <div class="bg-dark border border-zinc-800/80 p-2.5">
+                                <div class="text-white font-semibold text-xs mb-0.5">PostgreSQL</div>
+                                <div class="text-zinc-500 text-[10px]">SimpliLearn</div>
+                            </div>
+                            <div class="bg-dark border border-zinc-800/80 p-2.5 col-span-2 sm:col-span-1">
+                                <div class="text-white font-semibold text-xs mb-0.5">Vuforia AR (Unity)</div>
+                                <div class="text-zinc-500 text-[10px]">CDAC ACTS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Breakdown (Separated & Curated) -->
+                    <div class="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                        <div class="bg-terminal/90 border border-zinc-800 p-3.5">
+                            <div class="text-brand text-xs font-mono mb-1">> GAME_DEV</div>
+                            <div class="text-white text-xs font-mono">Unity Engine, C#</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Vuforia AR, Physics Systems</div>
+                        </div>
+                        <div class="bg-terminal/90 border border-zinc-800 p-3.5">
+                            <div class="text-brand text-xs font-mono mb-1">> WEB_DEV</div>
+                            <div class="text-white text-xs font-mono">JS, HTML5, CSS</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Tailwind CSS, Canvas API</div>
+                        </div>
+                        <div class="bg-terminal/90 border border-zinc-800 p-3.5">
+                            <div class="text-brand text-xs font-mono mb-1">> 3D_CAD</div>
+                            <div class="text-white text-xs font-mono">SolidWorks 3D CAD</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Parametric Parts, Assembly</div>
+                        </div>
+                        <div class="bg-terminal/90 border border-zinc-800 p-3.5">
+                            <div class="text-brand text-xs font-mono mb-1">> DATABASE</div>
+                            <div class="text-white text-xs font-mono">MySQL, PostgreSQL</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Normalized Schemas, Views</div>
+                        </div>
+                        <div class="bg-terminal/90 border border-zinc-800 p-3.5 col-span-2 sm:col-span-1">
+                            <div class="text-brand text-xs font-mono mb-1">> UI_SYSTEMS</div>
+                            <div class="text-white text-xs font-mono">Figma, Unity Canvas</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Game UI, State Machines</div>
                         </div>
                     </div>
 
@@ -278,98 +626,44 @@
             </div>
         </section>
 
-        <!-- About Section (Dashboard Layout) -->
-<section id="about" class="py-24 px-6 border-t border-zinc-800/50 bg-zinc-950/90 relative z-10">
-    <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center gap-4 mb-16">
-            <span class="font-mono text-brand text-xl animate-pulse">[]</span>
-            <h2 class="text-3xl font-bold text-white font-mono uppercase tracking-widest">System_Specs</h2>
-            <div class="h-px bg-zinc-800 flex-grow ml-4"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Education Card -->
-            <div class="md:col-span-2 bg-terminal border border-zinc-800 p-6">
-                <div class="text-brand font-mono text-xs uppercase mb-2">Academic_Data</div>
-                <div class="text-white font-bold text-xl mb-1">PICT Pune</div>
-                <div class="text-zinc-400 font-mono text-sm">B.E. Information Technology</div>
-                <div class="mt-4 px-3 py-1 bg-zinc-900 border border-zinc-700 w-fit text-xs text-zinc-300 font-mono">STATUS: ENTERED 4TH YEAR</div>
-            </div>
-
-            <a href="https://cp.certmetrics.com/Unity/en/public/verify/credential/518d794dec1b4c00b76f9965a8206f24"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="block bg-terminal border border-brand p-6 hover:bg-brand/10 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300 interactive-ui">
-
-    <div class="flex justify-between items-start">
-        <div>
-            <div class="text-brand font-mono text-xs uppercase mb-2">
-                Credential
-            </div>
-
-            <div class="text-white font-bold text-lg mb-2">
-                Unity Certified Game Developer
-            </div>
-
-            <div class="text-zinc-400 text-xs font-mono">
-                Intermediate Level Developer • Google Play × Unity India Program
-            </div>
-        </div>
-
-        <i class="fas fa-external-link-alt text-brand text-sm"></i>
-    </div>
-
-    <div class="mt-4 text-brand text-xs font-mono uppercase tracking-wider">
-        Verify Certificate →
-    </div>
-</a>
-
-            <!-- Stack Grid -->
-            <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                <div class="bg-terminal border border-zinc-800 p-4">
-                    <div class="text-brand text-sm font-mono mb-2">DEV</div>
-                    <div class="text-white text-xs font-mono">C#, Java, Unity</div>
-                </div>
-                <div class="bg-terminal border border-zinc-800 p-4">
-                    <div class="text-brand text-sm font-mono mb-2">3D</div>
-                    <div class="text-white text-xs font-mono">Solidworks</div>
-                </div>
-                <div class="bg-terminal border border-zinc-800 p-4">
-                    <div class="text-brand text-sm font-mono mb-2">HW</div>
-                    <div class="text-white text-xs font-mono">PSP Mods, ROMs</div>
-                </div>
-                <div class="bg-terminal border border-zinc-800 p-4">
-                    <div class="text-brand text-sm font-mono mb-2">DB</div>
-                    <div class="text-white text-xs font-mono">SQL Architect</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
         <!-- Contact Section -->
-        <section id="contact" class="py-24 px-6 bg-terminal border-t border-zinc-800/50 relative z-10">
+        <section id="contact" class="py-20 px-6 bg-terminal/70 border-t border-zinc-800/40 relative z-10">
             <div class="container mx-auto max-w-3xl text-center">
-                <span class="font-mono text-brand text-sm mb-4 block animate-pulse">> WAITING FOR CONNECTION...</span>
-                <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-widest">Get In Touch</h2>
-                <p class="text-zinc-400 mb-10 max-w-lg mx-auto font-mono text-sm">
-                    Looking for a game designer for your next project, need logic programming, or just want to discuss retro tech and mechanics? Send me a message below.
+                <span class="font-mono text-brand text-xs mb-3 block animate-pulse">> WAITING FOR CONNECTION...</span>
+                <h2 class="text-3xl font-bold text-white mb-4 uppercase tracking-widest">Get In Touch</h2>
+                <p class="text-zinc-400 mb-8 max-w-md mx-auto font-mono text-xs leading-relaxed">
+                    Open for game design, Unity C# architecture, 3D CAD modeling, or web development opportunities.
                 </p>
 
-                <form action="https://formspree.io/f/xyzdzrjb" method="POST" class="space-y-4 max-w-md mx-auto text-left font-mono relative z-10">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 font-mono text-xs text-left max-w-xl mx-auto">
+                    <div class="bg-dark border border-zinc-800 p-3">
+                        <span class="text-brand block text-[10px]">> EMAIL</span>
+                        <a href="mailto:sarthakgawari2324@gmail.com" class="text-zinc-300 hover:text-white truncate block interactive-ui cursor-none text-[11px]">sarthakgawari2324@gmail.com</a>
+                    </div>
+                    <div class="bg-dark border border-zinc-800 p-3">
+                        <span class="text-brand block text-[10px]">> PHONE</span>
+                        <a href="tel:+9184464422913" class="text-zinc-300 hover:text-white block interactive-ui cursor-none text-[11px]">+91 844 644 22913</a>
+                    </div>
+                    <div class="bg-dark border border-zinc-800 p-3">
+                        <span class="text-brand block text-[10px]">> LOCATION</span>
+                        <span class="text-zinc-300 block text-[11px]">Dhankawdi, Pune</span>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/xyzdzrjb" method="POST" class="space-y-3.5 max-w-md mx-auto text-left font-mono relative z-10 text-xs">
                     <div class="relative">
-                        <span class="absolute left-4 top-3 text-brand">></span>
-                        <input type="text" name="name" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-3 text-brand outline-none transition-colors cursor-none placeholder-zinc-700 interactive-ui" placeholder="Name" required>
+                        <span class="absolute left-3.5 top-3 text-brand">></span>
+                        <input type="text" name="name" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-2.5 text-brand outline-none transition-colors cursor-none placeholder-zinc-700 interactive-ui text-xs" placeholder="Name" required>
                     </div>
                     <div class="relative">
-                        <span class="absolute left-4 top-3 text-brand">></span>
-                        <input type="email" name="email" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-3 text-brand outline-none transition-colors cursor-none placeholder-zinc-700 interactive-ui" placeholder="Email Address" required>
+                        <span class="absolute left-3.5 top-3 text-brand">></span>
+                        <input type="email" name="email" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-2.5 text-brand outline-none transition-colors cursor-none placeholder-zinc-700 interactive-ui text-xs" placeholder="Email Address" required>
                     </div>
                     <div class="relative">
-                        <span class="absolute left-4 top-3 text-brand">></span>
-                        <textarea name="message" rows="4" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-3 text-brand outline-none transition-colors resize-none cursor-none placeholder-zinc-700 interactive-ui" placeholder="Your Message..." required></textarea>
+                        <span class="absolute left-3.5 top-3 text-brand">></span>
+                        <textarea name="message" rows="4" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-2.5 text-brand outline-none transition-colors resize-none cursor-none placeholder-zinc-700 interactive-ui text-xs" placeholder="Your Message..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full border border-brand text-dark bg-brand hover:bg-transparent hover:text-brand font-bold py-3 transition-colors tracking-widest cursor-none uppercase shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] interactive-ui">
+                    <button type="submit" class="w-full border border-brand text-dark bg-brand hover:bg-transparent hover:text-brand font-bold py-2.5 transition-colors tracking-widest cursor-none uppercase interactive-ui text-xs shadow-[0_0_15px_rgba(212,175,55,0.3)]">
                         Send Message
                     </button>
                 </form>
@@ -377,62 +671,250 @@
         </section>
     </main>
 
-    <footer class="bg-zinc-950 border-t border-zinc-900 py-8 text-center font-mono text-xs text-zinc-600 relative z-10">
-        <div class="flex justify-center space-x-8 mb-6">
-            <a href="https://github.com/sarthak232425" class="hover:text-brand transition-all hover:scale-125 hover:shadow-[0_0_10px_rgba(212,175,55,0.5)] cursor-none interactive-ui" aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
-            <a href="https://www.linkedin.com/in/sarthak-shivaji-gawari" class="hover:text-brand transition-all hover:scale-125 hover:shadow-[0_0_10px_rgba(212,175,55,0.5)] cursor-none interactive-ui" aria-label="LinkedIn"><i class="fab fa-linkedin text-xl"></i></a>
-            <a href="mailto:sarthakgawari@gmail.com" class="hover:text-brand transition-all hover:scale-125 hover:shadow-[0_0_10px_rgba(212,175,55,0.5)] cursor-none interactive-ui" aria-label="Email"><i class="fas fa-envelope text-xl"></i></a>
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-6 text-center font-mono text-xs text-zinc-600 relative z-10">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://sarthak-gawari.itch.io/" target="_blank" class="hover:text-brand transition-all cursor-none interactive-ui" aria-label="Itch.io" title="Itch.io Profile"><i class="fab fa-itch-io text-lg"></i></a>
+            <a href="https://github.com/sarthak232425" target="_blank" class="hover:text-brand transition-all cursor-none interactive-ui" aria-label="GitHub" title="GitHub"><i class="fab fa-github text-lg"></i></a>
+            <a href="https://www.linkedin.com/in/sarthak-shivaji-gawari" target="_blank" class="hover:text-brand transition-all cursor-none interactive-ui" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin text-lg"></i></a>
+            <a href="mailto:sarthakgawari2324@gmail.com" class="hover:text-brand transition-all cursor-none interactive-ui" aria-label="Email" title="Email"><i class="fas fa-envelope text-lg"></i></a>
         </div>
-        <div class="flex flex-col items-center justify-center gap-4">
-            <p>&copy; 2026 Sarthak Gawari. <span class="text-brand">SYSTEM_HALT</span></p>
-            
-            <!-- VISIBLE EASTER EGG -->
-            <a href="personal-projects.html" class="opacity-30 hover:opacity-100 text-green-500 font-mono tracking-widest text-[10px] hover:text-green-400 transition-all cursor-none interactive-ui hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] px-2 py-1 border border-transparent hover:border-green-500/50">
+        <div class="flex flex-col items-center justify-center gap-2">
+            <p>&copy; 2026 Sarthak Gawari. <span class="text-brand">SYSTEM_HALT</span> • sarthakgawari.in</p>
+            <a href="personal-projects.html" class="opacity-40 hover:opacity-100 text-green-500 font-mono tracking-widest text-[10px] hover:text-green-400 transition-all cursor-none interactive-ui px-2 py-0.5 border border-transparent hover:border-green-500/40">
                 > ssh sarthak@personal_archives
             </a>
         </div>
     </footer>
 
     <script>
-        // --- 1. WEB AUDIO API (Synthesized SFX) ---
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
-        // Helper to synthesize sounds
-        function playToneHelper(freqStart, freqEnd, type, duration, volStart, volEnd) {
-            if(audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            
-            osc.type = type;
-            osc.frequency.setValueAtTime(freqStart, audioCtx.currentTime);
-            if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, audioCtx.currentTime + duration);
-            
-            gain.gain.setValueAtTime(volStart, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(volEnd, audioCtx.currentTime + duration);
-            
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
+        // --- 1. WEB AUDIO API: PS2 Nostalgic Audio Engine (Fading Crystal Chimes & Ambient BIOS Pad) ---
+        const AudioEngine = (() => {
+            let ctx = null;
+            let isMuted = true;
+            let ambientGain = null;
+            let oscillators = [];
+            let filter = null, lfo = null;
+
+            function initContext() {
+                if (!ctx) {
+                    ctx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+            }
+
+            // PS2 Authentic Ethereal Crystal Menu Confirm (With smooth fading reverberant decay)
+            function playPS2Click() {
+                initContext();
+                if (!ctx) return;
+
+                const now = ctx.currentTime;
+                const dur = 0.42; // 420ms smooth reverberant fading tail
+
+                // Voice 1: D5 (587.33 Hz) Pure Sine
+                const osc1 = ctx.createOscillator();
+                const gain1 = ctx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(587.33, now);
+                gain1.gain.setValueAtTime(0.0001, now);
+                gain1.gain.exponentialRampToValueAtTime(0.11, now + 0.008);
+                gain1.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+                osc1.connect(gain1);
+                gain1.connect(ctx.destination);
+                osc1.start(now);
+                osc1.stop(now + dur);
+
+                // Voice 2: A5 (880.0 Hz - Perfect Fifth Harmonic)
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(880.0, now);
+                gain2.gain.setValueAtTime(0.0001, now);
+                gain2.gain.exponentialRampToValueAtTime(0.07, now + 0.008);
+                gain2.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.start(now);
+                osc2.stop(now + dur);
+
+                // Voice 3: D6 (1174.66 Hz - Airy Crystal Shimmer)
+                const osc3 = ctx.createOscillator();
+                const gain3 = ctx.createGain();
+                osc3.type = 'triangle';
+                osc3.frequency.setValueAtTime(1174.66, now);
+                gain3.gain.setValueAtTime(0.0001, now);
+                gain3.gain.exponentialRampToValueAtTime(0.03, now + 0.005);
+                gain3.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+                osc3.connect(gain3);
+                gain3.connect(ctx.destination);
+                osc3.start(now);
+                osc3.stop(now + 0.25);
+            }
+
+            // PS2 Airy Crystal Hover Blip
+            function playPS2Hover() {
+                initContext();
+                if (!ctx || isMuted) return;
+
+                const now = ctx.currentTime;
+                const dur = 0.14;
+
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(520, now);
+                osc.frequency.exponentialRampToValueAtTime(760, now + dur);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.exponentialRampToValueAtTime(0.035, now + 0.008);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + dur);
+            }
+
+            // Atmospheric PS2 BIOS-Inspired Ambient Soundscape
+            function startAmbient() {
+                initContext();
+                if (ambientGain) {
+                    unmute();
+                    return;
+                }
+
+                ambientGain = ctx.createGain();
+                ambientGain.gain.setValueAtTime(0.0001, ctx.currentTime);
+
+                // Warm resonant low-pass filter (PS2 Ocean BIOS atmosphere)
+                filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(420, ctx.currentTime);
+                filter.Q.setValueAtTime(2.2, ctx.currentTime);
+
+                // Slow breathing LFO (~16s cycle)
+                lfo = ctx.createOscillator();
+                const lfoGain = ctx.createGain();
+                lfo.type = 'sine';
+                lfo.frequency.setValueAtTime(0.06, ctx.currentTime);
+                lfoGain.gain.setValueAtTime(180, ctx.currentTime);
+                lfo.connect(lfoGain);
+                lfoGain.connect(filter.frequency);
+                lfo.start();
+
+                // PS2 BIOS Chord Structure (D2 73.4Hz, A2 110Hz, D3 146.8Hz, A3 220Hz, F#4 370Hz)
+                const freqs = [73.4, 110.0, 110.5, 146.8, 220.0, 369.99];
+                const types = ['sine', 'sine', 'triangle', 'sine', 'sine', 'sine'];
+                const gains = [0.09, 0.08, 0.04, 0.06, 0.05, 0.03];
+
+                freqs.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = types[idx];
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                    g.gain.setValueAtTime(gains[idx], ctx.currentTime);
+                    osc.connect(g);
+                    g.connect(filter);
+                    osc.start();
+                    oscillators.push(osc);
+                });
+
+                filter.connect(ambientGain);
+                ambientGain.connect(ctx.destination);
+
+                // Fade in smoothly to soothing level
+                ambientGain.gain.exponentialRampToValueAtTime(0.075, ctx.currentTime + 2.0);
+                isMuted = false;
+                updateAudioUI();
+            }
+
+            function unmute() {
+                if (!ambientGain) {
+                    startAmbient();
+                    return;
+                }
+                ambientGain.gain.cancelScheduledValues(ctx.currentTime);
+                ambientGain.gain.exponentialRampToValueAtTime(0.075, ctx.currentTime + 0.3);
+                isMuted = false;
+                updateAudioUI();
+            }
+
+            function mute() {
+                if (!ambientGain) return;
+                ambientGain.gain.cancelScheduledValues(ctx.currentTime);
+                ambientGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
+                isMuted = true;
+                updateAudioUI();
+            }
+
+            function toggleAudio() {
+                initContext();
+                if (!ambientGain) {
+                    startAmbient();
+                    return;
+                }
+                if (isMuted) {
+                    unmute();
+                } else {
+                    mute();
+                }
+            }
+
+            function updateAudioUI() {
+                const btn = document.getElementById('audio-toggle-btn');
+                const icon = document.getElementById('audio-toggle-icon');
+                const text = document.getElementById('audio-toggle-text');
+                if (btn) {
+                    if (!isMuted) {
+                        btn.classList.add('border-brand', 'text-brand', 'bg-brand/10', 'shadow-[0_0_10px_rgba(212,175,55,0.2)]');
+                        btn.classList.remove('border-zinc-800', 'text-zinc-400', 'bg-terminal/80');
+                        if (icon) icon.className = 'fas fa-volume-up text-xs text-brand animate-pulse';
+                        if (text) text.innerText = 'AMBIENT: ON';
+                    } else {
+                        btn.classList.remove('border-brand', 'text-brand', 'bg-brand/10', 'shadow-[0_0_10px_rgba(212,175,55,0.2)]');
+                        btn.classList.add('border-zinc-800', 'text-zinc-400', 'bg-terminal/80');
+                        if (icon) icon.className = 'fas fa-volume-mute text-xs text-zinc-500';
+                        if (text) text.innerText = 'AMBIENT: OFF';
+                    }
+                }
+            }
+
+            return {
+                init: initContext,
+                click: playPS2Click,
+                hover: playPS2Hover,
+                startAmbient: startAmbient,
+                toggle: toggleAudio,
+                isMuted: () => isMuted
+            };
+        })();
+
+        // Attach click sound to buttons and interactive elements
+        function attachClickListeners() {
+            document.querySelectorAll('.interactive-ui, a, button, input[type="submit"]').forEach(el => {
+                el.removeEventListener('click', AudioEngine.click);
+                el.addEventListener('click', AudioEngine.click);
+            });
         }
+        attachClickListeners();
 
-        // Subtler Hover: A very faint, low "tick" (10ms)
-        const playHover = () => playToneHelper(150, 150, 'sine', 0.01, 0.01, 0.001);
-        
-        // Mechanical Keyboard Click: Sharp square wave frequency drop (30ms)
-        const playClick = () => playToneHelper(600, 50, 'square', 0.03, 0.1, 0.001);
+        // Attach hover sound to project cards and float boxes (Unity badge, academic boxes, etc.)
+        function attachHoverListeners() {
+            document.querySelectorAll('.project-card, a[href*="certmetrics"], #about .bg-terminal\\/90, #experience .bg-terminal\\/90').forEach(el => {
+                el.removeEventListener('mouseenter', AudioEngine.hover);
+                el.addEventListener('mouseenter', AudioEngine.hover);
+            });
+        }
+        attachHoverListeners();
 
-        const playBootSound = () => {
-            playToneHelper(400, 400, 'sawtooth', 0.5, 0.1, 0.001);
-            setTimeout(() => playToneHelper(800, 800, 'square', 0.2, 0.1, 0.001), 500);
-            setTimeout(() => playToneHelper(1200, 1200, 'sine', 0.8, 0.1, 0.001), 700);
-        };
-
-        // Attach sounds to all interactive elements
-        document.querySelectorAll('.interactive-ui, a, button').forEach(el => {
-            el.addEventListener('mouseenter', playHover);
-            el.addEventListener('click', playClick);
-        });
+        // Auto-start ambient audio on first user interaction anywhere
+        window.addEventListener('pointerdown', function initAmbientOnFirstClick() {
+            AudioEngine.init();
+            if (AudioEngine.isMuted()) {
+                AudioEngine.startAmbient();
+            }
+        }, { once: true });
 
         // --- 2. BOOT SEQUENCE ---
         const bootScreen = document.getElementById('boot-screen');
@@ -441,20 +923,18 @@
         const body = document.getElementById('body');
 
         const bootLines = [
-            "Establishing secure connection...",
-            "Fetching portfolio assets... [OK]",
-            "Initializing Unity Engine environment... [OK]",
-            "Loading game design documentation... [OK]",
-            "Authenticating guest access... [ACCEPTED]",
-            "Welcome, Player_1."
+            "Initializing kernel v4.19...",
+            "Loading asset pipelines & shaders... [OK]",
+            "Calibrating audio synthesizer & telemetry... [OK]",
+            "Synchronizing PICT Pune host archives... [OK]",
+            "Access granted. Welcome, Player_1."
         ];
 
-        // Skip logic prevents attaching the event listener if already booted
         if (sessionStorage.getItem('systemBooted') !== 'true') {
             bootScreen.addEventListener('click', () => {
                 sessionStorage.setItem('systemBooted', 'true');
-                if(audioCtx.state === 'suspended') audioCtx.resume();
-                playBootSound();
+                AudioEngine.init();
+                AudioEngine.startAmbient();
                 
                 bootText.style.display = 'none';
                 bootLog.style.display = 'block';
@@ -465,7 +945,7 @@
                         const p = document.createElement('p');
                         p.innerText = `> ${line}`;
                         bootLog.appendChild(p);
-                        playClick(); // Typewriter click sound
+                        AudioEngine.click();
                         
                         if(index === bootLines.length - 1) {
                             setTimeout(() => {
@@ -473,11 +953,11 @@
                                 setTimeout(() => {
                                     bootScreen.style.display = 'none';
                                     body.classList.remove('h-screen', 'overflow-hidden');
-                                }, 700);
-                            }, 1000);
+                                }, 600);
+                            }, 800);
                         }
                     }, delay);
-                    delay += 300 + Math.random() * 200;
+                    delay += 200 + Math.random() * 140;
                 });
             }, { once: true });
         }
@@ -502,15 +982,11 @@
         function triggerKonamiHack() {
             if(isHacked) return;
             isHacked = true;
-            playToneHelper(200, 200, 'sawtooth', 2, 0.2, 0.001); // Angry synth
-            
-            // Change theme to RED (Matrix Hack)
-            document.documentElement.style.setProperty('--tw-colors-brand', '#ff2a2a');
-            matrixColor = "#ff2a2a";
-            matrixSpeed = 15; // Speed up rain
-            
-            // Glitch whole screen temporarily
-            document.body.style.animation = 'glitch-anim 0.2s 5';
+            AudioEngine.click();
+            matrixPrimaryColor = "#ff2a2a";
+            matrixHeadColor = "#ffffff";
+            matrixSpeed = 20;
+            document.body.style.animation = 'amplified-glitch 0.2s 5';
             setTimeout(() => document.body.style.animation = '', 1000);
         }
 
@@ -524,11 +1000,10 @@
             }
         });
 
-        // --- Resume Modal Logic ---
+        // --- 5. RESUME MODAL LOGIC ---
         function toggleResumeModal() {
             const modal = document.getElementById('resume-modal');
             const container = document.getElementById('resume-container');
-            
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
                 setTimeout(() => {
@@ -552,52 +1027,102 @@
             if (e.target === this) toggleResumeModal();
         });
 
-        // --- Custom Matrix Rain ---
+        // --- 6. PROJECT FILTERING (Default: Starred [3]) ---
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.project-card');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('border-brand', 'bg-brand', 'text-dark', 'font-bold', 'shadow-[0_0_10px_rgba(212,175,55,0.2)]');
+                    btn.classList.remove('border-zinc-800', 'bg-terminal', 'text-zinc-400', 'font-medium');
+                } else {
+                    btn.classList.remove('border-brand', 'bg-brand', 'text-dark', 'font-bold', 'shadow-[0_0_10px_rgba(212,175,55,0.2)]');
+                    btn.classList.add('border-zinc-800', 'bg-terminal', 'text-zinc-400', 'font-medium');
+                }
+            });
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                const isStarred = card.getAttribute('data-starred') === 'true';
+
+                if (category === 'starred') {
+                    if (isStarred) {
+                        card.classList.remove('hidden');
+                        card.style.display = 'flex';
+                    } else {
+                        card.classList.add('hidden');
+                        card.style.display = 'none';
+                    }
+                } else if (category === 'all' || cardCat === category) {
+                    card.classList.remove('hidden');
+                    card.style.display = 'flex';
+                } else {
+                    card.classList.add('hidden');
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 7. AMPLIFIED MATRIX STREAM CANVAS (With Glowing Head Chars) ---
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         
         function resizeCanvas() {
-            canvas.width = window.innerWidth > 768 ? window.innerWidth * 0.25 : window.innerWidth * 0.4;
+            canvas.width = window.innerWidth > 768 ? Math.floor(window.innerWidth * 0.3) : Math.floor(window.innerWidth * 0.5);
             canvas.height = window.innerHeight;
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        const matrixChars = "01ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍｦｲｸｺｿﾁﾄﾉﾌﾔﾖﾙﾚﾛﾝ{}()[]#+=-<>!*&^%$C#UNITY";
-        const fontSize = 14;
+        const matrixChars = "ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ0123456789ABCDEF$#@*<>{}[]/+=~";
+        const fontSize = 20; // AMPLIFIED FONT SIZE
         let columns = Math.floor(canvas.width / fontSize);
         let drops = [];
-        let matrixColor = "#d4af37";
-        let matrixSpeed = 40;
+        let matrixPrimaryColor = "#d4af37";
+        let matrixHeadColor = "#ffffff";
+        let matrixSpeed = 35;
         
-        for(let x = 0; x < columns; x++) drops[x] = Math.random() * -100;
+        for(let x = 0; x < columns; x++) {
+            drops[x] = Math.random() * -60;
+        }
 
         function drawMatrix() {
-            ctx.fillStyle = "rgba(9, 9, 11, 0.05)";
+            ctx.fillStyle = "rgba(9, 9, 11, 0.08)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = matrixColor; 
-            ctx.font = fontSize + "px monospace";
+            ctx.font = `bold ${fontSize}px 'JetBrains Mono', monospace`;
             
             for(let i = 0; i < drops.length; i++) {
-                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
                 const x = i * fontSize;
                 const y = drops[i] * fontSize;
                 
-                ctx.fillText(text, x, y);
+                // Trailing character in brand gold
+                ctx.fillStyle = matrixPrimaryColor;
+                ctx.shadowColor = matrixPrimaryColor;
+                ctx.shadowBlur = 4;
+                ctx.fillText(char, x, y);
                 
-                if(y > canvas.height && Math.random() > 0.975) {
+                // Head character in bright white/gold glow
+                const headChar = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                ctx.fillStyle = matrixHeadColor;
+                ctx.shadowColor = matrixHeadColor;
+                ctx.shadowBlur = 8;
+                ctx.fillText(headChar, x, y + fontSize);
+                
+                if(y > canvas.height && Math.random() > 0.96) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
+            ctx.shadowBlur = 0;
             setTimeout(drawMatrix, matrixSpeed);
         }
         drawMatrix();
 
-        // --- Custom Mouse/Touch Trail ---
+        // --- 8. CUSTOM MOUSE/TOUCH TRAIL ---
         const cursorTrail = document.getElementById('cursor-trail');
-        const cursorDot = document.getElementById('cursor-dot');
         let cursorX = window.innerWidth / 2;
         let cursorY = window.innerHeight / 2;
 
@@ -609,7 +1134,6 @@
                 cursorX = e.clientX;
                 cursorY = e.clientY;
             }
-            
             requestAnimationFrame(() => {
                 cursorTrail.style.transform = `translate(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%))`;
             });
@@ -620,16 +1144,16 @@
 
         document.querySelectorAll('.interactive-ui, a, button, input, textarea, .group').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorTrail.classList.add('w-12', 'h-12', 'bg-brand/20', 'border-brand', 'shadow-[0_0_20px_rgba(212,175,55,0.6)]');
+                cursorTrail.classList.add('w-11', 'h-11', 'bg-brand/15', 'border-brand', 'shadow-[0_0_15px_rgba(212,175,55,0.4)]');
                 if(isHacked) cursorTrail.style.borderColor = '#ff2a2a';
             });
             el.addEventListener('mouseleave', () => {
-                cursorTrail.classList.remove('w-12', 'h-12', 'bg-brand/20', 'border-brand', 'shadow-[0_0_20px_rgba(212,175,55,0.6)]');
+                cursorTrail.classList.remove('w-11', 'h-11', 'bg-brand/15', 'border-brand', 'shadow-[0_0_15px_rgba(212,175,55,0.4)]');
                 cursorTrail.style.borderColor = '';
             });
         });
 
-        // --- Mobile Menu Logic ---
+        // --- 9. MOBILE MENU LOGIC ---
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -651,6 +1175,423 @@
                 if (!mobileMenu.classList.contains('hidden')) toggleMenu();
             });
         });
+
+        // --- 10. PLAYABLE HERO 2D PHYSICS SANDBOX (Micro-Car & Target Nodes) ---
+        const HeroSandbox = (() => {
+            const canvas = document.getElementById('hero-game-canvas');
+            if (!canvas) return { spawnTarget: () => {}, resetCar: () => {} };
+            const ctx = canvas.getContext('2d');
+
+            let width, height;
+            function resize() {
+                const parent = canvas.parentElement;
+                width = canvas.width = parent.clientWidth;
+                height = canvas.height = parent.clientHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Vehicle State
+            const car = {
+                x: width * 0.72 || 600,
+                y: height * 0.5 || 300,
+                vx: 0,
+                vy: 0,
+                angle: -Math.PI / 4,
+                speed: 0,
+                maxSpeed: 7.2,
+                accel: 0.26,
+                friction: 0.965,
+                steerAngle: 0.052,
+                driftFactor: 0.88,
+                isDrifting: false,
+                width: 32,
+                height: 16
+            };
+
+            const keys = {};
+            window.addEventListener('keydown', (e) => {
+                keys[e.code] = true;
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
+                    // Prevent page scroll if within hero area
+                    if (window.scrollY < window.innerHeight * 0.8) {
+                        e.preventDefault();
+                    }
+                }
+                if (e.code === 'KeyR') {
+                    resetCar();
+                }
+            });
+            window.addEventListener('keyup', (e) => {
+                keys[e.code] = false;
+            });
+
+            // Touch / Mouse Pointer Navigation
+            let pointerTarget = null;
+            canvas.addEventListener('pointerdown', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                pointerTarget = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+            });
+            canvas.addEventListener('pointermove', (e) => {
+                if (pointerTarget) {
+                    const rect = canvas.getBoundingClientRect();
+                    pointerTarget = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+                }
+            });
+            window.addEventListener('pointerup', () => {
+                pointerTarget = null;
+            });
+
+            // Skid Marks Buffer
+            const skidMarks = [];
+            
+            // Particles Buffer (Shatter sparks)
+            const particles = [];
+
+            // Floaty Popups Buffer
+            const popups = [];
+
+            // Targets (Block Blocker Cubes & Data Orbs)
+            const targets = [];
+            let score = 0;
+
+            function spawnTarget() {
+                const margin = 80;
+                targets.push({
+                    x: margin + Math.random() * (width - margin * 2),
+                    y: margin + Math.random() * (height - margin * 2),
+                    radius: 14 + Math.random() * 8,
+                    rot: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.04,
+                    color: Math.random() > 0.4 ? '#d4af37' : '#38bdf8',
+                    label: ['[DATA_NODE]', '[BB_BLOCK]', '[PHYSICS]', '[C#_KERNEL]'][Math.floor(Math.random() * 4)],
+                    pulse: Math.random() * Math.PI * 2
+                });
+            }
+
+            for (let i = 0; i < 5; i++) {
+                spawnTarget();
+            }
+
+            function resetCar() {
+                car.x = width * 0.7 || 500;
+                car.y = height * 0.5 || 300;
+                car.vx = 0;
+                car.vy = 0;
+                car.speed = 0;
+                car.angle = -Math.PI / 4;
+            }
+
+            // HUD Elements
+            const hudSpeed = document.getElementById('hud-speed');
+            const hudDrift = document.getElementById('hud-drift');
+            const hudScore = document.getElementById('hud-score');
+
+            function update() {
+                // 1. Controls
+                const forward = keys['KeyW'] || keys['ArrowUp'];
+                const backward = keys['KeyS'] || keys['ArrowDown'];
+                const left = keys['KeyA'] || keys['ArrowLeft'];
+                const right = keys['KeyD'] || keys['ArrowRight'];
+                const handbrake = keys['Space'];
+
+                if (pointerTarget) {
+                    const dx = pointerTarget.x - car.x;
+                    const dy = pointerTarget.y - car.y;
+                    const targetAngle = Math.atan2(dy, dx);
+                    let angleDiff = targetAngle - car.angle;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    
+                    car.angle += Math.sign(angleDiff) * Math.min(Math.abs(angleDiff), car.steerAngle * 1.5);
+                    const dist = Math.hypot(dx, dy);
+                    if (dist > 30) {
+                        car.speed = Math.min(car.speed + car.accel, car.maxSpeed);
+                    } else {
+                        car.speed *= 0.9;
+                    }
+                } else {
+                    if (forward) {
+                        car.speed = Math.min(car.speed + car.accel, car.maxSpeed);
+                    } else if (backward) {
+                        car.speed = Math.max(car.speed - car.accel * 0.7, -car.maxSpeed * 0.5);
+                    } else {
+                        car.speed *= car.friction;
+                    }
+
+                    if (Math.abs(car.speed) > 0.2) {
+                        const steer = car.steerAngle * (car.speed > 0 ? 1 : -1);
+                        if (left) car.angle -= steer;
+                        if (right) car.angle += steer;
+                    }
+                }
+
+                car.isDrifting = handbrake && Math.abs(car.speed) > 2.0;
+                const lateralFriction = car.isDrifting ? 0.82 : 0.94;
+
+                // Physics velocity calculation
+                const targetVx = Math.cos(car.angle) * car.speed;
+                const targetVy = Math.sin(car.angle) * car.speed;
+                car.vx = car.vx * lateralFriction + targetVx * (1 - lateralFriction);
+                car.vy = car.vy * lateralFriction + targetVy * (1 - lateralFriction);
+
+                car.x += car.vx;
+                car.y += car.vy;
+
+                // Wrap around edges
+                if (car.x < -40) car.x = width + 30;
+                if (car.x > width + 40) car.x = -30;
+                if (car.y < -40) car.y = height + 30;
+                if (car.y > height + 40) car.y = -30;
+
+                // Deposit Skid Marks
+                if ((car.isDrifting || (Math.abs(car.speed) > 4.5 && (left || right))) && Math.random() > 0.2) {
+                    const rearLeftX = car.x - Math.cos(car.angle) * 12 + Math.sin(car.angle) * 8;
+                    const rearLeftY = car.y - Math.sin(car.angle) * 12 - Math.cos(car.angle) * 8;
+                    const rearRightX = car.x - Math.cos(car.angle) * 12 - Math.sin(car.angle) * 8;
+                    const rearRightY = car.y - Math.sin(car.angle) * 12 + Math.cos(car.angle) * 8;
+
+                    skidMarks.push({ x1: rearLeftX, y1: rearLeftY, x2: rearRightX, y2: rearRightY, alpha: 0.5, color: car.isDrifting ? '#d4af37' : '#52525b' });
+                }
+
+                // Update Skidmarks
+                for (let i = skidMarks.length - 1; i >= 0; i--) {
+                    skidMarks[i].alpha -= 0.003;
+                    if (skidMarks[i].alpha <= 0) skidMarks.splice(i, 1);
+                }
+
+                // Target Collisions
+                targets.forEach((target, index) => {
+                    target.rot += target.rotSpeed;
+                    target.pulse += 0.04;
+                    const dist = Math.hypot(car.x - target.x, car.y - target.y);
+                    if (dist < target.radius + 16) {
+                        // Impact!
+                        AudioEngine.click();
+                        score += 100;
+                        
+                        // Spark explosion
+                        for (let p = 0; p < 14; p++) {
+                            const pAngle = Math.random() * Math.PI * 2;
+                            const pSpeed = 2 + Math.random() * 5;
+                            particles.push({
+                                x: target.x,
+                                y: target.y,
+                                vx: Math.cos(pAngle) * pSpeed + car.vx * 0.3,
+                                vy: Math.sin(pAngle) * pSpeed + car.vy * 0.3,
+                                size: 2 + Math.random() * 3,
+                                alpha: 1,
+                                color: target.color
+                            });
+                        }
+
+                        // Floaty popup
+                        popups.push({
+                            x: target.x,
+                            y: target.y,
+                            text: `+100 ${target.label}`,
+                            alpha: 1,
+                            color: target.color
+                        });
+
+                        // Respawn target
+                        targets.splice(index, 1);
+                        setTimeout(spawnTarget, 400);
+                    }
+                });
+
+                // Update Particles
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vx *= 0.95;
+                    p.vy *= 0.95;
+                    p.alpha -= 0.025;
+                    if (p.alpha <= 0) particles.splice(i, 1);
+                }
+
+                // Update Popups
+                for (let i = popups.length - 1; i >= 0; i--) {
+                    const popup = popups[i];
+                    popup.y -= 1.2;
+                    popup.alpha -= 0.02;
+                    if (popup.alpha <= 0) popups.splice(i, 1);
+                }
+
+                // Update HUD
+                if (hudSpeed) {
+                    const kmh = Math.round(Math.hypot(car.vx, car.vy) * 16);
+                    hudSpeed.innerText = kmh < 10 ? `0${kmh}` : kmh;
+                }
+                if (hudDrift) {
+                    const driftAngle = Math.round(Math.abs(Math.atan2(car.vy, car.vx) - car.angle) * (180 / Math.PI)) % 90;
+                    hudDrift.innerText = `${driftAngle}°`;
+                }
+                if (hudScore) {
+                    hudScore.innerText = score;
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+
+                // 1. Draw Subtle Cyber Grid
+                ctx.strokeStyle = 'rgba(212, 175, 55, 0.035)';
+                ctx.lineWidth = 1;
+                const gridSize = 45;
+                for (let x = 0; x < width; x += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                    ctx.stroke();
+                }
+                for (let y = 0; y < height; y += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+                }
+
+                // 2. Draw Skid Marks
+                skidMarks.forEach(sm => {
+                    ctx.strokeStyle = sm.color;
+                    ctx.globalAlpha = sm.alpha;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(sm.x1, sm.y1);
+                    ctx.lineTo(sm.x2, sm.y2);
+                    ctx.stroke();
+                });
+                ctx.globalAlpha = 1.0;
+
+                // 3. Draw Targets (Glowing Physics Cubes)
+                targets.forEach(target => {
+                    ctx.save();
+                    ctx.translate(target.x, target.y);
+                    ctx.rotate(target.rot);
+                    
+                    const rad = target.radius + Math.sin(target.pulse) * 2;
+                    
+                    // Glow
+                    ctx.shadowColor = target.color;
+                    ctx.shadowBlur = 10;
+                    ctx.strokeStyle = target.color;
+                    ctx.lineWidth = 1.5;
+                    ctx.fillStyle = 'rgba(10, 10, 15, 0.7)';
+                    
+                    ctx.beginPath();
+                    ctx.strokeRect(-rad, -rad, rad * 2, rad * 2);
+                    ctx.fillRect(-rad, -rad, rad * 2, rad * 2);
+                    
+                    // Inner symbol
+                    ctx.fillStyle = target.color;
+                    ctx.font = '9px "JetBrains Mono", monospace';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('★', 0, 0);
+                    
+                    ctx.restore();
+                });
+
+                // 4. Draw Particles
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.shadowColor = p.color;
+                    ctx.shadowBlur = 6;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1.0;
+                ctx.shadowBlur = 0;
+
+                // 5. Draw Floating Popups
+                popups.forEach(popup => {
+                    ctx.fillStyle = popup.color;
+                    ctx.globalAlpha = popup.alpha;
+                    ctx.font = 'bold 11px "JetBrains Mono", monospace';
+                    ctx.textAlign = 'center';
+                    ctx.shadowColor = popup.color;
+                    ctx.shadowBlur = 8;
+                    ctx.fillText(popup.text, popup.x, popup.y);
+                });
+                ctx.globalAlpha = 1.0;
+                ctx.shadowBlur = 0;
+
+                // 6. Draw Car Headlights Beam
+                ctx.save();
+                ctx.translate(car.x, car.y);
+                ctx.rotate(car.angle);
+
+                const headlightDist = 180;
+                const headlightSpread = 0.42;
+                const hGrad = ctx.createRadialGradient(0, 0, 10, headlightDist * 0.7, 0, headlightDist);
+                hGrad.addColorStop(0, 'rgba(255, 255, 230, 0.28)');
+                hGrad.addColorStop(0.5, 'rgba(212, 175, 55, 0.12)');
+                hGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+                ctx.fillStyle = hGrad;
+                ctx.beginPath();
+                ctx.moveTo(14, 0);
+                ctx.lineTo(headlightDist, -headlightDist * Math.tan(headlightSpread));
+                ctx.lineTo(headlightDist, headlightDist * Math.tan(headlightSpread));
+                ctx.closePath();
+                ctx.fill();
+
+                // 7. Draw Cyber Vehicle Body
+                // Chassis Shadow
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+                ctx.shadowBlur = 12;
+                ctx.fillStyle = '#09090b';
+                ctx.fillRect(-car.width / 2 - 2, -car.height / 2 - 2, car.width + 4, car.height + 4);
+                ctx.shadowBlur = 0;
+
+                // Main Body
+                ctx.fillStyle = '#d4af37'; // Brand gold body
+                ctx.strokeStyle = '#fef08a';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.roundRect(-car.width / 2, -car.height / 2, car.width, car.height, 3);
+                ctx.fill();
+                ctx.stroke();
+
+                // Cockpit Glass
+                ctx.fillStyle = '#18181b';
+                ctx.beginPath();
+                ctx.roundRect(-car.width / 6, -car.height / 2 + 2, car.width / 2.2, car.height - 4, 2);
+                ctx.fill();
+
+                // Front Headlights (Cyan LEDs)
+                ctx.fillStyle = '#38bdf8';
+                ctx.shadowColor = '#38bdf8';
+                ctx.shadowBlur = 6;
+                ctx.fillRect(car.width / 2 - 3, -car.height / 2 + 1, 3, 3);
+                ctx.fillRect(car.width / 2 - 3, car.height / 2 - 4, 3, 3);
+
+                // Rear Tail Lights (Red LEDs)
+                ctx.fillStyle = car.speed < 0 || keys['KeyS'] || keys['Space'] ? '#ff2222' : '#991b1b';
+                ctx.shadowColor = '#ff2222';
+                ctx.shadowBlur = car.speed < 0 || keys['Space'] ? 10 : 4;
+                ctx.fillRect(-car.width / 2, -car.height / 2 + 2, 2.5, 3.5);
+                ctx.fillRect(-car.width / 2, car.height / 2 - 5.5, 2.5, 3.5);
+
+                ctx.restore();
+            }
+
+            function loop() {
+                update();
+                draw();
+                requestAnimationFrame(loop);
+            }
+            requestAnimationFrame(loop);
+
+            return {
+                spawnTarget: spawnTarget,
+                resetCar: resetCar
+            };
+        })();
     </script>
 </body>
 </html>

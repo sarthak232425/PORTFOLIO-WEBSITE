@@ -16,13 +16,14 @@
             personal-projects@sarthak:~
         </div>
         <div class="terminal-content">
-            <p><span class="prompt"></span>Personal Projects</p>
+            <p><span class="prompt"></span>Personal Archives // System Status: Active</p>
             <p><span class="prompt"></span>Project: PSP Resizer</p>
             <p><span class="prompt"></span>Bundle: PS Resizer_0.1.3_x64_en-US.msi</p>
             <p><span class="prompt"></span>Actions:</p>
             <div class="action-row">
                 <a href="files/PS%20Resizer_0.1.3_x64_en-US.msi" download class="download-link">Download .msi bundle</a>
-                <a href="https://github.com/sarthak232425/PSP-RESIZER" target="_blank" class="download-link">View repo</a>
+                <a href="https://github.com/sarthak232425/PSP-RESIZER" target="_blank" class="download-link">View GitHub Repo</a>
+                <a href="index.html" class="download-link" style="border-color: #d4af37; color: #d4af37;">Return to Main System</a>
             </div>
             <p class="alt-link">
                 Connection unstable? <a href="https://drive.google.com/drive/folders/1RKr8T545ICqRZ20lUsGxGcxPBR2UzCiq?usp=sharing" target="_blank">Use alternate route</a>.
@@ -34,34 +35,52 @@
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%';
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
+        const letters = 'ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ0123456789ABCDEF$#@*<>{}[]/+=~';
+        const fontSize = 20; // AMPLIFIED
+        const columns = Math.floor(canvas.width / fontSize);
 
         const drops = [];
         for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
+            drops[x] = Math.random() * -50;
         }
 
         function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = '#0f0';
-            ctx.font = fontSize + 'px monospace';
+            ctx.font = `bold ${fontSize}px monospace`;
 
             for (let i = 0; i < drops.length; i++) {
                 const text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
 
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                // Trail
+                ctx.fillStyle = '#00ff41';
+                ctx.shadowColor = '#00ff41';
+                ctx.shadowBlur = 4;
+                ctx.fillText(text, x, y);
+
+                // Glowing Head
+                const headText = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowColor = '#ffffff';
+                ctx.shadowBlur = 8;
+                ctx.fillText(headText, x, y + fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.96) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
+            ctx.shadowBlur = 0;
         }
 
         setInterval(draw, 33);

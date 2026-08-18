@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Blocker | Sarthak Gawari</title>
+    <title>KaalChakra | Sarthak Gawari</title>
     <link rel="icon" type="image/png" href="images/ICON.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -48,12 +48,6 @@
             transition: width 0.15s, height 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
             will-change: transform;
         }
-
-        .pulse-subtle { animation: pulseGlow 2.5s infinite ease-in-out; }
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.25); }
-            50% { box-shadow: 0 0 12px 2px rgba(212, 175, 55, 0.15); }
-        }
     </style>
 </head>
 <body class="text-zinc-300 font-sans antialiased selection:bg-brand selection:text-dark cursor-default md:cursor-none bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-900/30 via-dark to-dark min-h-screen">
@@ -71,7 +65,7 @@
                 <i class="fas fa-arrow-left"></i> RETURN_TO_ROOT
             </a>
             <div class="font-mono text-xs text-zinc-500 hidden sm:block">
-                FILE: /PROJECTS/BLOCK_BLOCKER.EXE
+                FILE: /PROJECTS/KAALCHAKRA_2D.EXE
             </div>
         </div>
     </header>
@@ -81,15 +75,15 @@
         <!-- Hero Header Box -->
         <div class="mb-10 border border-zinc-800 p-1.5 bg-terminal/90">
             <div class="h-64 md:h-96 w-full bg-zinc-900 relative overflow-hidden border border-zinc-800">
-                <img src="images/BB.png" alt="Block Blocker Hero" class="w-full h-full object-cover opacity-75">
+                <img src="images/KC.png" alt="KaalChakra Hero" class="w-full h-full object-cover opacity-75">
                 <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
                 <div class="absolute top-4 right-4 bg-dark/90 font-mono text-xs text-brand px-3 py-1 border border-brand/40 shadow-[0_0_10px_rgba(212,175,55,0.3)]">
-                    ★ GLITCHED '25 WINNER • GENESIS 4.0 STAGE 2 (AIT PUNE)
+                    ★ GAMEDEVUTOPIA X PICTORIAL RELEASE
                 </div>
                 <div class="absolute bottom-6 left-6 right-6">
-                    <div class="font-mono text-brand mb-1.5 text-xs">> EXECUTABLE LOADED // UNITY 2D ARCADE</div>
-                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-widest mb-1.5">Block Blocker</h1>
-                    <p class="text-zinc-400 font-mono text-xs sm:text-sm">Glitched 2025 GameJam Champion • Stage 2 Finalist at Genesis 4.0 (AIT Pune)</p>
+                    <div class="font-mono text-brand mb-1.5 text-xs">> COLLABORATIVE PRODUCTION // UNITY 2D</div>
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-widest mb-1.5">KaalChakra</h1>
+                    <p class="text-zinc-400 font-mono text-xs sm:text-sm">Physics-Driven 2D Platformer with Modular System Architecture</p>
                 </div>
             </div>
         </div>
@@ -103,10 +97,10 @@
                 <section>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> System_Overview</h2>
                     <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
-                        <strong>Block Blocker</strong> is an adrenaline-fueled 2D arcade game built from concept to final deployment. Originally engineered in a rapid 48-hour competitive sprint during the <strong>Glitched 2025 GameJam</strong> where it secured <strong>1st Place</strong>, the project subsequently qualified and advanced into <strong>Stage 2 of Genesis 4.0 at Army Institute of Technology (AIT) Pune</strong>.
+                        <strong>KaalChakra</strong> is a flagship collaborative 2D game engineered in partnership between <strong>GameDevUtopia</strong> and <strong>Pictorial</strong> at the Pune Institute of Computer Technology (PICT).
                     </p>
                     <p class="text-zinc-400 leading-relaxed font-sans text-sm">
-                        The primary design objective was delivering a frictionless, highly addictive "one-more-try" gameplay loop. I engineered a bespoke dynamic difficulty scaling algorithm that modulates obstacle velocity, spawn frequency, and player hitbox margins in real-time based on session longevity and player mastery curve.
+                        As core developer and Ex-Coding Head, I architected the fundamental gameplay prototype, rigid-body player controller kinematics, customizable input rebinding mechanisms, and the complete audio and volume management infrastructure.
                     </p>
                 </section>
 
@@ -115,24 +109,24 @@
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Architecture</h2>
                     <ul class="space-y-4 text-zinc-300">
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-microchip text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-gamepad text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Dynamic Difficulty Scaling (DDS)</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered an algorithmic curve in C# that smoothly scales falling block cadence and obstacle variety relative to player survival time, maintaining the critical flow-state zone between boredom and frustration.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Scalable & Remappable Input Systems</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Developed an abstraction layer on top of Unity's input system, enabling seamless keyboard and gamepad remapping, dynamic deadzone calibration, and persistent user configuration across game restarts.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-project-diagram text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-sliders-h text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Decoupled Event-Driven UI Loop</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Used C# <code>System.Action</code> events and delegates to completely decouple score counters, combo multipliers, screen shake, and audio cues from the physics loop, ensuring zero garbage collection spikes during high-intensity gameplay.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Modular Audio Mixer Subsystem</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Integrated Unity's <code>AudioMixer</code> groups with logarithmic decibel conversion equations, allowing independent master, ambient soundtrack, and SFX volume channels that respond immediately to UI sliders.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-bolt text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-cubes text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">High "Juice" Feedback & Polish</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Crafted tactile feedback through customized particle bursts on block destruction, micro-freeze frames upon near-miss encounters, and responsive low-latency touch controls calibrated for mobile & desktop screens.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Precision 2D Rigid Body Kinematics</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered custom ground-checking raycasts, variable jump height modulation based on button hold duration, and coyote time jump buffers for tight, responsive platforming.</p>
                             </div>
                         </li>
                     </ul>
@@ -140,33 +134,32 @@
 
                 <!-- Code Architecture Highlight -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Difficulty Engine</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Audio Mixer & Input Remap</h2>
                     <div class="bg-terminal border border-zinc-800 p-4 font-mono text-xs text-zinc-300 overflow-x-auto">
-<pre class="text-brand"><code>// Dynamic Difficulty Curve Calculator (Unity C#)
-public float GetSpawnRate(float elapsedTime) {
-    float normalizedTime = Mathf.Clamp01(elapsedTime / maxDifficultyTime);
-    float easeCurve = difficultyCurve.Evaluate(normalizedTime);
-    return Mathf.Lerp(initialSpawnInterval, minSpawnInterval, easeCurve);
+<pre class="text-brand"><code>// Audio Volume Controller with Logarithmic Decibel Conversion
+public void SetVolume(string parameterName, float sliderValue) {
+    float dbVolume = Mathf.Log10(Mathf.Clamp(sliderValue, 0.0001f, 1f)) * 20f;
+    audioMixer.SetFloat(parameterName, dbVolume);
+    PlayerPrefs.SetFloat(parameterName, sliderValue);
 }
 
-public void OnObstacleDestroyed(int scoreGained) {
-    CurrentScore += scoreGained * comboMultiplier;
-    OnScoreUpdated?.Invoke(CurrentScore); // Event-driven UI notification
-}</code></pre>
+// Coyote Time & Jump Buffer Check
+if (isGrounded) coyoteTimeCounter = coyoteTime;
+else coyoteTimeCounter -= Time.deltaTime;</code></pre>
                     </div>
                 </section>
 
                 <!-- Key Takeaways -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Impact</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Team_Collaboration</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> GAME FEEL ("JUICE")</div>
-                            <p class="text-zinc-400">Mastered the subtle art of screenshake, audio sync, and hit-stop frames to turn simple geometric mechanics into deeply satisfying tactile interactions.</p>
+                            <div class="text-brand font-bold mb-1">> MODULAR ARCHITECTURE</div>
+                            <p class="text-zinc-400">Architected clean scriptable interfaces, ensuring artists, UI designers, and programmers worked simultaneously without git merge conflicts.</p>
                         </div>
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> RAPID PROTOTYPING</div>
-                            <p class="text-zinc-400">Proven track record of taking an abstract mechanic from blank Unity canvas to an award-winning published release in 48 hours.</p>
+                            <div class="text-brand font-bold mb-1">> TEAM LEADERSHIP</div>
+                            <p class="text-zinc-400">Managed cross-functional workflows between PICT club divisions, coordinating sprints, code reviews, and public release on Itch.io.</p>
                         </div>
                     </div>
                 </section>
@@ -182,42 +175,50 @@ public void OnObstacleDestroyed(int scoreGained) {
                     <div class="space-y-3 font-mono text-xs">
                         <div class="border-b border-zinc-800/60 pb-2">
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">ROLE:</span>
-                            <span class="text-zinc-200">Solo Developer & Game Designer</span>
+                            <span class="text-zinc-200">Core Developer & Ex-Coding Head</span>
+                        </div>
+                        <div class="border-b border-zinc-800/60 pb-2">
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">TEAM:</span>
+                            <span class="text-brand"><a href="https://www.linkedin.com/company/gamedevutopia" target="_blank" class="hover:underline interactive-ui cursor-none">GameDevUtopia (GDU)</a> X Pictorial</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE:</span>
                             <span class="text-zinc-200">Unity 2D (C#)</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">AWARDS & RECOGNITION:</span>
-                            <span class="text-brand block font-semibold">Winner • Glitched GameJam 2025</span>
-                            <span class="text-zinc-300 block text-[11px] mt-0.5">Stage 2 Finalist • Genesis 4.0 (AIT Pune)</span>
-                        </div>
-                        <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">TIMEFRAME:</span>
-                            <span class="text-zinc-200">2024 — 2025</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">YEAR:</span>
+                            <span class="text-zinc-200">2025</span>
                         </div>
                         <div>
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">PLATFORMS:</span>
-                            <span class="text-zinc-200">WebGL / PC / Mobile Browser</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">FOCUS:</span>
+                            <span class="text-zinc-200">Modular Input, AudioMixer, 2D Kinematics</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Action CTA Button -->
                 <div>
-                    <a href="https://sarthak-gawari.itch.io/block-blocker" target="_blank" class="w-full border border-brand bg-brand text-dark hover:bg-transparent hover:text-brand text-center font-bold font-mono py-3.5 transition-all tracking-widest cursor-none uppercase interactive-ui text-xs shadow-[0_0_15px_rgba(212,175,55,0.25)] flex items-center justify-center gap-2">
+                    <a href="https://gamedevutopia.itch.io/kalchakra" target="_blank" class="w-full border border-brand bg-brand text-dark hover:bg-transparent hover:text-brand text-center font-bold font-mono py-3.5 transition-all tracking-widest cursor-none uppercase interactive-ui text-xs shadow-[0_0_15px_rgba(212,175,55,0.25)] flex items-center justify-center gap-2">
                         <i class="fab fa-itch-io text-base"></i> View on Itch
                     </a>
                 </div>
 
                 <!-- Next/Prev Navigation -->
-                <div class="bg-terminal/90 border border-zinc-800 p-4 font-mono text-xs">
-                    <div class="text-zinc-500 text-[10px] mb-1.5">> NEXT_PROJECT</div>
-                    <a href="project-car-controller.html" class="text-brand hover:underline flex justify-between items-center interactive-ui cursor-none">
-                        <span>Realistic Car Controller</span>
-                        <i class="fas fa-arrow-right text-[10px]"></i>
-                    </a>
+                <div class="bg-terminal/90 border border-zinc-800 p-4 font-mono text-xs space-y-2.5">
+                    <div>
+                        <div class="text-zinc-500 text-[10px] mb-1">> PREV_PROJECT</div>
+                        <a href="project-car-controller.html" class="text-brand hover:underline flex justify-between items-center interactive-ui cursor-none">
+                            <span>Car Controller</span>
+                            <i class="fas fa-arrow-left text-[10px]"></i>
+                        </a>
+                    </div>
+                    <div class="border-t border-zinc-800/60 pt-2">
+                        <div class="text-zinc-500 text-[10px] mb-1">> NEXT_PROJECT</div>
+                        <a href="project-tic-tac-toe.html" class="text-brand hover:underline flex justify-between items-center interactive-ui cursor-none">
+                            <span>Tic Tac Toe Ultimate</span>
+                            <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
 
             </div>
