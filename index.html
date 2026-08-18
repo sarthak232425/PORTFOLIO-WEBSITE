@@ -1,666 +1,656 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth bg-zinc-950">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Sarthak | Game Designer</title>
     <link rel="icon" type="image/png" href="images/ICON.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-[#29231c] text-[#d4c9ba] font-sans">
-    <!-- Background Container for Circles -->
-    <div id="background-container"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <div id="content-container">
-        <!-- Navigation -->
-        <nav class="bg-[#1e1815] shadow-md fixed w-full z-40">
-  <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-    <!-- Logo -->
-    <a href="#" class="text-xl font-bold text-[#d4c9ba]">Portfolio</a>
+    <!-- Script to instantly check if boot sequence has already been played this session -->
+    <script>
+        if (sessionStorage.getItem('systemBooted') === 'true') {
+            document.documentElement.classList.add('skip-boot');
+        }
+    </script>
 
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center space-x-6">
-      <div class="flex space-x-8">
-        <a href="#home" class="hover:text-[#e1ad10] scroll-behavior: smooth">Home</a>
-        <a href="#projects" class="hover:text-[#e1ad10] scroll-behavior: smooth">Projects</a>
-        <a href="#about" class="hover:text-[#e1ad10] scroll-behavior: smooth">About</a>
-        <a href="#contact" class="hover:text-[#e1ad10] scroll-behavior: smooth">Contact</a>
-      </div>
-      <!-- Resume Button -->
-      <a href="files/Sarthak_Gawari_Resume.pdf" target="_blank" 
-         class="bg-[#7b4928] text-[#d4c9ba] px-2 py-1 rounded-lg hover:bg-[#f2c251] transition duration-300 text-xs">
-        Resume
-      </a>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: '#d4af37', 
+                        brandRed: '#ff2a2a', 
+                        dark: '#09090b',
+                        card: '#121214',
+                        terminal: '#1a1a1d',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.15));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        #cursor-trail {
+            transition: width 0.15s, height 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+            will-change: transform;
+        }
+
+        .typing-cursor::after {
+            content: '█';
+            animation: blink 1s step-start infinite;
+            color: #d4af37;
+            margin-left: 4px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .glitch-hover:hover {
+            animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #fff;
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) text-shadow: -2px 0 red; }
+            40% { transform: translate(-2px, -2px) text-shadow: 2px 0 blue; }
+            60% { transform: translate(2px, 2px) text-shadow: -2px 0 red; }
+            80% { transform: translate(2px, -2px) text-shadow: 2px 0 blue; }
+            100% { transform: translate(0) }
+        }
+
+        .pulse-glow { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* Skip Boot CSS Overrides */
+        html.skip-boot #boot-screen { display: none !important; }
+        html.skip-boot body { overflow: auto !important; height: auto !important; }
+    </style>
+</head>
+<body class="text-zinc-300 font-sans antialiased selection:bg-brand selection:text-dark flex flex-col min-h-screen cursor-default md:cursor-none relative overflow-x-hidden h-screen overflow-hidden" id="body">
+    
+    <!-- BOOT SEQUENCE OVERLAY -->
+    <div id="boot-screen" class="fixed inset-0 z-[10001] bg-black text-brand font-mono flex flex-col items-center justify-center cursor-pointer transition-opacity duration-700">
+        <div id="boot-text" class="text-center">
+            <h2 class="text-2xl md:text-4xl font-bold mb-4 animate-pulse">> AWAITING USER INPUT</h2>
+            <p class="text-zinc-500 text-sm md:text-base">CLICK ANYWHERE TO CONNECT TO HOST</p>
+        </div>
+        <div id="boot-log" class="hidden text-left w-full max-w-2xl px-6 h-64 overflow-hidden text-xs md:text-sm text-green-500">
+            <!-- Logs injected via JS -->
+        </div>
     </div>
 
-    <!-- Mobile Hamburger -->
-    <div class="md:hidden flex items-center space-x-4">
-      <a href="files/Sarthak_Gawari_Resume.pdf" target="_blank" 
-         class="bg-[#7b4928] text-[#d4c9ba] px-2 py-1 rounded-lg hover:bg-[#f2c251] transition duration-300 text-xs">
-        Resume
-      </a>
-      <button id="menu-toggle" class="text-gray-500 hover:text-[#e1ad10] focus:outline-none">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
+    <!-- Resume Viewer Modal -->
+    <div id="resume-modal" class="hidden fixed inset-0 z-[10000] bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
+        <div class="bg-terminal border border-brand w-full max-w-5xl h-full max-h-[90vh] flex flex-col relative shadow-[0_0_40px_rgba(212,175,55,0.15)] transform scale-95 transition-transform duration-300" id="resume-container">
+            <div class="flex justify-between items-center bg-dark border-b border-zinc-800 p-3 interactive-ui">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-terminal text-brand"></i>
+                    <span class="font-mono text-brand text-sm tracking-widest typing-cursor">> CAT RESUME.PDF</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="files/Sarthak_Gawari_Resume.pdf" download class="text-zinc-400 hover:text-brand transition-colors cursor-none flex items-center gap-2 text-sm font-mono interactive-ui" title="Download Source">
+                        <i class="fas fa-download"></i> <span class="hidden sm:inline">DOWNLOAD</span>
+                    </a>
+                    <button onclick="toggleResumeModal()" class="text-zinc-400 hover:text-red-500 transition-colors cursor-none flex items-center gap-2 text-sm font-mono interactive-ui" title="Close Terminal">
+                        <i class="fas fa-times text-lg"></i> <span class="hidden sm:inline">EXIT</span>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-grow w-full bg-zinc-900 relative">
+                <iframe src="files/Sarthak_Gawari_Resume.pdf" class="w-full h-full border-none" title="Sarthak Gawari Resume"></iframe>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-[#1e1815] px-6 pt-2 pb-4">
-    <a href="#home" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Home</a>
-    <a href="#projects" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Projects</a>
-    <a href="#about" class="block py-2 hover:text-[#e1ad10] scroll-smooth">About</a>
-    <a href="#contact" class="block py-2 hover:text-[#e1ad10] scroll-smooth">Contact</a>
-  </div>
-</nav>
+    <!-- CRT Overlay -->
+    <div class="scanlines"></div>
 
+    <!-- Matrix Code Stream Canvas -->
+    <canvas id="matrix-canvas" class="fixed top-0 right-0 h-screen w-48 md:w-80 -z-20 opacity-40 mix-blend-screen"></canvas>
+    <div class="fixed top-0 right-0 h-screen w-48 md:w-80 -z-10 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none"></div>
 
+    <!-- Custom Mouse/Touch Follower -->
+    <div id="cursor-trail" class="pointer-events-none fixed top-0 left-0 w-8 h-8 border border-brand/60 rounded-full z-[9999] bg-brand/5 backdrop-blur-[1px] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+        <div class="w-1.5 h-1.5 bg-brand rounded-full" id="cursor-dot"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-zinc-800/80">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight text-white font-mono glitch-hover cursor-none uppercase interactive-ui">Sarthak_Gawari</a>
+
+            <div class="hidden md:flex items-center space-x-8 font-mono text-sm">
+                <a href="#home" class="hover:text-brand transition-colors cursor-none interactive-ui">> Home</a>
+                <a href="#projects" class="hover:text-brand transition-colors cursor-none interactive-ui">> Games</a>
+                <a href="#about" class="hover:text-brand transition-colors cursor-none interactive-ui">> About</a>
+                <a href="#contact" class="hover:text-brand transition-colors cursor-none interactive-ui">> Contact</a>
+                <button onclick="toggleResumeModal()" class="border border-brand text-brand px-5 py-2 hover:bg-brand hover:text-dark transition-all font-bold cursor-none pulse-glow interactive-ui">RESUME</button>
+            </div>
+
+            <div class="md:hidden flex items-center space-x-4">
+                <button onclick="toggleResumeModal()" class="border border-brand text-brand px-3 py-1.5 text-xs hover:bg-brand hover:text-dark transition-all font-bold interactive-ui">RESUME</button>
+                <button id="menu-toggle" class="text-brand hover:text-white focus:outline-none p-1 interactive-ui">
+                    <i class="fas fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-terminal border-b border-zinc-800 shadow-2xl absolute w-full left-0 top-full">
+            <div class="flex flex-col px-6 py-4 space-y-4 font-mono text-sm">
+                <a href="#home" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 border-b border-zinc-800/50 interactive-ui">> Home</a>
+                <a href="#projects" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 border-b border-zinc-800/50 interactive-ui">> Games</a>
+                <a href="#about" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 border-b border-zinc-800/50 interactive-ui">> About</a>
+                <a href="#contact" class="mobile-link text-zinc-300 hover:text-brand transition-colors py-2 interactive-ui">> Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
         <!-- Hero Section -->
-        <section id="home" class="section min-h-screen flex items-center pt-20 pb-16 px-6">
-            <div class="container mx-auto max-w-4xl text-center">
-            <h1 class="text-4xl md:text-7xl font-bold mb-2">Hello, I'm <a href="personal-projects.html" class="text-[#fae604] hover:underline">Sarthak Gawari</a></h1>
-                <h2 class="text-xl md:text-2xl text-[#978d7f] mb-8">Game Dev <span class="text-[#fae604] font-extrabold">•</span> UI/UX <span class="text-[#fae604] font-extrabold">•</span> Front End</h2>
-                <p class="text-lg mb-10 max-w-2xl mx-auto">Crafting digital experiences through code, design, and interactive worlds</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#projects" class="btn-hover bg-[#f2c251] text-[#7b4928] px-6 py-3 rounded-lg">View My Work</a>
-                   <a href="#contact" class="border-2 border-[#d4c9ba] text-[#d4c9ba] hover:bg-[#d4c9ba] hover:text-[#7b4928] rounded-lg px-6 py-3 transition duration-300">Contact Me</a>
-
-
-
+        <section id="home" class="min-h-screen flex items-center relative pt-20 px-6">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-900/40 via-dark to-dark -z-10"></div>
+            
+            <div class="container mx-auto max-w-5xl z-10">
+                <div class="font-mono text-brand mb-4 uppercase tracking-widest text-sm">> Connection_Established...</div>
+                <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 leading-tight mt-4 uppercase">
+                    Game<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-zinc-500 typing-cursor">Designer</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-2xl text-zinc-400 mb-10 leading-relaxed font-mono">
+                    <span class="text-brand">> PROFICIENCY: UNITY & C#</span><br>
+                    Unity Certified Game Developer
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 font-mono text-sm">
+                    <a href="#projects" class="bg-brand text-dark font-bold px-8 py-3 hover:bg-white transition-colors text-center cursor-none uppercase pulse-glow interactive-ui">View Projects</a>
+                    <a href="https://github.com/sarthak232425" target="_blank" class="border border-zinc-700 bg-dark/50 text-zinc-300 hover:border-brand hover:text-white px-8 py-3 transition-all text-center flex items-center justify-center gap-2 cursor-none uppercase interactive-ui">
+                        <i class="fab fa-github text-lg"></i> GitHub Profile
+                    </a>
                 </div>
             </div>
         </section>
 
-     <!-- Projects Section -->
-<div id="projects" class="section py-16 px-6">
-  <div class="max-w-6xl mx-auto">
-    <!-- Side-scrolling tabs -->
-    <div
-      class="tabs-container flex space-x-2 p-2 mb-8 rounded-lg shadow-md overflow-x-auto bg-gradient-to-r from-[#c8b8a8] via-[#d8cfc4] to-[#e5dccd]"
-    >
-      <button
-        class="tab-button active px-4 py-2 rounded-md bg-[#1e1815] text-[#f4ede7]"
-        data-category="highlighted"
-      >
-        Highlighted Projects
-      </button>
-      <button
-        class="tab-button px-4 py-2 rounded-md bg-[#d8cfc4] text-[#1e1815]"
-        data-category="game"
-      >
-        Game Development
-      </button>
-      <button
-        class="tab-button px-4 py-2 rounded-md bg-[#d8cfc4] text-[#1e1815]"
-        data-category="sql"
-      >
-        MySQL Projects
-      </button>
-      <button
-        class="tab-button px-4 py-2 rounded-md bg-[#d8cfc4] text-[#1e1815]"
-        data-category="web"
-      >
-        Web Development
-      </button>
-    </div>
-
-    <!-- Projects grid -->
-    <div class="project-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Game Development Projects -->
-      <div
-        class="project-item game  project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
-        >
-          <img src="images/BB.png" alt="Block Blocker Icon" class="w-full h-full object-contain" />
-
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Block Blocker - Unity Game 2D
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          Solo GameJam project with full gameplay loop, UI design, and
-          difficulty scaling (won Glitched 2025)
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >Unity</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >C#</span
-          >
-        </div>
-        <div class="flex justify-between items-center">
-          <a
-            href="https://sarthak-gawari.itch.io/block-blocker"
-            class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-          >
-            Click Here
-          </a>
-
-          <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-            2024-25
-          </span>
-        </div>
-
-      </div>
-
-      <div
-        class="project-item game  project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
-        >
-          <img src="images/TTT.png" alt="Tic Tac Toe Ultimate Icon" class="w-full h-full object-contain" />
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Tic Tac Toe Ultimate
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          UI-based board game with custom UI components and polished interface
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >Unity</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >C#</span
-          >
-        </div>
-        <div class="flex justify-between items-center">
-            <a
-              href="https://sarthak-gawari.itch.io/tic-tac-tou-the-ultimate"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-
-      <div
-        class="project-item game highlighted project-card bg-[#d8cfc4] rounded-lg shadow-md p-6">
-        <div
-          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
-        >
-          <img src="images/KC.png" alt="Kaalchakra Icon" class="w-full h-full object-contain" />
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Kaalchakra - Unity Game 2D
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          Collaborative project with GameDevUtopia & PICT featuring physics and
-          scalable controls
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >Unity</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >C#</span
-          >
-        </div>
-         <div class="flex justify-between items-center">
-            <a
-              href="https://gamedevutopia.itch.io/kalchakra"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-
-      <div
-        class="project-item game highlighted project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
-        >
-          <img src="images/RCC.png" alt="Realistic Car Controller Icon" class="w-full h-full object-contain" />
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Realistic Car Controller - Unity Asset 3D
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          Selfmade - trying to explore the world of 3D vehicle dynamics and
-          control systems, with audio, visual effects, and realistic physics.
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >Unity</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >C#</span
-          >
-        </div>
-         <div class="flex justify-between items-center">
-            <a
-              href="https://sarthak-gawari.itch.io/realistic-car-contoller-unity-in-progress"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-
-
-      <!-- MySQL Projects -->
-      <div
-        class="project-item sql project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#f4ede7] rounded-lg mb-4 flex items-center justify-center"
-        >
-          <i class="fas fa-database text-5xl text-[#7b4928]"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Bank Transaction Analyzer
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          MySQL database system for monitoring financial transactions with fraud
-          detection
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >PostgreSQL</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >Database</span 
-          >
-        </div>
-       <div class="flex justify-between items-center">
-            <a
-              href="https://github.com/sarthak232425/DBMS-SQL/tree/main/Banking%20Management%20System"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-
-      <div
-        class="project-item sql project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#f4ede7] rounded-lg mb-4 flex items-center justify-center"
-        >
-          <i class="fas fa-chart-line text-5xl text-[#7b4928]"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Loan Risk Assessment
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          Credit scoring system for loan applicants with automated approval
-          rules
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >PostgreSQL</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >Database</span
-          >
-        </div>
-        <div class="flex justify-between items-center">
-            <a
-              href="https://github.com/sarthak232425/DBMS-SQL/tree/main/Loan%20Risk%20Assesment%20System"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-
-      <div
-        class="project-item sql project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#f4ede7] rounded-lg mb-4 flex items-center justify-center"
-        >
-          <i class="fas fa-chart-pie text-5xl text-[#7b4928]"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Portfolio Tracker
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          Stock investment monitoring database handling 10,000+ simulated trades
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >PostgreSQL</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >Database</span
-          >
-
-        </div>
-        <div class="flex justify-between items-center">
-            <a
-              href="https://github.com/sarthak232425/DBMS-SQL/tree/main/Stock%20Portfolio%20Tracker"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-      <!-- Web Development Projects -->
-       <div
-        class="project-item web highlighted project-card bg-[#d8cfc4] rounded-lg shadow-md p-6"
-      >
-        <div
-          class="h-40 bg-[#1e1815] mb-4 flex items-center justify-center"
-        >
-          <img src="images/CE.png" alt="Colour Extractor Icon" class="w-full h-full object-contain" />
-        </div>
-        <h3 class="text-xl font-semibold text-[#1e1815] mb-2">
-          Colour Extractor - Web App
-        </h3>
-        <p class="text-[#9b8b80] mb-4">
-          A simple web application that extracts colours from an image using a pointer. Users can copy the selected colour in both RGB and HEX formats.
-        </p>
-        <div class="mb-4">
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >HTML</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full mr-2"
-            >CSS</span
-          >
-          <span
-            class="inline-block bg-[#f4ede7] text-[#1e1815] text-xs px-2 py-1 rounded-full"
-            >JavaScript</span
-          >
-        </div>
-        <div class="flex justify-between items-center">
-            <a
-              href="https://github.com/sarthak232425/COLOUR-EXTRACTOR"
-              class="bg-[#1e1815] hover:bg-[#7b4928] text-[#f4ede7] px-4 py-2 rounded-lg inline-block transition duration-300"
-            >
-              Click Here
-            </a>
-
-            <span class="bg-[#f4ede7] text-[#1e1815] px-4 py-2 rounded-lg inline-block">
-              2025
-            </span>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-        <!-- About Section -->
-        <section id="about" class="section py-16  px-6">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold text-center mb-12 text-[#d4c9ba]">About Me</h2>
-                <div class="bg-gradient-to-br from-[#d4c9ba] to-[#e5dccd] text-[#46240f] rounded-2xl shadow-xl p-8 relative overflow-hidden">
-
-                    <div class="relative z-10">
-                        <p class="text-lg mb-6 font-medium leading-relaxed">Hello! I'm a passionate developer with expertise in web technologies, game development, and database management. I love turning ideas into reality through code.</p>
-                        <p class="text-lg mb-8 font-medium leading-relaxed">I enjoy creating solutions that are both efficient and user-friendly, with a strong focus on clean design and intuitive interfaces.</p>
-                        
-                       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-    <!-- Skills Column -->
-    <div>
-        <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                <i class="fas fa-code text-[#d4c9ba]"></i>
-            </div>
-            <h3 class="font-bold text-xl text-[#46240f]">Skills</h3>
-        </div>
-        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 pl-2">
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 px-6 bg-dark/95 relative z-10 border-t border-zinc-800/50">
+            <div class="container mx-auto max-w-6xl">
+                <div class="flex items-center gap-4 mb-12">
+                    <span class="font-mono text-brand text-xl animate-pulse">[]</span>
+                    <h2 class="text-3xl font-bold text-white font-mono uppercase tracking-widest">Featured Games</h2>
+                    <div class="h-px bg-zinc-800 flex-grow ml-4"></div>
                 </div>
-                <span>Unity Game Engine</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>MySQL</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>PostgreSQL</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Java</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>C#</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>HTML/CSS</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>JavaScript</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Vuforia</span>
-            </li>
-        </ul>
-    </div>
 
-    <!-- Tools Column -->
-    <div>
-        <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                <i class="fas fa-tools text-[#d4c9ba]"></i>
-            </div>
-            <h3 class="font-bold text-xl text-[#46240f]">Tools</h3>
-        </div>
-        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 pl-2">
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Git</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Tailwind CSS</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Figma</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>MySQL Workbench</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Solidworks</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Unity Engine</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>GitHub</span>
-            </li>
-            <li class="flex items-center border-b border-[#c4b6a2] pb-2">
-                <div class="w-6 h-6 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                    <i class="fas fa-check text-[#d4c9ba] text-xs"></i>
-                </div>
-                <span>Vuforia Engine</span>
-            </li>
-        </ul>
-    </div>
-</div>
-
-                        <!-- Education Section -->
-                        <div class="mt-12 pt-8 border-t border-[#c4b6a2]">
-                            <div class="flex items-center mb-6">
-                                <div class="w-10 h-10 rounded-full bg-[#46240f] flex items-center justify-center mr-3">
-                                    <i class="fas fa-graduation-cap text-[#d4c9ba]"></i>
-                                </div>
-                                <h3 class="font-bold text-xl text-[#46240f]">Education</h3>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div>
-                                    <h4 class="font-semibold text-[#7b4928]">B.E. in Information Technology</h4>
-                                    <p class="text-sm">Pune Institute of Computer Technology</p>
-                                    <p class="text-xs text-[#7b4928]">2023-Present Dhankawdi, Pune</p>
-                                    
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-[#7b4928]">HSC. Science 12th PCM</h4>
-                                    <p class="text-sm">Dr. D.Y. Patil Junior College</p>
-                                    <p class="text-xs text-[#7b4928]">2021-2023 Shahunagar, PCMP</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-[#7b4928]">SSC Maharashtra board</h4>
-                                    <p class="text-sm">Pius Memorial High School</p>
-                                    <p class="text-xs text-[#7b4928]">2011-2021 Waki, Chakan</p>
-                                </div>
-                            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Unity Project 1 -->
+                    <div class="group bg-terminal border border-zinc-800 hover:border-brand transition-all flex flex-col h-full relative cursor-none interactive-ui">
+                        <div class="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800">
+                            <img src="images/BB.png" alt="Block Blocker" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rV7928GBgYGWEDAQMAAAHtQAwEAMvXSAAAAAElFTkSuQmCC')] opacity-20 z-10 pointer-events-none mix-blend-overlay"></div>
+                            <div class="absolute top-4 right-4 bg-dark/90 font-mono text-[10px] text-brand px-2 py-1 border border-brand/50 z-20 shadow-[0_0_10px_rgba(212,175,55,0.5)]">GLITCHED 2025 WINNER</div>
                         </div>
-                        
-                        <!-- Stats section -->
-                        <div class="mt-12 pt-8 border-t border-[#c4b6a2] grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#46240f]">100+</div>
-                                <div class="text-sm text-[#7b4928] mt-1">Tabs Open<br><span class="text-xs">(Chrome is sweating)</span></div>
+                        <div class="p-6 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-xl font-bold text-white mb-2 font-mono uppercase">> Block Blocker</h3>
+                            <p class="text-zinc-400 text-sm mb-6 flex-grow">Solo GameJam project featuring a complete gameplay loop, scalable UI design, and dynamic difficulty algorithms.</p>
+                            <div class="flex flex-wrap gap-2 font-mono text-[10px] text-brand mb-6 uppercase tracking-wider">
+                                <span class="bg-dark px-2 py-1 border border-zinc-800">Unity 2D</span>
+                                <span class="bg-dark px-2 py-1 border border-zinc-800">C#</span>
                             </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#46240f]">∞</div>
-                                <div class="text-sm text-[#7b4928] mt-1">Coffee Consumed<br><span class="text-xs">(my kidneys hate me)</span></div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#46240f]">99%</div>
-                                <div class="text-sm text-[#7b4928] mt-1">Debugging Success Rate<br><span class="text-xs">(after 50 tries)</span></div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-[#46240f]">24/7</div>
-                                <div class="text-sm text-[#7b4928] mt-1">"It works on my machine"<br><span class="text-xs">(famous last words)</span></div>
+                            <div class="mt-auto border-t border-zinc-800 pt-4">
+                                <a href="project-block-blocker.html" class="flex justify-between items-center w-full border border-brand/50 bg-brand/5 hover:bg-brand hover:text-dark text-brand font-mono text-xs font-bold py-3 px-4 transition-all uppercase tracking-widest cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                                    <span>ACCESS_DATA</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Unity Project 2 -->
+                    <div class="group bg-terminal border border-zinc-800 hover:border-brand transition-all flex flex-col h-full relative cursor-none interactive-ui">
+                        <div class="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800">
+                            <img src="images/RCC.png" alt="Realistic Car Controller" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rV7928GBgYGWEDAQMAAAHtQAwEAMvXSAAAAAElFTkSuQmCC')] opacity-20 z-10 pointer-events-none mix-blend-overlay"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-xl font-bold text-white mb-2 font-mono uppercase">> Car Controller</h3>
+                            <p class="text-zinc-400 text-sm mb-6 flex-grow">An exploration of 3D vehicle dynamics and kinematics. Features programmed physics control systems and custom visual/audio effects.</p>
+                            <div class="flex flex-wrap gap-2 font-mono text-[10px] text-brand mb-6 uppercase tracking-wider">
+                                <span class="bg-dark px-2 py-1 border border-zinc-800">Unity 3D</span>
+                                <span class="bg-dark px-2 py-1 border border-zinc-800">Physics</span>
+                            </div>
+                            <div class="mt-auto border-t border-zinc-800 pt-4">
+                                <a href="https://sarthak-gawari.itch.io/realistic-car-contoller-unity-in-progress" target="_blank" class="flex justify-between items-center w-full border border-brand/50 bg-brand/5 hover:bg-brand hover:text-dark text-brand font-mono text-xs font-bold py-3 px-4 transition-all uppercase tracking-widest cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                                    <span>ACCESS_DATA</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unity Project 3 -->
+                    <div class="group bg-terminal border border-zinc-800 hover:border-brand transition-all flex flex-col h-full relative cursor-none interactive-ui">
+                        <div class="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
+                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800">
+                            <img src="images/KC.png" alt="Kaalchakra" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rV7928GBgYGWEDAQMAAAHtQAwEAMvXSAAAAAElFTkSuQmCC')] opacity-20 z-10 pointer-events-none mix-blend-overlay"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow relative z-10">
+                            <h3 class="text-xl font-bold text-white mb-2 font-mono uppercase">> Kaalchakra</h3>
+                            <p class="text-zinc-400 text-sm mb-6 flex-grow">Collaborative 2D project featuring complex rigid body physics and highly responsive, scalable player controls.</p>
+                            <div class="flex flex-wrap gap-2 font-mono text-[10px] text-brand mb-6 uppercase tracking-wider">
+                                <span class="bg-dark px-2 py-1 border border-zinc-800">Unity 2D</span>
+                                <span class="bg-dark px-2 py-1 border border-zinc-800">C#</span>
+                            </div>
+                            <div class="mt-auto border-t border-zinc-800 pt-4">
+                                <a href="https://gamedevutopia.itch.io/kalchakra" target="_blank" class="flex justify-between items-center w-full border border-brand/50 bg-brand/5 hover:bg-brand hover:text-dark text-brand font-mono text-xs font-bold py-3 px-4 transition-all uppercase tracking-widest cursor-none interactive-ui shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                                    <span>ACCESS_DATA</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
+        <!-- About Section (Dashboard Layout) -->
+<section id="about" class="py-24 px-6 border-t border-zinc-800/50 bg-zinc-950/90 relative z-10">
+    <div class="container mx-auto max-w-5xl">
+        <div class="flex items-center gap-4 mb-16">
+            <span class="font-mono text-brand text-xl animate-pulse">[]</span>
+            <h2 class="text-3xl font-bold text-white font-mono uppercase tracking-widest">System_Specs</h2>
+            <div class="h-px bg-zinc-800 flex-grow ml-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Education Card -->
+            <div class="md:col-span-2 bg-terminal border border-zinc-800 p-6">
+                <div class="text-brand font-mono text-xs uppercase mb-2">Academic_Data</div>
+                <div class="text-white font-bold text-xl mb-1">PICT Pune</div>
+                <div class="text-zinc-400 font-mono text-sm">B.E. Information Technology</div>
+                <div class="mt-4 px-3 py-1 bg-zinc-900 border border-zinc-700 w-fit text-xs text-zinc-300 font-mono">STATUS: ENTERING 4TH YEAR</div>
+            </div>
+
+            <a href="https://cp.certmetrics.com/Unity/en/public/verify/credential/518d794dec1b4c00b76f9965a8206f24"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="block bg-terminal border border-brand p-6 hover:bg-brand/10 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300 interactive-ui">
+
+    <div class="flex justify-between items-start">
+        <div>
+            <div class="text-brand font-mono text-xs uppercase mb-2">
+                Credential
+            </div>
+
+            <div class="text-white font-bold text-lg mb-2">
+                Unity Certified Game Developer
+            </div>
+
+            <div class="text-zinc-400 text-xs font-mono">
+                Intermediate Level Developer • Google Play × Unity India Program
+            </div>
+        </div>
+
+        <i class="fas fa-external-link-alt text-brand text-sm"></i>
+    </div>
+
+    <div class="mt-4 text-brand text-xs font-mono uppercase tracking-wider">
+        Verify Certificate →
+    </div>
+</a>
+
+            <!-- Stack Grid -->
+            <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                <div class="bg-terminal border border-zinc-800 p-4">
+                    <div class="text-brand text-sm font-mono mb-2">DEV</div>
+                    <div class="text-white text-xs font-mono">C#, Java, Unity</div>
+                </div>
+                <div class="bg-terminal border border-zinc-800 p-4">
+                    <div class="text-brand text-sm font-mono mb-2">3D</div>
+                    <div class="text-white text-xs font-mono">Blender, Solidworks</div>
+                </div>
+                <div class="bg-terminal border border-zinc-800 p-4">
+                    <div class="text-brand text-sm font-mono mb-2">HW</div>
+                    <div class="text-white text-xs font-mono">PSP Mods, ROMs</div>
+                </div>
+                <div class="bg-terminal border border-zinc-800 p-4">
+                    <div class="text-brand text-sm font-mono mb-2">DB</div>
+                    <div class="text-white text-xs font-mono">SQL Architect</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section py-16  px-6">
-            <div class="container mx-auto max-w-3xl">
-                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
-                <div class="bg-[#d4c9ba] rounded-lg shadow-md p-8">
-                    <form action="https://formspree.io/f/xyzdzrjb" method="POST">
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
-                            <input type="text" id="name" name="name" 
-                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-amber-50 focus:ring-[#e2b93b] text-[#46240f]" 
-                                required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 mb-2">Your Email</label>
-                            <input type="email" id="email" name="email" 
-                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-amber-50 focus:ring-[#e2b93b] text-[#46240f]" 
-                                required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
-                            <textarea id="message" name="message" rows="5" 
-                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-amber-50 focus:ring-[#e2b93b] text-[#46240f]" 
-                                    required></textarea>
-                        </div>
-                        <button type="submit" 
-                                class="bg-[#46240f] hover:bg-[#7b4928] text-white px-6 py-3 rounded-lg transition duration-300 w-full">
-                            Send Message
-                        </button>
-                        <div class="flex justify-center space-x-6 mt-12">
-                    <a href="https://github.com/sarthak232425" class="text-[#46240f] hover:text-white"><i class="fab fa-github text-2xl"></i></a>
-                    <a href="https://www.linkedin.com/in/sarthak-shivaji-gawari?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="text-[#46240f] hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
-                    <a href="mailto:sarthakgawari@gmail.com" class="text-[#46240f] hover:text-white"><i class="fas fa-envelope text-2xl"></i></a>
-                </div>
-                    </form>
-                </div>
+        <section id="contact" class="py-24 px-6 bg-terminal border-t border-zinc-800/50 relative z-10">
+            <div class="container mx-auto max-w-3xl text-center">
+                <span class="font-mono text-brand text-sm mb-4 block animate-pulse">> WAITING FOR CONNECTION...</span>
+                <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-widest">Get In Touch</h2>
+                <p class="text-zinc-400 mb-10 max-w-lg mx-auto font-mono text-sm">
+                    Looking for a game designer for your next project, need logic programming, or just want to discuss retro tech and mechanics? Send me a message below.
+                </p>
+
+                <form action="https://formspree.io/f/xyzdzrjb" method="POST" class="space-y-4 max-w-md mx-auto text-left font-mono relative z-10">
+                    <div class="relative">
+                        <span class="absolute left-4 top-3 text-brand">></span>
+                        <input type="text" name="name" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-3 text-brand outline-none transition-colors cursor-none placeholder-zinc-700 interactive-ui" placeholder="Name" required>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3 text-brand">></span>
+                        <input type="email" name="email" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-3 text-brand outline-none transition-colors cursor-none placeholder-zinc-700 interactive-ui" placeholder="Email Address" required>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3 text-brand">></span>
+                        <textarea name="message" rows="4" class="w-full bg-dark border border-zinc-800 focus:border-brand pl-8 pr-4 py-3 text-brand outline-none transition-colors resize-none cursor-none placeholder-zinc-700 interactive-ui" placeholder="Your Message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full border border-brand text-dark bg-brand hover:bg-transparent hover:text-brand font-bold py-3 transition-colors tracking-widest cursor-none uppercase shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] interactive-ui">
+                        Send Message
+                    </button>
+                </form>
             </div>
         </section>
-    </div> <!-- End of content-container -->
+    </main>
 
-    <footer class="bg-[#1e1815] text-white py-8 px-6 w-full">
-  <div class="container mx-auto text-center">
-    <p>&copy; 2025 Sarthak Gawari. All rights reserved.</p>
-    <p class="mt-2 text-gray-400 text-sm">Built with passion, caffeine, and a touch of chaos using HTML, JS & Tailwind.</p>
-  </div>
-</footer>
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-8 text-center font-mono text-xs text-zinc-600 relative z-10">
+        <div class="flex justify-center space-x-8 mb-6">
+            <a href="https://github.com/sarthak232425" class="hover:text-brand transition-all hover:scale-125 hover:shadow-[0_0_10px_rgba(212,175,55,0.5)] cursor-none interactive-ui" aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
+            <a href="https://www.linkedin.com/in/sarthak-shivaji-gawari" class="hover:text-brand transition-all hover:scale-125 hover:shadow-[0_0_10px_rgba(212,175,55,0.5)] cursor-none interactive-ui" aria-label="LinkedIn"><i class="fab fa-linkedin text-xl"></i></a>
+            <a href="mailto:sarthakgawari@gmail.com" class="hover:text-brand transition-all hover:scale-125 hover:shadow-[0_0_10px_rgba(212,175,55,0.5)] cursor-none interactive-ui" aria-label="Email"><i class="fas fa-envelope text-xl"></i></a>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-4">
+            <p>&copy; 2026 Sarthak Gawari. <span class="text-brand">SYSTEM_HALT</span></p>
+            
+            <!-- VISIBLE EASTER EGG -->
+            <a href="personal-projects.html" class="opacity-30 hover:opacity-100 text-green-500 font-mono tracking-widest text-[10px] hover:text-green-400 transition-all cursor-none interactive-ui hover:shadow-[0_0_10px_rgba(0,255,0,0.5)] px-2 py-1 border border-transparent hover:border-green-500/50">
+                > ssh sarthak@personal_archives
+            </a>
+        </div>
+    </footer>
 
+    <script>
+        // --- 1. WEB AUDIO API (Synthesized SFX) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Helper to synthesize sounds
+        function playToneHelper(freqStart, freqEnd, type, duration, volStart, volEnd) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = type;
+            osc.frequency.setValueAtTime(freqStart, audioCtx.currentTime);
+            if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, audioCtx.currentTime + duration);
+            
+            gain.gain.setValueAtTime(volStart, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(volEnd, audioCtx.currentTime + duration);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
 
+        // Subtler Hover: A very faint, low "tick" (10ms)
+        const playHover = () => playToneHelper(150, 150, 'sine', 0.01, 0.01, 0.001);
+        
+        // Mechanical Keyboard Click: Sharp square wave frequency drop (30ms)
+        const playClick = () => playToneHelper(600, 50, 'square', 0.03, 0.1, 0.001);
 
-    <script src="script.js" defer></script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script></body>
+        const playBootSound = () => {
+            playToneHelper(400, 400, 'sawtooth', 0.5, 0.1, 0.001);
+            setTimeout(() => playToneHelper(800, 800, 'square', 0.2, 0.1, 0.001), 500);
+            setTimeout(() => playToneHelper(1200, 1200, 'sine', 0.8, 0.1, 0.001), 700);
+        };
+
+        // Attach sounds to all interactive elements
+        document.querySelectorAll('.interactive-ui, a, button').forEach(el => {
+            el.addEventListener('mouseenter', playHover);
+            el.addEventListener('click', playClick);
+        });
+
+        // --- 2. BOOT SEQUENCE ---
+        const bootScreen = document.getElementById('boot-screen');
+        const bootText = document.getElementById('boot-text');
+        const bootLog = document.getElementById('boot-log');
+        const body = document.getElementById('body');
+
+        const bootLines = [
+            "Establishing secure connection...",
+            "Fetching portfolio assets... [OK]",
+            "Initializing Unity Engine environment... [OK]",
+            "Loading game design documentation... [OK]",
+            "Authenticating guest access... [ACCEPTED]",
+            "Welcome, Player_1."
+        ];
+
+        // Skip logic prevents attaching the event listener if already booted
+        if (sessionStorage.getItem('systemBooted') !== 'true') {
+            bootScreen.addEventListener('click', () => {
+                sessionStorage.setItem('systemBooted', 'true');
+                if(audioCtx.state === 'suspended') audioCtx.resume();
+                playBootSound();
+                
+                bootText.style.display = 'none';
+                bootLog.style.display = 'block';
+                
+                let delay = 0;
+                bootLines.forEach((line, index) => {
+                    setTimeout(() => {
+                        const p = document.createElement('p');
+                        p.innerText = `> ${line}`;
+                        bootLog.appendChild(p);
+                        playClick(); // Typewriter click sound
+                        
+                        if(index === bootLines.length - 1) {
+                            setTimeout(() => {
+                                bootScreen.style.opacity = '0';
+                                setTimeout(() => {
+                                    bootScreen.style.display = 'none';
+                                    body.classList.remove('h-screen', 'overflow-hidden');
+                                }, 700);
+                            }, 1000);
+                        }
+                    }, delay);
+                    delay += 300 + Math.random() * 200;
+                });
+            }, { once: true });
+        }
+
+        // --- 3. KONAMI CODE EASTER EGG ---
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        let isHacked = false;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    triggerKonamiHack();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        function triggerKonamiHack() {
+            if(isHacked) return;
+            isHacked = true;
+            playToneHelper(200, 200, 'sawtooth', 2, 0.2, 0.001); // Angry synth
+            
+            // Change theme to RED (Matrix Hack)
+            document.documentElement.style.setProperty('--tw-colors-brand', '#ff2a2a');
+            matrixColor = "#ff2a2a";
+            matrixSpeed = 15; // Speed up rain
+            
+            // Glitch whole screen temporarily
+            document.body.style.animation = 'glitch-anim 0.2s 5';
+            setTimeout(() => document.body.style.animation = '', 1000);
+        }
+
+        // --- 4. DYNAMIC TAB TITLE ---
+        const originalTitle = document.title;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                document.title = "[ PLAYER DISCONNECTED ]";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+        // --- Resume Modal Logic ---
+        function toggleResumeModal() {
+            const modal = document.getElementById('resume-modal');
+            const container = document.getElementById('resume-container');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    container.classList.remove('scale-95');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('opacity-0');
+                container.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    if(bootScreen.style.display === 'none') {
+                        document.body.style.overflow = 'auto';
+                    }
+                }, 300);
+            }
+        }
+
+        document.getElementById('resume-modal').addEventListener('click', function(e) {
+            if (e.target === this) toggleResumeModal();
+        });
+
+        // --- Custom Matrix Rain ---
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth > 768 ? window.innerWidth * 0.25 : window.innerWidth * 0.4;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const matrixChars = "01ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍｦｲｸｺｿﾁﾄﾉﾌﾔﾖﾙﾚﾛﾝ{}()[]#+=-<>!*&^%$C#UNITY";
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = [];
+        let matrixColor = "#d4af37";
+        let matrixSpeed = 40;
+        
+        for(let x = 0; x < columns; x++) drops[x] = Math.random() * -100;
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(9, 9, 11, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = matrixColor; 
+            ctx.font = fontSize + "px monospace";
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                
+                ctx.fillText(text, x, y);
+                
+                if(y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+            setTimeout(drawMatrix, matrixSpeed);
+        }
+        drawMatrix();
+
+        // --- Custom Mouse/Touch Trail ---
+        const cursorTrail = document.getElementById('cursor-trail');
+        const cursorDot = document.getElementById('cursor-dot');
+        let cursorX = window.innerWidth / 2;
+        let cursorY = window.innerHeight / 2;
+
+        const updateCursor = (e) => {
+            if (e.type === 'touchmove') {
+                cursorX = e.touches[0].clientX;
+                cursorY = e.touches[0].clientY;
+            } else {
+                cursorX = e.clientX;
+                cursorY = e.clientY;
+            }
+            
+            requestAnimationFrame(() => {
+                cursorTrail.style.transform = `translate(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%))`;
+            });
+        };
+
+        window.addEventListener('mousemove', updateCursor, { passive: true });
+        window.addEventListener('touchmove', updateCursor, { passive: true });
+
+        document.querySelectorAll('.interactive-ui, a, button, input, textarea, .group').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorTrail.classList.add('w-12', 'h-12', 'bg-brand/20', 'border-brand', 'shadow-[0_0_20px_rgba(212,175,55,0.6)]');
+                if(isHacked) cursorTrail.style.borderColor = '#ff2a2a';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorTrail.classList.remove('w-12', 'h-12', 'bg-brand/20', 'border-brand', 'shadow-[0_0_20px_rgba(212,175,55,0.6)]');
+                cursorTrail.style.borderColor = '';
+            });
+        });
+
+        // --- Mobile Menu Logic ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) toggleMenu();
+            });
+        });
+    </script>
+</body>
 </html>
