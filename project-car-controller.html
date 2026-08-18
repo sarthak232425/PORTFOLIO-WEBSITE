@@ -97,36 +97,46 @@
                 <section>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> System_Overview</h2>
                     <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
-                        <strong>Realistic Car Controller (RCC)</strong> is a modular, high-fidelity vehicle simulation framework developed from the ground up in Unity 3D and C#. Designed specifically for publishing on the <strong>Unity Asset Store</strong>, it provides developers with plug-and-play vehicle kinematics, real-time telemetry, and modular mechanical tuning.
+                        <strong>Realistic Car Controller</strong> is a solo-developed 3D vehicle physics engine and modular asset prototype built from scratch in Unity 3D using native <code>WheelCollider</code> physics.
+                    </p>
+                    <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
+                        Engineered to model real-world automotive mechanics, the system features accurate gear ratio alignment, <strong>rev matching</strong> on downshifts, authentic <strong>engine stalling</strong> when vehicle speed drops below threshold in high gear, and a <strong>fully modular drivetrain switcher</strong> supporting All-Wheel Drive (AWD/4WD), Front-Wheel Drive (FWD), and Rear-Wheel Drive (RWD).
                     </p>
                     <p class="text-zinc-400 leading-relaxed font-sans text-sm">
-                        Rather than relying on basic arcade velocity manipulation, the controller models authentic tire friction slips (Pacejka model approximations), engine RPM torque curves, automatic and manual gear transmission with clutch simulation, and dynamic weight transfer over variable suspensions.
+                        <em>Project Post-Mortem:</em> The project stands as a complete technical physics exploration. During development, tuning tire friction curves resulted in an over-drifty handling dynamic ("not sticky enough"), which became an active tuning challenge before the project was archived as an internal prototype asset. (No live WebGL demo is hosted, as WebGL browsers do not reliably support heavy Unity 3D physics).
                     </p>
                 </section>
 
                 <!-- Core Technical Mechanics -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Architecture</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Vehicle Architecture</h2>
                     <ul class="space-y-4 text-zinc-300">
-                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-tachometer-alt text-brand mt-1 text-sm"></i>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-brand/40 p-4 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                            <i class="fas fa-cogs text-brand mt-1 text-sm animate-pulse"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Engine Torque Curves & Drivetrain Simulation</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered an engine torque curve system using <code>AnimationCurve</code> in Unity to model real engine output, horsepower transfer, and automatic gear-shifting points with customizable redlines and gear ratios.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-car-crash text-brand mt-1 text-sm"></i>
-                            <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Drift Mechanics & Wheel Friction Curves</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Fine-tuned Unity's <code>WheelCollider</code> forward and sideways friction stiffness curves dynamically based on handbrake inputs, downforce, and slip angles, allowing smooth transitions between high-grip circuit racing and high-angle drifting.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Gear Alignment, Rev Matching & Engine Stalling</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered realistic transmission ratios with built-in rev matching on downshifts to align engine speed. Implemented stalling physics that cut engine power if speed drops too low relative to high gear selection without clutching.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
                             <i class="fas fa-sliders-h text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Dynamic Dashboard Telemetry & Layered Audio</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Built analog speedometer/tachometer needles with rotational interpolation, gear shift indicators, and a layered audio synthesis engine with pitch-modulated engine sound, turbo blow-off valves, and tire skid squeals.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Modular Drivetrain Architecture (AWD / FWD / RWD)</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Built a modular drivetrain selector enabling developers to toggle torque distribution dynamically between All-Wheel Drive (AWD), Front-Wheel Drive (FWD), and Rear-Wheel Drive (RWD) with custom differential bias settings.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
+                            <i class="fas fa-volume-up text-brand mt-1 text-sm"></i>
+                            <div>
+                                <strong class="text-white font-mono text-xs block mb-1">Custom Exhaust Audio Synthesis & Pitch Mapping</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Synthesized custom exhaust audio loops mapped dynamically to engine RPM, throttle load, rev pops, and shifting deceleration sounds for realistic acoustic feedback.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
+                            <i class="fas fa-car text-brand mt-1 text-sm"></i>
+                            <div>
+                                <strong class="text-white font-mono text-xs block mb-1">Unity WheelCollider Physics Tuning</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Utilized Unity 3D native <code>WheelCollider</code> components for spring suspension, dampening, steer angle geometry, and lateral friction slip curves.</p>
                             </div>
                         </li>
                     </ul>
@@ -134,20 +144,22 @@
 
                 <!-- Code Architecture Highlight -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: RPM & Transmission Logic</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Gear Matching & Engine Stall Check</h2>
                     <div class="bg-terminal border border-zinc-800 p-4 font-mono text-xs text-zinc-300 overflow-x-auto">
-<pre class="text-brand"><code>// Vehicle Drivetrain & Gear Shifting Simulation (Unity C#)
-private void CalculateRPM() {
-    float wheelRPM = Mathf.Abs((wheelFL.rpm + wheelFR.rpm) / 2f);
-    targetRPM = Mathf.Lerp(minRPM, maxRPM, (wheelRPM * gearRatios[currentGear]) / maxSpeed);
-    currentRPM = Mathf.MoveTowards(currentRPM, targetRPM, engineResponsiveness * Time.deltaTime);
+<pre class="text-brand"><code>// Transmission Drivetrain, Rev Matching & Engine Stall Check (Unity 3D C#)
+private void UpdateDrivetrainPhysics() {
+    float currentSpeed = rigidBody.velocity.magnitude * 3.6f; // KM/H
+    float targetRPM = (currentSpeed / maxSpeedInGear[currentGear]) * maxRPM;
 
-    if (isAutomaticTransmission) {
-        if (currentRPM >= upshiftRPM && currentGear < gearRatios.Length - 1) {
-            ShiftGear(currentGear + 1);
-        } else if (currentRPM <= downshiftRPM && currentGear > 0) {
-            ShiftGear(currentGear - 1);
-        }
+    // Check for Engine Stall: Low speed in high gear without clutch
+    if (currentSpeed < minStallSpeed[currentGear] && currentGear > 1 && !isClutchPressed) {
+        StallEngine(); // Triggers engine kill and custom stall audio
+        return;
+    }
+
+    // Rev Matching on Downshift
+    if (isDownshifting) {
+        currentRPM = Mathf.Lerp(currentRPM, targetRPM * 1.2f, revMatchSpeed * Time.deltaTime);
     }
 }</code></pre>
                     </div>
@@ -155,15 +167,15 @@ private void CalculateRPM() {
 
                 <!-- Key Takeaways -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Asset_Store_Standards</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Post_Mortem</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> PUBLISHER PIPELINE</div>
-                            <p class="text-zinc-400">Architected clean, decoupled, Inspector-customizable C# scripts with full XML documentation and modular custom editors for external developers.</p>
+                            <div class="text-brand font-bold mb-1">> TRANSMISSION & DRIVETRAIN</div>
+                            <p class="text-zinc-400">Mastered complex gear ratios, rev matching algorithms, engine stalling mechanics, and modular AWD/RWD/FWD torque routing.</p>
                         </div>
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> 3D KINEMATICS</div>
-                            <p class="text-zinc-400">Deepened understanding of center-of-mass balancing, anti-roll bars, spring dampers, and dynamic downforce mathematics in real-time simulation.</p>
+                            <div class="text-brand font-bold mb-1">> PHYSICS TUNING INSIGHTS</div>
+                            <p class="text-zinc-400">Gained valuable experience troubleshooting WheelCollider lateral grip and tire friction curves during complex 3D vehicle physics development.</p>
                         </div>
                     </div>
                 </section>
@@ -179,23 +191,23 @@ private void CalculateRPM() {
                     <div class="space-y-3 font-mono text-xs">
                         <div class="border-b border-zinc-800/60 pb-2">
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">ROLE:</span>
-                            <span class="text-zinc-200">Physics Programmer & Designer</span>
+                            <span class="text-zinc-200">Solo Developer & Physics Programmer</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE:</span>
-                            <span class="text-zinc-200">Unity 3D (C#)</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE & PHYSICS:</span>
+                            <span class="text-zinc-200">Unity 3D (C#) • WheelColliders</span>
+                        </div>
+                        <div class="border-b border-zinc-800/60 pb-2">
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">DRIVETRAIN CONFIG:</span>
+                            <span class="text-brand font-semibold">Modular AWD / FWD / RWD</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">STATUS:</span>
-                            <span class="text-brand">Under Evaluation for Unity Asset Store</span>
-                        </div>
-                        <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">YEAR:</span>
-                            <span class="text-zinc-200">2025</span>
+                            <span class="text-zinc-400">Archived Prototype Asset</span>
                         </div>
                         <div>
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">KEY SYSTEMS:</span>
-                            <span class="text-zinc-200">Wheel Colliders, Gearbox FSM, Audio Mixer</span>
+                            <span class="text-zinc-200">Rev Matching, Engine Stalling, Custom Exhaust Audio</span>
                         </div>
                     </div>
                 </div>

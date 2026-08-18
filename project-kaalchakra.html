@@ -97,36 +97,46 @@
                 <section>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> System_Overview</h2>
                     <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
-                        <strong>KaalChakra</strong> is a flagship collaborative 2D game engineered in partnership between <strong>GameDevUtopia</strong> and <strong>Pictorial</strong> at the Pune Institute of Computer Technology (PICT).
+                        <strong>KaalChakra</strong> ("The Wheel of Time") is a flagship collaborative 2D platformer engineered in partnership between <strong>GameDevUtopia (GDU)</strong> and <strong>PICTORIAL</strong> (the official annual magazine team of Pune Institute of Computer Technology).
+                    </p>
+                    <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
+                        Conceived for the <strong>2025 PICTORIAL Annual Magazine Edition</strong> around its central theme of cyclical time, the project was featured directly in the college magazine. While initial prototyping began from the underlying architecture of <em>Block Blocker</em>, we rebuilt the entire core engine from scratch to create a bespoke, atmospheric time-manipulation system.
                     </p>
                     <p class="text-zinc-400 leading-relaxed font-sans text-sm">
-                        As core developer and Ex-Coding Head, I architected the fundamental gameplay prototype, rigid-body player controller kinematics, customizable input rebinding mechanisms, and the complete audio and volume management infrastructure.
+                        As core developer and Ex-Coding Head, I spearheaded the <strong>white-boxing</strong> of level geometry, coded the complete character physics and Prahar-shifting state machines, engineered <strong>customizable control rebinding</strong>, and built the multi-channel <strong>AudioMixer sound architecture</strong>, working alongside our crew who produced multi-tiered level designs and polished UI.
                     </p>
                 </section>
 
                 <!-- Core Technical Mechanics -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Architecture</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Chrono-System</h2>
                     <ul class="space-y-4 text-zinc-300">
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-brand/40 p-4 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                            <i class="fas fa-hourglass-half text-brand mt-1 text-sm animate-pulse"></i>
+                            <div>
+                                <strong class="text-white font-mono text-xs block mb-1">The 4 Prahar Chromatic Time-Shift System</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Inspired by the traditional 8-Prahar diurnal cycle of the day, engineered a 4-state chromatic time-shift engine. Shifting between Prahars alters world color palettes and dynamically toggles collider interactability—hiding and revealing solid platforms, barriers, and hazards required for the warrior to traverse the course.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
+                            <i class="fas fa-drafting-compass text-brand mt-1 text-sm"></i>
+                            <div>
+                                <strong class="text-white font-mono text-xs block mb-1">White-Boxing & Spatial Traversal Design</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Led the architectural white-boxing and greybox prototyping phase, determining jump arcs, platform spacing, sightlines, and timing puzzles before handing off to the level design crew for aesthetic dress-up.</p>
+                            </div>
+                        </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
                             <i class="fas fa-gamepad text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Scalable & Remappable Input Systems</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Developed an abstraction layer on top of Unity's input system, enabling seamless keyboard and gamepad remapping, dynamic deadzone calibration, and persistent user configuration across game restarts.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Customizable & Rebindable Control Engine</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Built a flexible input abstraction layer with full support for customizable key rebinding, gamepad calibration, and persistent player preference profiles.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
                             <i class="fas fa-sliders-h text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Modular Audio Mixer Subsystem</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Integrated Unity's <code>AudioMixer</code> groups with logarithmic decibel conversion equations, allowing independent master, ambient soundtrack, and SFX volume channels that respond immediately to UI sliders.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-cubes text-brand mt-1 text-sm"></i>
-                            <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Precision 2D Rigid Body Kinematics</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered custom ground-checking raycasts, variable jump height modulation based on button hold duration, and coyote time jump buffers for tight, responsive platforming.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Dynamic AudioMixer & Sound Sources</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered audio routing through Unity AudioMixer groups with logarithmic decibel scaling, blending atmospheric soundscapes, footsteps, and Prahar transition chimes dynamically in real time.</p>
                             </div>
                         </li>
                     </ul>
@@ -134,18 +144,25 @@
 
                 <!-- Code Architecture Highlight -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Audio Mixer & Input Remap</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: 4-Prahar State Machine</h2>
                     <div class="bg-terminal border border-zinc-800 p-4 font-mono text-xs text-zinc-300 overflow-x-auto">
-<pre class="text-brand"><code>// Audio Volume Controller with Logarithmic Decibel Conversion
-public void SetVolume(string parameterName, float sliderValue) {
-    float dbVolume = Mathf.Log10(Mathf.Clamp(sliderValue, 0.0001f, 1f)) * 20f;
-    audioMixer.SetFloat(parameterName, dbVolume);
-    PlayerPrefs.SetFloat(parameterName, sliderValue);
-}
+<pre class="text-brand"><code>// 4-Prahar Chromatic Time Shift & Collider Interaction Controller
+public enum PraharState { Dawn_Pratah, Noon_Madhyahna, Dusk_Aparahna, Night_Nishitha }
 
-// Coyote Time & Jump Buffer Check
-if (isGrounded) coyoteTimeCounter = coyoteTime;
-else coyoteTimeCounter -= Time.deltaTime;</code></pre>
+public class PraharManager : MonoBehaviour {
+    [SerializeField] private Color[] praharColors;
+    [SerializeField] private PraharShiftableElement[] worldElements;
+
+    public void ShiftToPrahar(PraharState targetPrahar) {
+        Camera.main.backgroundColor = praharColors[(int)targetPrahar];
+        foreach (var element in worldElements) {
+            // Toggle collider and mesh visibility based on active Prahar quadrant
+            bool isInteractable = element.ActivePrahar == targetPrahar;
+            element.SetCollisionState(isInteractable);
+        }
+        AudioManager.Instance.PlayPraharChime((int)targetPrahar);
+    }
+}</code></pre>
                     </div>
                 </section>
 
@@ -154,12 +171,12 @@ else coyoteTimeCounter -= Time.deltaTime;</code></pre>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Team_Collaboration</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> MODULAR ARCHITECTURE</div>
-                            <p class="text-zinc-400">Architected clean scriptable interfaces, ensuring artists, UI designers, and programmers worked simultaneously without git merge conflicts.</p>
+                            <div class="text-brand font-bold mb-1">> PROTOTYPE TO PRODUCTION</div>
+                            <p class="text-zinc-400">Pivoted from an early Block Blocker baseline into a custom-built Prahar chrono system, demonstrating rapid iteration and white-box level validation.</p>
                         </div>
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> TEAM LEADERSHIP</div>
-                            <p class="text-zinc-400">Managed cross-functional workflows between PICT club divisions, coordinating sprints, code reviews, and public release on Itch.io.</p>
+                            <div class="text-brand font-bold mb-1">> CLUB COLLABORATION</div>
+                            <p class="text-zinc-400">Coordinated technical development between GameDevUtopia and the PICTORIAL magazine team, culminating in formal publication in the 2025 college annual.</p>
                         </div>
                     </div>
                 </section>
@@ -182,16 +199,20 @@ else coyoteTimeCounter -= Time.deltaTime;</code></pre>
                             <span class="text-brand"><a href="https://www.linkedin.com/company/gamedevutopia" target="_blank" class="hover:underline interactive-ui cursor-none">GameDevUtopia (GDU)</a> X Pictorial</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE:</span>
-                            <span class="text-zinc-200">Unity 2D (C#)</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">FEATURED IN:</span>
+                            <span class="text-brand font-semibold">PICTORIAL 2025 Annual Magazine (PICT Pune)</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">YEAR:</span>
-                            <span class="text-zinc-200">2025</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">CORE MECHANIC:</span>
+                            <span class="text-zinc-200">4 Prahar Chromatic Time-Shift</span>
+                        </div>
+                        <div class="border-b border-zinc-800/60 pb-2">
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE & AUDIO:</span>
+                            <span class="text-zinc-200">Unity 2D (C#) • AudioMixer</span>
                         </div>
                         <div>
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">FOCUS:</span>
-                            <span class="text-zinc-200">Modular Input, AudioMixer, 2D Kinematics</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">SARTHAK'S FOCUS:</span>
+                            <span class="text-zinc-200">White-Boxing, Controller, Audio & Custom Controls</span>
                         </div>
                     </div>
                 </div>

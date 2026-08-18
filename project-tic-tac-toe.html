@@ -97,10 +97,13 @@
                 <section>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> System_Overview</h2>
                     <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
-                        <strong>Tic Tac Toe Ultimate</strong> is an exploration into pushing Unity's native UI system (UGUI) to its full potential as a complete, self-contained game framework.
+                        <strong>Tic Tac Toe Ultimate</strong> is a minimalist, 100% UI-driven game built as an **8-hour continuous solo development challenge** to test rapid game loop prototyping and state architecture in Unity.
+                    </p>
+                    <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
+                        Engineered entirely within Unity's Canvas UI system (UGUI) using UI Buttons and Text components without 3D objects, every graphic asset—including button borders and background art—was created solo using **Canva** and **AI-generated art** to ensure zero copyright risk.
                     </p>
                     <p class="text-zinc-400 leading-relaxed font-sans text-sm">
-                        Rather than using standard scene objects or 3D meshes, every interactive element—from the board cells, animated turn indicators, win-condition matrix validators, to modal popups—was built as a modular UI component driven by a robust finite state machine in C#.
+                        The game features custom music integration and a lightweight **probabilistic lottery AI opponent** that selects moves randomly from available open cells. Built for **Android** and **WebGL**, it showcases a complete, rapid-sprint UI game architecture.
                     </p>
                 </section>
 
@@ -108,25 +111,32 @@
                 <section>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Architecture</h2>
                     <ul class="space-y-4 text-zinc-300">
-                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-sitemap text-brand mt-1 text-sm"></i>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-brand/40 p-4 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                            <i class="fas fa-stopwatch text-brand mt-1 text-sm animate-pulse"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Finite State Machine (FSM) Game Loop</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Built a structured FSM managing discrete states: <code>MainMenu</code>, <code>PlayerTurn</code>, <code>EvaluatingBoard</code>, <code>RoundWin</code>, and <code>DrawReset</code>, preventing illegal concurrent inputs or race conditions.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">8-Hour Rapid Sprint Architecture</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered from blank canvas to finished release in an 8-hour continuous sprint, prioritizing zero-overhead C# state logic and clean UI component decoupling.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-th text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-palette text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Algorithmic Win-Condition Matrix Validator</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Implemented bitmask and matrix traversal algorithms in C# to calculate diagonal, horizontal, and vertical 3-in-a-row connections with microsecond execution times.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Canva & AI Custom Asset Pipeline (Copyright Free)</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Authored 100% of visual assets—custom button borders, frames, and background graphics—using Canva and AI art tools, ensuring complete copyright independence.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-mobile-alt text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-robot text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Responsive Canvas Anchoring & Minimalist UI</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered responsive UI anchoring with custom auto-layout groups and tweened canvas groups that scale seamlessly across 16:9, 18:9, and ultra-wide aspect ratios without text distortion.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Probabilistic Lottery AI Opponent</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Implemented a lightweight AI bot that queries active board state arrays and executes moves via randomized lottery selection from remaining empty grid cells.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
+                            <i class="fas fa-music text-brand mt-1 text-sm"></i>
+                            <div>
+                                <strong class="text-white font-mono text-xs block mb-1">Custom Music & Audio Integration</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Integrated custom background music tracks alongside responsive UI audio triggers for tile placement, round wins, and draw resets.</p>
                             </div>
                         </li>
                     </ul>
@@ -134,38 +144,33 @@
 
                 <!-- Code Architecture Highlight -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: State Machine & Win Check</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Lottery AI & Win Validation</h2>
                     <div class="bg-terminal border border-zinc-800 p-4 font-mono text-xs text-zinc-300 overflow-x-auto">
-<pre class="text-brand"><code>// Win-Condition Checker Algorithm (Unity C#)
-private readonly int[][] winCombos = new int[][] {
-    new int[] {0,1,2}, new int[] {3,4,5}, new int[] {6,7,8}, // Rows
-    new int[] {0,3,6}, new int[] {1,4,7}, new int[] {2,5,8}, // Cols
-    new int[] {0,4,8}, new int[] {2,4,6}                    // Diagonals
-};
-
-public bool CheckForWinner(CellState mark) {
-    foreach (var combo in winCombos) {
-        if (board[combo[0]] == mark && board[combo[1]] == mark && board[combo[2]] == mark) {
-            TriggerWinSequence(combo, mark);
-            return true;
-        }
+<pre class="text-brand"><code>// Lottery AI Cell Selector & Win Validation (Unity C#)
+public void ExecuteAITurn() {
+    List&lt;int&gt; openCells = new List&lt;int&gt;();
+    for (int i = 0; i &lt; boardState.Length; i++) {
+        if (boardState[i] == CellState.Empty) openCells.Add(i);
     }
-    return false;
+    if (openCells.Count &gt; 0) {
+        int randomIndex = openCells[Random.Range(0, openCells.Count)];
+        MarkCell(randomIndex, CellState.O);
+    }
 }</code></pre>
                     </div>
                 </section>
 
                 <!-- Key Takeaways -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Impact</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Sprint_Impact</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> ADVANCED UGUI MASTERY</div>
-                            <p class="text-zinc-400">Deep comprehension of Canvas draw call batching, Graphic Raycasters, event triggers, and performant UI animations without runtime overhead.</p>
+                            <div class="text-brand font-bold mb-1">> SPRINT PROTOTYPING</div>
+                            <p class="text-zinc-400">Validated the ability to ship a complete, polished UI-driven game loop with audio and AI within a strict 8-hour timeframe.</p>
                         </div>
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> MINIMALIST DESIGN</div>
-                            <p class="text-zinc-400">Focused entirely on clean typography, micro-interactions, subtle button easing, and distraction-free visual balance.</p>
+                            <div class="text-brand font-bold mb-1">> ASSET INDEPENDENCE</div>
+                            <p class="text-zinc-400">Demonstrated resourcefulness in generating 100% custom UI art assets using Canva and AI tools without third-party dependencies.</p>
                         </div>
                     </div>
                 </section>
@@ -181,23 +186,23 @@ public bool CheckForWinner(CellState mark) {
                     <div class="space-y-3 font-mono text-xs">
                         <div class="border-b border-zinc-800/60 pb-2">
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">ROLE:</span>
-                            <span class="text-zinc-200">Solo Developer & UI Designer</span>
+                            <span class="text-zinc-200">Solo Developer (8-Hour Challenge)</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">FRAMEWORK:</span>
-                            <span class="text-zinc-200">Unity UGUI (C#)</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">FRAMEWORK & ART:</span>
+                            <span class="text-zinc-200">Unity UGUI • Canva & AI Art</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">PATTERNS:</span>
-                            <span class="text-brand">Finite State Machine (FSM)</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">AI ENGINE:</span>
+                            <span class="text-brand font-semibold">Probabilistic Lottery Selection</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">YEAR:</span>
-                            <span class="text-zinc-200">2025</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">TIMEFRAME:</span>
+                            <span class="text-zinc-200">8-Hour Continuous Sprint</span>
                         </div>
                         <div>
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">TARGET:</span>
-                            <span class="text-zinc-200">Cross-Platform UI System</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">PLATFORMS:</span>
+                            <span class="text-zinc-200">Android (App) & WebGL</span>
                         </div>
                     </div>
                 </div>

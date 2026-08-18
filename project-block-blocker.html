@@ -103,36 +103,67 @@
                 <section>
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> System_Overview</h2>
                     <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
-                        <strong>Block Blocker</strong> is an adrenaline-fueled 2D arcade game built from concept to final deployment. Originally engineered in a rapid 48-hour competitive sprint during the <strong>Glitched 2025 GameJam</strong> where it secured <strong>1st Place</strong>, the project subsequently qualified and advanced into <strong>Stage 2 of Genesis 4.0 at Army Institute of Technology (AIT) Pune</strong>.
+                        <strong>Block Blocker</strong> is an intentionally rage-inducing, high-stakes 2D precision arcade platformer built from concept to deployment in Unity. Featuring a literal 2D square block traversing pixelated, hazardous obstacle courses, the game pays homage to classic retro arcade cabinets with relentless difficulty and razor-sharp timing.
+                    </p>
+                    <p class="text-zinc-300 leading-relaxed font-sans text-sm mb-3">
+                        Originally developed during the <strong>Glitched 2025 GameJam</strong> where it captured <strong>1st Place</strong>, the project was subsequently scaled with expanded course trials, qualifying into <strong>Stage 2 of Genesis 4.0 at Army Institute of Technology (AIT) Pune</strong>.
                     </p>
                     <p class="text-zinc-400 leading-relaxed font-sans text-sm">
-                        The primary design objective was delivering a frictionless, highly addictive "one-more-try" gameplay loop. I engineered a bespoke dynamic difficulty scaling algorithm that modulates obstacle velocity, spawn frequency, and player hitbox margins in real-time based on session longevity and player mastery curve.
+                        Built for <strong>Android</strong> and <strong>WebGL (Browser)</strong>, Block Blocker features <strong>3 distinct map courses across 3 unique tilemap environments</strong>, ergonomic <strong>customizable on-screen touch controls</strong>, and a brain-bending <strong>Negative Edge (Release-to-Jump)</strong> Time-Trial mode.
                     </p>
+                </section>
+
+                <!-- Core Game Modes & Trials -->
+                <section>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Trials & Game Modes</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+                        <div class="bg-terminal/90 border border-zinc-800 p-4">
+                            <div class="text-brand font-bold mb-1.5 flex items-center gap-2">
+                                <i class="fas fa-gamepad text-sm"></i>
+                                <span>STANDARD TRIAL (NORMAL)</span>
+                            </div>
+                            <p class="text-zinc-400 leading-relaxed">Traditional intuitive input: jump executes instantly upon initial touch contact (<code>PointerDown</code>). Designed for navigating complex hazards and learning course geometry.</p>
+                        </div>
+                        <div class="bg-terminal/90 border border-brand/40 p-4 shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                            <div class="text-brand font-bold mb-1.5 flex items-center gap-2">
+                                <i class="fas fa-stopwatch text-sm animate-pulse"></i>
+                                <span>TIME-TRIAL RAGE (NEGATIVE EDGE)</span>
+                            </div>
+                            <p class="text-zinc-400 leading-relaxed">The signature brain-bending trial: jump triggers <strong>ONLY upon lifting your finger (<code>PointerUp</code>)</strong>. Inverting muscle memory creates an intensely addictive speedrun challenge where fumbling is heavily punished.</p>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Core Technical Mechanics -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Architecture</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Core_Mechanics & Mobile Architecture</h2>
                     <ul class="space-y-4 text-zinc-300">
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-microchip text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-hand-pointer text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Dynamic Difficulty Scaling (DDS)</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered an algorithmic curve in C# that smoothly scales falling block cadence and obstacle variety relative to player survival time, maintaining the critical flow-state zone between boredom and frustration.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">"Negative Edge" (Release-to-Action) Input Engine</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Implemented a custom input dispatcher supporting both standard contact triggers and release-on-up ("Negative Edge") execution. This psychological twist disrupts traditional reflex timing, demanding calculated release pauses to clear gaps.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-project-diagram text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-eye-slash text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">Decoupled Event-Driven UI Loop</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Used C# <code>System.Action</code> events and delegates to completely decouple score counters, combo multipliers, screen shake, and audio cues from the physics loop, ensuring zero garbage collection spikes during high-intensity gameplay.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Visual Deception & Severe Fumble Punishment</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Designed courses packed with deceptive visual cues—platforms that appear solid but are hazardous, or safe zones that collapse. In Time-Trial mode, falling for these tricks results in a massive fumble, forcing the player to master pure memory over sight.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
-                            <i class="fas fa-bolt text-brand mt-1 text-sm"></i>
+                            <i class="fas fa-sliders-h text-brand mt-1 text-sm"></i>
                             <div>
-                                <strong class="text-white font-mono text-xs block mb-1">High "Juice" Feedback & Polish</strong> 
-                                <p class="text-zinc-400 text-xs leading-relaxed">Crafted tactile feedback through customized particle bursts on block destruction, micro-freeze frames upon near-miss encounters, and responsive low-latency touch controls calibrated for mobile & desktop screens.</p>
+                                <strong class="text-white font-mono text-xs block mb-1">Ergonomic Customizable Touch Layout</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Recognizing the precision required on mobile, engineered fully rebindable, customizable touch button anchors allowing players to adjust button positions, spacing, and scale for maximum ergonomic comfort across all Android aspect ratios.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-terminal/80 border border-zinc-800/80 p-4">
+                            <i class="fas fa-mobile-alt text-brand mt-1 text-sm"></i>
+                            <div>
+                                <strong class="text-white font-mono text-xs block mb-1">Cross-Platform Deployment (Android & WebGL)</strong> 
+                                <p class="text-zinc-400 text-xs leading-relaxed">Structured the project architecture to deploy seamlessly across both native Android devices and WebGL for frictionless browser-based playability, ensuring locked 60 FPS performance during high-speed platforming.</p>
                             </div>
                         </li>
                     </ul>
@@ -140,18 +171,26 @@
 
                 <!-- Code Architecture Highlight -->
                 <section>
-                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Difficulty Engine</h2>
+                    <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Code_Snippet: Negative Edge Input Dispatcher</h2>
                     <div class="bg-terminal border border-zinc-800 p-4 font-mono text-xs text-zinc-300 overflow-x-auto">
-<pre class="text-brand"><code>// Dynamic Difficulty Curve Calculator (Unity C#)
-public float GetSpawnRate(float elapsedTime) {
-    float normalizedTime = Mathf.Clamp01(elapsedTime / maxDifficultyTime);
-    float easeCurve = difficultyCurve.Evaluate(normalizedTime);
-    return Mathf.Lerp(initialSpawnInterval, minSpawnInterval, easeCurve);
-}
+<pre class="text-brand"><code>// Negative Edge (Release-on-Up) vs Standard Input Controller (Unity C#)
+public class JumpController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+    [SerializeField] private bool isTimeTrialRageMode = false;
+    [SerializeField] private PlayerMotor playerMotor;
 
-public void OnObstacleDestroyed(int scoreGained) {
-    CurrentScore += scoreGained * comboMultiplier;
-    OnScoreUpdated?.Invoke(CurrentScore); // Event-driven UI notification
+    public void OnPointerDown(PointerEventData eventData) {
+        // In Normal Mode: Jump instantly on touch down
+        if (!isTimeTrialRageMode) {
+            playerMotor.ExecuteJump();
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+        // In Time-Trial Mode: Negative Edge trigger on finger release
+        if (isTimeTrialRageMode) {
+            playerMotor.ExecuteJump();
+        }
+    }
 }</code></pre>
                     </div>
                 </section>
@@ -161,12 +200,12 @@ public void OnObstacleDestroyed(int scoreGained) {
                     <h2 class="text-xl font-bold text-white font-mono uppercase tracking-widest mb-3 border-b border-zinc-800/80 pb-2">> Learnings_&_Impact</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> GAME FEEL ("JUICE")</div>
-                            <p class="text-zinc-400">Mastered the subtle art of screenshake, audio sync, and hit-stop frames to turn simple geometric mechanics into deeply satisfying tactile interactions.</p>
+                            <div class="text-brand font-bold mb-1">> INPUT PSYCHOLOGY</div>
+                            <p class="text-zinc-400">Proved how subtle subversions of standard input triggers ("Negative Edge") combined with visual deception can reinvent platforming difficulty and create viral, rage-inducing gameplay loops.</p>
                         </div>
                         <div class="bg-terminal border border-zinc-800 p-3.5">
-                            <div class="text-brand font-bold mb-1">> RAPID PROTOTYPING</div>
-                            <p class="text-zinc-400">Proven track record of taking an abstract mechanic from blank Unity canvas to an award-winning published release in 48 hours.</p>
+                            <div class="text-brand font-bold mb-1">> CROSS-PLATFORM OPTIMIZATION</div>
+                            <p class="text-zinc-400">Delivered ultra-smooth performance across Android and Web browser environments, alongside fully customizable UI touch layouts tailored for competitive speedrunning.</p>
                         </div>
                     </div>
                 </section>
@@ -185,21 +224,29 @@ public void OnObstacleDestroyed(int scoreGained) {
                             <span class="text-zinc-200">Solo Developer & Game Designer</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE:</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">ENGINE & GRAPHICS:</span>
                             <span class="text-zinc-200">Unity 2D (C#)</span>
+                        </div>
+                        <div class="border-b border-zinc-800/60 pb-2">
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">PROTAGONIST:</span>
+                            <span class="text-zinc-200">2D Block / Square (Pixelated Arcade Runner)</span>
+                        </div>
+                        <div class="border-b border-zinc-800/60 pb-2">
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">SIGNATURE MECHANIC:</span>
+                            <span class="text-brand font-semibold">Negative Edge (Release-to-Jump)</span>
+                        </div>
+                        <div class="border-b border-zinc-800/60 pb-2">
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">MAPS & ENVIRONMENTS:</span>
+                            <span class="text-zinc-200">3 Courses • 3 Custom Tilemaps</span>
                         </div>
                         <div class="border-b border-zinc-800/60 pb-2">
                             <span class="text-zinc-500 block mb-0.5 text-[10px]">AWARDS & RECOGNITION:</span>
                             <span class="text-brand block font-semibold">Winner • Glitched GameJam 2025</span>
                             <span class="text-zinc-300 block text-[11px] mt-0.5">Stage 2 Finalist • Genesis 4.0 (AIT Pune)</span>
                         </div>
-                        <div class="border-b border-zinc-800/60 pb-2">
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">TIMEFRAME:</span>
-                            <span class="text-zinc-200">2024 — 2025</span>
-                        </div>
                         <div>
-                            <span class="text-zinc-500 block mb-0.5 text-[10px]">PLATFORMS:</span>
-                            <span class="text-zinc-200">WebGL / PC / Mobile Browser</span>
+                            <span class="text-zinc-500 block mb-0.5 text-[10px]">TARGET PLATFORMS:</span>
+                            <span class="text-zinc-200">Android (Customizable Touch UI) / WebGL</span>
                         </div>
                     </div>
                 </div>
