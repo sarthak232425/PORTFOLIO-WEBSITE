@@ -252,7 +252,7 @@
                     </div>
 
                     <p class="text-zinc-400 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl pt-1">
-                        Final-year IT Engineer at PICT Pune architecting physics-driven gameplay systems, modular game mechanics, and interactive web tools.
+                        Final-year IT Engineer at PICT Pune architecting physics-driven gameplay systems, modular mechanics, and relational database systems.
                     </p>
 
                     <div class="flex flex-wrap gap-3 font-mono text-xs pt-4">
@@ -287,9 +287,8 @@
                     <!-- Category Filter Buttons -->
                     <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
                         <button onclick="filterProjects('starred')" class="filter-btn active px-3 py-1 border border-brand bg-brand text-dark font-bold transition-all interactive-ui cursor-none shadow-[0_0_10px_rgba(212,175,55,0.2)]" data-filter="starred">★ STARRED [4]</button>
-                        <button onclick="filterProjects('all')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="all">ALL [6]</button>
+                        <button onclick="filterProjects('all')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="all">ALL [5]</button>
                         <button onclick="filterProjects('gamedev')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="gamedev">GAMES [4]</button>
-                        <button onclick="filterProjects('web')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="web">WEB APPS [1]</button>
                         <button onclick="filterProjects('database')" class="filter-btn px-3 py-1 border border-zinc-800 bg-terminal text-zinc-400 hover:border-brand hover:text-brand font-medium transition-all interactive-ui cursor-none" data-filter="database">DATABASE [1]</button>
                     </div>
                 </div>
@@ -297,7 +296,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
                     
                     <!-- 1. Block Blocker (Game - STARRED) -->
-                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
+                    <div class="project-card order-2 group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
                         <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
                             <img src="images/BB.png" alt="Block Blocker" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                             <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">★ GLITCHED '25 WINNER • GENESIS 4.0 STAGE 2</div>
@@ -306,7 +305,7 @@
                             <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Block Blocker</h3>
                             <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Glitched '25 champion: a precision 2D platformer built around a custom Negative-Edge input dispatcher. Tuned for locked 60 FPS performance across Android and WebGL despite visual deception and rapid time-trial gameplay.</p>
                             <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity 2D (C#)</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity / C#</span>
                                 <span class="bg-dark px-2 py-0.5 border border-zinc-800">Negative-Edge Input</span>
                                 <span class="bg-dark px-2 py-0.5 border border-zinc-800">WebGL / Android</span>
                                 <span class="bg-dark px-2 py-0.5 border border-zinc-800">Locked 60 FPS</span>
@@ -324,21 +323,22 @@
                         </div>
                     </div>
 
-                    <!-- 2. Realistic Car Controller (Game - STARRED) -->
-                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
+                    <!-- 1. Modular Vehicle Physics & Drivetrain System (Game - STARRED) -->
+                    <div class="project-card order-first group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="gamedev" data-starred="true">
                         <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
-                            <img src="images/RCC.png" alt="Realistic Car Controller" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            <img src="images/RCC.png" alt="Modular Vehicle Physics and Drivetrain System" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                             <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">★ MODULAR PHYSICS SYSTEM</div>
                         </div>
                         <div class="p-5 flex flex-col flex-grow relative z-10">
                             <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Modular Vehicle Physics & Drivetrain System</h3>
                             <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Solo-developed Unity vehicle system built on WheelCollider kinetics, with transmission and gear synchronization, rev matching, engine stall logic, synthesized exhaust audio, and swappable AWD / FWD / RWD drivetrains.</p>
                             <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity 3D</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">WheelCollider Kinetics</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Rev Match & Stall</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Unity / C# / WheelColliders</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Transmission & Gear Sync</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Rev Matching & Stall Logic</span>
                                 <span class="bg-dark px-2 py-0.5 border border-zinc-800">AWD / FWD / RWD</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Synthesized Audio</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">WheelCollider Kinetics</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Audio Synthesis</span>
                             </div>
                             <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
                                 <a href="project-car-controller.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
@@ -409,35 +409,8 @@
                         </div>
                     </div>
 
-                    <!-- 5. Colour Extractor (Web App) -->
-                    <div class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui hidden" data-category="web" data-starred="false">
-                        <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60">
-                            <img src="images/CE.png" alt="Colour Extractor" class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                            <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">CANVAS UTILITY</div>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow relative z-10">
-                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Colour Extractor</h3>
-                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Interactive browser tool utilizing Canvas API for pixel extraction. Features a precision magnifying loupe, instant RGB/HEX inspection, and palette curation.</p>
-                            <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">HTML5 Canvas</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">JavaScript</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">UI/UX</span>
-                            </div>
-                            <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
-                                <a href="project-colour-extractor.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
-                                    <span>Case Study</span>
-                                    <i class="fas fa-arrow-right text-[10px]"></i>
-                                </a>
-                                <a href="https://github.com/sarthak232425" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-400 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui" title="GitHub">
-                                    <i class="fab fa-github"></i>
-                                    <span>GitHub</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- 6. Financial SQL Suite (Database) -->
-                    <div id="databases" class="project-card group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="database" data-starred="true">
+                    <div id="databases" class="project-card order-4 group bg-terminal/90 border border-zinc-800/80 hover:border-brand/70 transition-all flex flex-col h-full relative cursor-none interactive-ui" data-category="database" data-starred="true">
                         <div class="h-48 bg-zinc-900 relative overflow-hidden border-b border-zinc-800/60 p-4 font-mono text-xs text-brand/80 flex flex-col justify-center">
                             <div class="text-[10px] text-zinc-500 mb-1">> SELECT * FROM risk_matrix;</div>
                             <div class="text-zinc-300 font-mono text-[11px] leading-tight">
@@ -448,12 +421,12 @@
                             <div class="absolute top-3 right-3 bg-dark/90 font-mono text-[10px] text-brand px-2 py-0.5 border border-brand/40 z-20">SQL SUITE</div>
                         </div>
                         <div class="p-5 flex flex-col flex-grow relative z-10">
-                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Financial Risk Suite</h3>
-                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">A normalized 3NF relational suite combining Payment Anomaly Detection with window functions and LAG, a Loan Underwriting Matrix using CASE logic, and Portfolio Asset Views for time-series analysis.</p>
+                            <h3 class="text-lg font-bold text-white mb-2 font-mono uppercase">> Financial Risk & Analytics SQL Suite</h3>
+                            <p class="text-zinc-400 text-xs mb-5 flex-grow leading-relaxed">Designed 3NF relational database systems implementing automated loan-risk scoring, fraud detection with SQL window functions (LAG/LEAD), and optimized views delivering sub-200ms analytical queries.</p>
                             <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-brand/90 mb-5 uppercase">
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">MySQL</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">PostgreSQL</span>
-                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">3NF Schema & Views</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">MySQL / PostgreSQL</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">Relational Schema & Analytics</span>
+                                <span class="bg-dark px-2 py-0.5 border border-zinc-800">LAG / LEAD / Views</span>
                             </div>
                             <div class="mt-auto border-t border-zinc-800/60 pt-3 flex gap-2 font-mono text-xs">
                                 <a href="project-financial-sql.html" class="flex-1 flex justify-center items-center gap-1.5 border border-zinc-700/80 bg-zinc-900/60 hover:border-brand hover:text-brand text-zinc-300 py-2.5 px-2 transition-all uppercase tracking-wider cursor-none interactive-ui">
@@ -486,26 +459,22 @@
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-zinc-800/60 pb-5 mb-5">
                         <div>
                             <div class="text-brand font-mono text-[11px] uppercase tracking-widest mb-1">> LEADERSHIP & ENGINEERING</div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-white font-mono">Ex-Coding Head</h3>
+                            <h3 class="text-xl sm:text-2xl font-bold text-white font-mono">Ex-Coding Head — GameDevUtopia @ PICT</h3>
                             <div class="text-zinc-400 font-mono text-xs sm:text-sm"><a href="https://www.linkedin.com/company/gamedevutopia" target="_blank" class="text-brand hover:underline interactive-ui cursor-none">GameDevUtopia (GDU)</a> • Pune Institute of Computer Technology (PICT)</div>
                         </div>
                         <div class="px-3 py-1 bg-dark border border-zinc-800 text-brand font-mono text-xs tracking-wider w-fit">
-                            AUG 2025 — AUG 2026
+                            AUG 2025 — PRESENT
                         </div>
                     </div>
 
                     <ul class="space-y-3 font-mono text-xs sm:text-sm text-zinc-300">
                         <li class="flex items-start gap-2.5">
                             <i class="fas fa-chevron-right text-brand text-xs mt-1"></i>
-                            <div>Led and managed the Coding Department of the only Game Development Club in PICT.</div>
+                            <div>Led the technical department of PICT's premier Game Development Club, mentoring developers in Unity C#, modular architecture, and Git workflows.</div>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <i class="fas fa-chevron-right text-brand text-xs mt-1"></i>
-                            <div>Mentored student developers in Unity C#, modular architecture, Git workflows, and physics engines.</div>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <i class="fas fa-chevron-right text-brand text-xs mt-1"></i>
-                            <div>Spearheaded collaborative releases including <strong>KaalChakra</strong> (GameDevUtopia X Pictorial).</div>
+                            <div>Directed technical development and team delivery for collaborative club releases, including <strong>KaalChakra</strong> (GDU x Pictorial '25).</div>
                         </li>
                     </ul>
                 </div>
@@ -517,7 +486,7 @@
             <div class="container mx-auto max-w-5xl">
                 <div class="flex items-center gap-3 mb-12">
                     <span class="font-mono text-brand text-sm animate-pulse">[]</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono uppercase tracking-widest">System_Specs</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono uppercase tracking-widest">Credentials & Education</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -561,7 +530,7 @@
                                 <div class="text-brand font-mono text-xs uppercase">> Certified_Badge</div>
                                 <i class="fas fa-external-link-alt text-brand text-xs"></i>
                             </div>
-                            <div class="text-white font-bold text-base mb-2">Unity Certified Game Developer</div>
+                            <div class="text-white font-bold text-base mb-2">Google Play x Unity Game Developer Certified</div>
                             <div class="text-zinc-400 text-xs font-mono mb-3">
                                 Intermediate Level Developer • Google Play × Unity India Program
                             </div>
@@ -602,19 +571,19 @@
                     <!-- Tech Stack Breakdown (Separated & Curated) -->
                     <div class="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                         <div class="bg-terminal/90 border border-zinc-800 p-3.5">
-                            <div class="text-brand text-xs font-mono mb-1">> GAME_DEV</div>
+                            <div class="text-brand text-xs font-mono mb-1">> GAME_SYSTEMS</div>
                             <div class="text-white text-xs font-mono">Unity Engine, C#</div>
                             <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Vuforia AR, Physics Systems</div>
                         </div>
                         <div class="bg-terminal/90 border border-zinc-800 p-3.5">
-                            <div class="text-brand text-xs font-mono mb-1">> WEB_DEV</div>
-                            <div class="text-white text-xs font-mono">JS, HTML5, CSS</div>
-                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Tailwind CSS, Canvas API</div>
+                            <div class="text-brand text-xs font-mono mb-1">> ADDITIONAL_ENGINEERING_CAPABILITIES</div>
+                            <div class="text-white text-xs font-mono">JS, HTML5, CSS, SolidWorks</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Canvas API, Parametric CAD</div>
                         </div>
                         <div class="bg-terminal/90 border border-zinc-800 p-3.5">
-                            <div class="text-brand text-xs font-mono mb-1">> 3D_CAD</div>
-                            <div class="text-white text-xs font-mono">SolidWorks 3D CAD</div>
-                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Parametric Parts, Assembly</div>
+                            <div class="text-brand text-xs font-mono mb-1">> TOOLING_EXPLORATION</div>
+                            <div class="text-white text-xs font-mono">Colour Extraction, 3D CAD</div>
+                            <div class="text-zinc-500 text-[10px] font-mono mt-0.5">Canvas Utilities, SolidWorks</div>
                         </div>
                         <div class="bg-terminal/90 border border-zinc-800 p-3.5">
                             <div class="text-brand text-xs font-mono mb-1">> DATABASE</div>
@@ -638,7 +607,7 @@
                 <span class="font-mono text-brand text-xs mb-3 block animate-pulse">> WAITING FOR CONNECTION...</span>
                 <h2 class="text-3xl font-bold text-white mb-4 uppercase tracking-widest">Get In Touch</h2>
                 <p class="text-zinc-400 mb-8 max-w-md mx-auto font-mono text-xs leading-relaxed">
-                    Open for game design, Unity C# architecture, 3D CAD modeling, or web development opportunities.
+                    Open for game systems, Unity C# architecture, and data-focused engineering opportunities.
                 </p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 font-mono text-xs text-left max-w-xl mx-auto">
